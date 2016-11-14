@@ -16,11 +16,11 @@ class JDBC {
 	      try {
 	         Connection conn = null;
 
-	        // conn = DriverManager.getConnection("jdbc:mysql://165.229.88.154:3306/popup_history?useSSL=false",
-			//			"hojeong", "0802");
+	         conn = DriverManager.getConnection("jdbc:mysql://165.229.88.154:3306/popup_history?useSSL=false",
+						"hojeong", "0802");    //제 겁니다!!
 	    
 	         //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipe?useSSL=false&autoReconnect=true",
-	                 //"hoonju", "19950905");  // Xshell
+	                 //"hoonju", "19950905");  // Xshell 여러분들은 이거요!!
 
 	         
 	         java.sql.Statement st = null;
