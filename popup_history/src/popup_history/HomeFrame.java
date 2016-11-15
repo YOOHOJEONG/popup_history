@@ -71,9 +71,21 @@ public HomeFrame() {
       getContentPane().add(textField);
       textField.setColumns(10);
       
+      ModifyQuery mq = new ModifyQuery();
+      
       JList list = new JList();
+      DefaultListModel model;
       list.setBounds(12, 10, 610, 184);
       getContentPane().add(list);
+      list = new JList(new DefaultListModel());
+      model = (DefaultListModel)list.getModel();
+      
+      String haha;
+      do{
+    	  haha = mq.modifyQuery("select date, title from history");
+    	  model.addElement(haha);
+      }while(haha==null);
+    
       
       JMenuBar mb = new JMenuBar();
       setJMenuBar(mb);

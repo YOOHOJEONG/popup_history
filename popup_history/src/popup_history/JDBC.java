@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 class JDBC {
-	void jdbc(){
+	Connection jdbc(){
+        Connection conn = null;
+
 		try {
 
 	         Class.forName("com.mysql.jdbc.Driver");
@@ -14,50 +16,42 @@ class JDBC {
 	         System.err.println("ClassNotFoundException : " + e.getMessage());
 	      }
 	      try {
-	         Connection conn = null;
 
 	         conn = DriverManager.getConnection("jdbc:mysql://165.229.88.154:3306/popup_history?useSSL=false",
 						"hojeong", "0802");    //제 겁니다!!
 	    
-	         //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipe?useSSL=false&autoReconnect=true",
-	                 //"hoonju", "19950905");  // Xshell 여러분들은 이거요!!
-
-	         
-	         java.sql.Statement st = null;
-	         ResultSet rset = null;
-	         st = conn.createStatement();
-	         
-	        // while (rset.next()) {
-	        //    System.out.println("d_name : "+rset.getString(1)+"\td_food : "+rset.getString(2)+"\td_price : "+rset.getInt(3)+"\td_tel : "+rset.getString(4)+"\td_group : "+rset.getString(5));
-	       //  }
+	         //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/popup_history?useSSL=false",
+				//"hojeong", "0802");  // Xshell 여러분들은 이거요!!
+	   
 	      } catch (SQLException sqex) {
 	         System.out.println("SQLException: " + sqex.getMessage());
 	         System.out.println("SQLState: " + sqex.getSQLState());
 	      }
-
+		return conn;
 	}
 }
 
 class ModifyQuery{
-	void modifyQuery(){
+	String modifyQuery(String queryStmt){
 		JDBC jdbc = new JDBC();
+		Connection conn = null ;
+		java.sql.Statement st = null;
+        ResultSet rset = null;
 		try {
-	         Connection conn = null;
-
-	         conn = DriverManager.getConnection("jdbc:mysql://165.229.88.154:3306/popup_history?useSSL=false",
-						"hojeong", "0802");
-	         
-	         java.sql.Statement st = null;
-	         ResultSet rset = null;
-	         st = conn.createStatement();
-	         
-	        // while (rset.next()) {
-	        //    System.out.println("d_name : "+rset.getString(1)+"\td_food : "+rset.getString(2)+"\td_price : "+rset.getInt(3)+"\td_tel : "+rset.getString(4)+"\td_group : "+rset.getString(5));
-	       //  }
+			conn = jdbc.jdbc();
+			queryStmt = "select date, title from history";
+			st = conn.createStatement();
+			rset = st.executeQuery(queryStmt);
+			String dateTitle_his;
+			while(rset.next()){
+				dateTitle_his = "Date : " + rset.getDate("date") + "\nTitle : " + rset.getString("title");
+				System.out.println(dateTitle_his);
+				return dateTitle_his;
+			}
 	      } catch (SQLException sqex) {
 	         System.out.println("SQLException: " + sqex.getMessage());
 	         System.out.println("SQLState: " + sqex.getSQLState());
 	      }
+		return null;
 	}
 }
-
