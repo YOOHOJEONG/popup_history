@@ -16,13 +16,13 @@ import javax.swing.JPasswordField;
 public class Log_in extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField pwdDfdf;
+	private JTextField ID;
+	private JPasswordField pwd;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -34,7 +34,7 @@ public class Log_in extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
@@ -56,22 +56,23 @@ public class Log_in extends JFrame {
 		label.setBounds(47, 130, 100, 30);
 		contentPane.add(label);
 		
-		textField = new JTextField();
-		textField.setBounds(159, 80, 130, 30);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		ID = new JTextField();
+		ID.setBounds(159, 80, 130, 30);
+		contentPane.add(ID);
+		ID.setColumns(10);
 		
 		JButton btnNewButton = new JButton("LOGIN");
+		btnNewButton.setBounds(159, 180, 130, 30);
+		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(159, 180, 130, 30);
-		contentPane.add(btnNewButton);
 		
-		pwdDfdf = new JPasswordField();
-		pwdDfdf.setText("");
-		pwdDfdf.setBounds(159, 130, 130, 30);
-		contentPane.add(pwdDfdf);
+		
+		pwd = new JPasswordField();
+		pwd.setText("");
+		pwd.setBounds(159, 130, 130, 30);
+		contentPane.add(pwd);
 	}
 }
