@@ -79,12 +79,14 @@ import java.awt.event.ActionEvent;
        getContentPane().add(list);
        
        ModifyQuery mq = new ModifyQuery();
-       Vector<String> haha = mq.modifyQuery("select date, title from history", "selectDateTitle_history");
-       list = new JList<String>(haha);
-       System.out.println(haha);
-       ////////////////////////////////////////////
-       //////haha에 결과는 들어갔는데 list에 출력안돼요!/////
-       ////////////////////////////////////////////
+       Vector<String> haha = mq.modifyQuery("select date, title from history", null, null);
+       list.setListData(haha);
+
+       /*String date = "1955-11-01";
+       String title = "베트남 전쟁";
+      
+       Vector<String> haha = mq.modifyQuery("select contents from history where date=? and title=?", date, title);
+      *////////getSelected 
        
         JMenuBar mb = new JMenuBar();
         setJMenuBar(mb);

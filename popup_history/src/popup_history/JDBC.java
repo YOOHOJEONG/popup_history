@@ -3,6 +3,7 @@ package popup_history;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -34,30 +35,44 @@ class JDBC {
 }
 
 class ModifyQuery {
-	Vector<String> modifyQuery(String queryStmt, String order){
+	Vector<String> modifyQuery(String queryStmt, String input_1, String input_2/*insert 값, 검색한 값*/){
 		JDBC jdbc = new JDBC();
 		Connection conn = null;
 		java.sql.Statement st = null;
         ResultSet rset = null;
 		try {
 			conn = jdbc.jdbc();
-			//queryStmt = "select date, title from history";
 			st = conn.createStatement();
-			rset = st.executeQuery(queryStmt);
 			
-			if(order == "selectDateTitle_history"){
-				Vector<String> date_title;
-				date_title = new Vector<String>();
+			PreparedStatement query = conn.prepareStatement(queryStmt);
+			
+			Vector<String> resultVal;
+			resultVal = new Vector<String>();
+			
+			if(queryStmt == "select date, title from history"){
+				rset = query.executeQuery();
 			
 				String date, title;
-			
 				while(rset.next()){
 					date = rset.getString("date"); 
 					title = rset.getString("title");
-					date_title.add(date+title);
+					resultVal.add(date+title);
 				}
-				return date_title;
 			}
+			
+			else if(queryStmt == "select contents from history where date=? and title=?"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				rset = query.executeQuery();
+			
+				String contents;
+				while(rset.next()){
+					contents = rset.getString("contents");
+					resultVal.add(contents);	
+				}
+			}
+			
+			return resultVal;			
 	      } catch (SQLException sqex) {
 	         System.out.println("SQLException: " + sqex.getMessage());
 	         System.out.println("SQLState: " + sqex.getSQLState());
