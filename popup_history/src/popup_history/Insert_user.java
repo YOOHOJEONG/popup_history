@@ -19,7 +19,6 @@ import javax.swing.SwingConstants;
 public class Insert_user extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 
@@ -47,7 +46,7 @@ public class Insert_user extends JFrame {
 
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 380);
+		setBounds(100, 100, 450, 283);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -95,50 +94,41 @@ public class Insert_user extends JFrame {
 		comboBox_2.setBounds(276, 27, 87, 30);
 		contentPane.add(comboBox_2);
 		
-		textField = new JTextField();
-		textField.setBounds(78, 67, 285, 40);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(78, 117, 285, 80);
+		textField_1.setBounds(78, 67, 285, 130);
 		contentPane.add(textField_1);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("반복설정");
-		chckbxNewCheckBox.setBounds(248, 203, 115, 23);
-		contentPane.add(chckbxNewCheckBox);
-		
 		JButton btnNewButton = new JButton("취소");
+		btnNewButton.setBounds(325, 209, 97, 23);
+		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+        	         public void run() {
+        	            try {
+        	            	dispose();
+        	            } catch (Exception e) {
+        	               e.printStackTrace();
+        	            }
+        	         }
+        	      });
 			}
 		});
-		btnNewButton.setBounds(325, 309, 97, 23);
-		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("확인");
-		btnNewButton_1.setBounds(216, 309, 97, 23);
+		
+		JButton btnNewButton_1 = new JButton("추가");
+		btnNewButton_1.setBounds(216, 209, 97, 23);
 		contentPane.add(btnNewButton_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(216, 232, 206, 40);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
 		
 		JLabel label = new JLabel("날짜");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(12, 26, 58, 31);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("제목");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(12, 67, 58, 40);
-		contentPane.add(label_1);
-		
 		JLabel label_2 = new JLabel("내용");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(12, 117, 58, 30);
+		label_2.setBounds(12, 116, 58, 30);
 		contentPane.add(label_2);
 		
 		

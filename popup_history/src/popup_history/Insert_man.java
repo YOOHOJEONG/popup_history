@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -106,5 +109,18 @@ public class Insert_man extends JFrame {
 		JButton button_1 = new JButton("√Îº“");
 		button_1.setBounds(342, 229, 80, 23);
 		contentPane.add(button_1);
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+        	         public void run() {
+        	            try {
+        	            	dispose();
+        	            } catch (Exception e) {
+        	               e.printStackTrace();
+        	            }
+        	         }
+        	      });
+			}
+		});
 	}
 }

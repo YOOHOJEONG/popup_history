@@ -33,14 +33,14 @@ import javax.swing.event.ListSelectionEvent;
      */
     @SuppressWarnings("unchecked")
  public HomeFrame() {
-    	getContentPane().setBackground(new Color(255, 218, 185));
+    	getContentPane().setBackground(new Color(245, 245, 245));
  
  	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        setBounds(100, 100, 650, 469);
        getContentPane().setLayout(null);
        
        JCheckBox checkBox = new JCheckBox("\uC990\uACA8\uCC3E\uAE30");
-       checkBox.setBackground(new Color(255, 228, 181));
+       checkBox.setBackground(new Color(245, 245, 245));
        checkBox.setBounds(373, 200, 105, 45);
        getContentPane().add(checkBox);
        

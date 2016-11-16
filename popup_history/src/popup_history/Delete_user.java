@@ -2,13 +2,8 @@ package popup_history;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
@@ -69,9 +64,9 @@ public class Delete_user extends JFrame {
 		label_1.setBounds(22, 48, 53, 25);
 		contentPane.add(label_1);
 		
-		TextArea textArea = new TextArea();
-		textArea.setBounds(22, 79, 400, 144);
-		contentPane.add(textArea);
+		JList DuL = new JList();
+		DuL.setBounds(22, 79, 400, 144);
+		contentPane.add(DuL);
 		
 		JButton button = new JButton("확인");
 		button.setBounds(216, 229, 97, 23);
@@ -80,5 +75,18 @@ public class Delete_user extends JFrame {
 		JButton button_1 = new JButton("취소");
 		button_1.setBounds(325, 229, 97, 23);
 		contentPane.add(button_1);
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+        	         public void run() {
+        	            try {
+        	            	dispose();
+        	            } catch (Exception e) {
+        	               e.printStackTrace();
+        	            }
+        	         }
+        	      });
+			}
+		});
 	}
 }

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Change_user extends JFrame {
 
@@ -68,6 +70,19 @@ public class Change_user extends JFrame {
 		JButton button_2 = new JButton("√Îº“");
 		button_2.setBounds(325, 229, 97, 23);
 		contentPane.add(button_2);
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+        	         public void run() {
+        	            try {
+        	            	dispose();
+        	            } catch (Exception e) {
+        	               e.printStackTrace();
+        	            }
+        	         }
+        	      });
+			}
+		});
 	}
 
 }
