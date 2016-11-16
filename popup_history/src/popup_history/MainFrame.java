@@ -20,9 +20,14 @@ import java.awt.event.ActionEvent;
  import java.awt.Choice;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
  
- public class HomeFrame extends JFrame {
-    private JTextField textField;
+ public class MainFrame extends JFrame {
+    protected static final String JList = null;
+	private JTextField textField;
  
     /**
      * Launch the application.
@@ -32,17 +37,18 @@ import javax.swing.event.ListSelectionEvent;
      * Create the frame.
      */
     @SuppressWarnings("unchecked")
- public HomeFrame() {
+ public MainFrame() {
     	getContentPane().setBackground(new Color(245, 245, 245));
  
  	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        setBounds(100, 100, 650, 469);
        getContentPane().setLayout(null);
        
-       JCheckBox checkBox = new JCheckBox("\uC990\uACA8\uCC3E\uAE30");
-       checkBox.setBackground(new Color(245, 245, 245));
-       checkBox.setBounds(373, 200, 105, 45);
-       getContentPane().add(checkBox);
+       
+       
+       
+      
+
        
        JButton btnNewButton = new JButton("복구");
        btnNewButton.setFont(new Font("a옛날목욕탕B", Font.PLAIN, 18));
@@ -78,9 +84,8 @@ import javax.swing.event.ListSelectionEvent;
        list.setBounds(12, 10, 610, 184);
        getContentPane().add(list);
        
-       ModifyQuery mq = new ModifyQuery();
-       Vector<String> date_title = mq.modifyQuery("select date, title from history where date=current_date", null, null);
-       list.setListData(date_title);
+       HomePrint hp1 = new HomePrint();
+       hp1.HomePrintIndex(list);
        
        JTextArea textArea = new JTextArea();
        textArea.setEditable(false);
@@ -90,17 +95,38 @@ import javax.swing.event.ListSelectionEvent;
        list.addListSelectionListener(new ListSelectionListener() {
           	public void valueChanged(ListSelectionEvent arg0) {
           		if(arg0.getSource() == list){
-          			String str = (String)list.getSelectedValue();
-          			StringTokenizer tokens = new StringTokenizer(str);
-          			String date = tokens.nextToken("▶");//구분자
-          			String title = tokens.nextToken("▶");
-
-          			Vector<String> contents = mq.modifyQuery("select contents from history where date=? and title=?", date, title);
-           	        String text = (String)contents.get(0);      	       
-          	       	textArea.setText(text);
+          	        HomePrint hp2 = new HomePrint();
+        			hp2.HomePrintContents(list, textArea);
           		}
           	}
           });
+       
+       JCheckBox checkBox = new JCheckBox("\uC990\uACA8\uCC3E\uAE30");
+      /* checkBox.addItemListener(new ItemListener() {
+       	public void itemStateChanged(ItemEvent arg0) {
+       		if(arg0.getStateChange()==1){
+       			ModifyQuery mq = new ModifyQuery();
+       			String str = (String)list.getSelectedValue();
+       			StringTokenizer tokens = new StringTokenizer(str);
+       			String date = tokens.nextToken("▶");//구분자
+       			String title = tokens.nextToken("▶");
+       			mq.modifyQuery("insert into bookmark(date, title, contents) "
+       					+ "select date, title, contents from history where date='"+date+"' and title='"+title+"''", date, title);
+       		}
+       		else if(arg0.getStateChange()==0){
+       			ModifyQuery mq = new ModifyQuery();
+       			String str = (String)list.getSelectedValue();
+       			StringTokenizer tokens = new StringTokenizer(str);
+       			String date = tokens.nextToken("▶");//구분자
+       			String title = tokens.nextToken("▶");
+       			mq.modifyQuery("delete from bookmark(date, title, contents) "
+       					+ "select date, title, contents from history where date='"+date+"' and title='"+title+"''", date, title);
+       		}
+       	}
+       });*/
+       checkBox.setBackground(new Color(245, 245, 245));
+       checkBox.setBounds(373, 200, 105, 45);
+       getContentPane().add(checkBox);
        
         JMenuBar mb = new JMenuBar();
         setJMenuBar(mb);
@@ -115,7 +141,7 @@ import javax.swing.event.ListSelectionEvent;
            	 EventQueue.invokeLater(new Runnable() {
           	         public void run() {
           	            try {
-          	            	HomeFrame frame = new HomeFrame();
+          	            	MainFrame frame = new MainFrame();
           	               frame.setVisible(true);
           	            } catch (Exception e) {
           	               e.printStackTrace();

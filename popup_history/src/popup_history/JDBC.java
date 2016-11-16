@@ -72,6 +72,20 @@ class ModifyQuery {
 				}
 			}
 			
+			/*else if(queryStmt == "insert into bookmark(date, title, contents) "
+   					+ "select date, title, contents from history where date='"+input_1+"' and title='"+input_2+"';"){
+				//st.executeUpdate("insert into bookmark(date, title, contents) "
+       				//	+ "select date, title, contents from history where date="+input_1+"and title="+input_2);
+				
+				rset=query.executeQuery();
+			}
+			else if(queryStmt == "delete from bookmark(date, title, contents) "
+   					+ "select date, title, contents from history where date='"+input_1+"' and title='"+input_2+"';"){
+				//st.executeUpdate("delete from bookmark(date, title, contents) "
+       			//		+ "select date, title, contents from history where date="+input_1+"and title="+input_2);
+				rset=query.executeQuery();
+			}*/
+			
 			return resultVal;			
 	      } catch (SQLException sqex) {
 	         System.out.println("SQLException: " + sqex.getMessage());
