@@ -49,14 +49,14 @@ class ModifyQuery {
 			Vector<String> resultVal;
 			resultVal = new Vector<String>();
 			
-			if(queryStmt == "select date, title from history"){
+			if(queryStmt == "select date, title from history where date=current_date"){
 				rset = query.executeQuery();
 			
 				String date, title;
 				while(rset.next()){
 					date = rset.getString("date"); 
 					title = rset.getString("title");
-					resultVal.add(date+title);
+					resultVal.add(date+"¢º"+title);
 				}
 			}
 			

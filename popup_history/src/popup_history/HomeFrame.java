@@ -4,6 +4,7 @@ package popup_history;
  import java.awt.FlowLayout;
  import java.awt.event.ActionListener;
  import java.awt.event.WindowEvent;
+import java.util.StringTokenizer;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
  import java.awt.TextArea;
@@ -17,6 +18,8 @@ import java.awt.event.ActionEvent;
  import java.awt.Font;
  import javax.swing.*;
  import java.awt.Choice;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
  
  public class HomeFrame extends JFrame {
     private JTextField textField;
@@ -33,7 +36,7 @@ import java.awt.event.ActionEvent;
     	getContentPane().setBackground(new Color(255, 218, 185));
  
  	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-       setBounds(100, 100, 650, 480);
+       setBounds(100, 100, 650, 469);
        getContentPane().setLayout(null);
        
        JCheckBox checkBox = new JCheckBox("\uC990\uACA8\uCC3E\uAE30");
@@ -49,10 +52,6 @@ import java.awt.event.ActionEvent;
        });
        btnNewButton.setBounds(486, 207, 125, 29);
        getContentPane().add(btnNewButton);
-       
-       TextArea textArea = new TextArea();
-       textArea.setBounds(10, 251, 612, 157);
-       getContentPane().add(textArea);
        
        String item[]={"기념일 추가", "기념일 수정", "기념일 삭제"};
  		btnNewButton.addActionListener(new ActionListener() {
@@ -74,19 +73,34 @@ import java.awt.event.ActionEvent;
         
       
        JList list = new JList();
+
        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
        list.setBounds(12, 10, 610, 184);
        getContentPane().add(list);
        
        ModifyQuery mq = new ModifyQuery();
-       Vector<String> haha = mq.modifyQuery("select date, title from history", null, null);
-       list.setListData(haha);
+       Vector<String> date_title = mq.modifyQuery("select date, title from history where date=current_date", null, null);
+       list.setListData(date_title);
+       
+       JTextArea textArea = new JTextArea();
+       textArea.setEditable(false);
+       textArea.setBounds(12, 251, 610, 147);
+       getContentPane().add(textArea);
+       
+       list.addListSelectionListener(new ListSelectionListener() {
+          	public void valueChanged(ListSelectionEvent arg0) {
+          		if(arg0.getSource() == list){
+          			String str = (String)list.getSelectedValue();
+          			StringTokenizer tokens = new StringTokenizer(str);
+          			String date = tokens.nextToken("▶");//구분자
+          			String title = tokens.nextToken("▶");
 
-       /*String date = "1955-11-01";
-       String title = "베트남 전쟁";
-      
-       Vector<String> haha = mq.modifyQuery("select contents from history where date=? and title=?", date, title);
-      *////////getSelected 
+          			Vector<String> contents = mq.modifyQuery("select contents from history where date=? and title=?", date, title);
+           	        String text = (String)contents.get(0);      	       
+          	       	textArea.setText(text);
+          		}
+          	}
+          });
        
         JMenuBar mb = new JMenuBar();
         setJMenuBar(mb);
