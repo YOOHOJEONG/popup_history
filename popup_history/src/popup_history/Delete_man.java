@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Delete_man extends JFrame {
 
@@ -73,6 +75,19 @@ public class Delete_man extends JFrame {
 		JButton button_2 = new JButton("√Îº“");
 		button_2.setBounds(325, 225, 97, 23);
 		contentPane.add(button_2);
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+        	         public void run() {
+        	            try {
+        	            	dispose();
+        	            } catch (Exception e) {
+        	               e.printStackTrace();
+        	            }
+        	         }
+        	      });
+			}
+		});
 	}
 
 }

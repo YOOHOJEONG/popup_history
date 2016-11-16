@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JFormattedTextField;
+import java.awt.Color;
 
 public class Log_in extends JFrame {
 
@@ -42,13 +44,14 @@ public class Log_in extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("ID :");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(47, 80, 100, 30);
+		lblNewLabel.setBounds(47, 79, 100, 30);
 		contentPane.add(lblNewLabel);
 		
 		JLabel label = new JLabel("Password :");
@@ -57,11 +60,13 @@ public class Log_in extends JFrame {
 		contentPane.add(label);
 		
 		ID = new JTextField();
-		ID.setBounds(159, 80, 130, 30);
+		ID.setForeground(new Color(255, 255, 255));
+		ID.setBounds(159, 79, 130, 30);
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
 		JButton btnNewButton = new JButton("LOGIN");
+		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(159, 180, 130, 30);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {

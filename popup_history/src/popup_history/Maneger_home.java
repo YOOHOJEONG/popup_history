@@ -32,6 +32,7 @@ public class Maneger_home extends JFrame {
 	 * Create the frame.
 	 */
 	public Maneger_home() {
+		setTitle("\uAD00\uB9AC\uC790 \uD648\uD654\uBA74");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
