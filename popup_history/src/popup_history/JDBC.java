@@ -1,9 +1,11 @@
 package popup_history;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 class JDBC {
 	Connection jdbc(){
@@ -31,22 +33,30 @@ class JDBC {
 	}
 }
 
-class ModifyQuery{
-	String modifyQuery(String queryStmt){
+class ModifyQuery {
+	Vector<String> modifyQuery(String queryStmt, String order){
 		JDBC jdbc = new JDBC();
-		Connection conn = null ;
+		Connection conn = null;
 		java.sql.Statement st = null;
         ResultSet rset = null;
 		try {
 			conn = jdbc.jdbc();
-			queryStmt = "select date, title from history";
+			//queryStmt = "select date, title from history";
 			st = conn.createStatement();
 			rset = st.executeQuery(queryStmt);
-			String dateTitle_his;
-			while(rset.next()){
-				dateTitle_his = "Date : " + rset.getDate("date") + "\nTitle : " + rset.getString("title");
-				System.out.println(dateTitle_his);
-				return dateTitle_his;
+			
+			if(order == "selectDateTitle_history"){
+				Vector<String> date_title;
+				date_title = new Vector<String>();
+			
+				String date, title;
+			
+				while(rset.next()){
+					date = rset.getString("date"); 
+					title = rset.getString("title");
+					date_title.add(date+title);
+				}
+				return date_title;
 			}
 	      } catch (SQLException sqex) {
 	         System.out.println("SQLException: " + sqex.getMessage());
