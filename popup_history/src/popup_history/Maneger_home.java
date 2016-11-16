@@ -1,15 +1,8 @@
 package popup_history;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.TextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -60,32 +53,39 @@ public class Maneger_home extends JFrame {
 		button.setBounds(315, 10, 97, 24);
 		contentPane.add(button);
 		
-		TextArea textArea = new TextArea();
-		textArea.setBounds(12, 40, 414, 110);
-		contentPane.add(textArea);
+		JList MhL = new JList();
+		MhL.setBounds(12, 40, 414, 110);
+		contentPane.add(MhL);
 		
-		TextArea textArea_1 = new TextArea();
-		textArea_1.setBounds(12, 156, 414, 110);
-		contentPane.add(textArea_1);
+		TextArea MhT = new TextArea();
+		MhT.setBounds(12, 156, 414, 110);
+		contentPane.add(MhT);
 		
-		JButton button_1 = new JButton("삭제");
-		button_1.setBounds(254, 279, 80, 23);
-		contentPane.add(button_1);
+		JButton Mhbutton_1 = new JButton("삭제");
+		Mhbutton_1.setBounds(346, 279, 80, 23);
+		contentPane.add(Mhbutton_1);
 		
-		JButton button_2 = new JButton("확인");
-		button_2.setBounds(346, 279, 80, 23);
-		contentPane.add(button_2);
-		
-		JButton button_3 = new JButton("추가");
-		button_3.addActionListener(new ActionListener() {
+		JButton Mhbutton_2 = new JButton("추가");
+		Mhbutton_2.setBounds(162, 279, 80, 23);
+		contentPane.add(Mhbutton_2);
+		Mhbutton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		button_3.setBounds(70, 279, 80, 23);
-		contentPane.add(button_3);
+		           	 EventQueue.invokeLater(new Runnable() {
+		          	         public void run() {
+		          	            try {
+		          	            	Insert_man frame = new Insert_man();
+		          	               frame.setVisible(true);
+		          	            } catch (Exception e) {
+		          	               e.printStackTrace();
+		          	            }
+		          	         }
+		          	      });
+		            }
+		         });
 		
-		JButton button_4 = new JButton("수정");
-		button_4.setBounds(162, 279, 80, 23);
-		contentPane.add(button_4);
+		
+		JButton Mhbutton_3 = new JButton("수정");
+		Mhbutton_3.setBounds(254, 279, 80, 23);
+		contentPane.add(Mhbutton_3);
 	}
 }

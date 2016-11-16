@@ -48,14 +48,14 @@ public class Insert_man extends JFrame {
 		contentPane.setLayout(null);
 		
 		String arr[] = new String[101];
-		arr[0]="?뀈?룄";
+		arr[0]="연도";
 		for(int i=1; i<101; i++)
 		{
-			arr[i]= 2023-i+"?뀈";
+			arr[i]= 2023-i+"년";
 		}
 		JComboBox comboBox = new JComboBox(arr);
 		comboBox.setSelectedIndex(0);
-		comboBox.setFont(new Font("년도, 년, 양재본목각체M", Font.BOLD, 12));
+		comboBox.setFont(new Font("양재본목각체M", Font.BOLD, 12));
 		comboBox.setBounds(82, 50, 87, 30);
 		contentPane.add(comboBox);
 		

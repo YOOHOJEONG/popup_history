@@ -96,9 +96,6 @@ import java.awt.event.ActionEvent;
         
         JMenuItem mntmn = new JMenuItem("새 창 (N)");
         mnHome.add(mntmn);
-        
-        JMenuItem mntmq = new JMenuItem("끝내기 (Q)");
-        mnHome.add(mntmq);
         mntmn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
            	 EventQueue.invokeLater(new Runnable() {
@@ -114,6 +111,40 @@ import java.awt.event.ActionEvent;
             }
          });
         
+        JMenuItem mntmq = new JMenuItem("끝내기 (Q)");
+        mnHome.add(mntmq);
+        mntmq.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+           	 EventQueue.invokeLater(new Runnable() {
+          	         public void run() {
+          	            try {
+          	            	System.exit(0);
+          	            } catch (Exception e) {
+          	               e.printStackTrace();
+          	            }
+          	         }
+          	      });
+            }
+         });
+        
+        JMenuItem mntmM = new JMenuItem("관리자");
+        mnHome.add(mntmM);
+        mntmM.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+           	 EventQueue.invokeLater(new Runnable() {
+          	         public void run() {
+          	            try {
+          	            	Log_in frame = new Log_in();
+          	               frame.setVisible(true);
+          	            } catch (Exception e) {
+          	               e.printStackTrace();
+          	            }
+          	         }
+          	      });
+            }
+         });
+        
+        
         
         JMenu menu = new JMenu("기념일 관리");
         mb.add(menu);
@@ -125,8 +156,8 @@ import java.awt.event.ActionEvent;
            	 EventQueue.invokeLater(new Runnable() {
           	         public void run() {
           	            try {
-          	               //Insert_user frame = new Insert_user();
-          	               //frame.setVisible(true);
+          	               Insert_user frame = new Insert_user();
+          	               frame.setVisible(true);
           	            } catch (Exception e) {
           	               e.printStackTrace();
           	            }
@@ -142,8 +173,8 @@ import java.awt.event.ActionEvent;
            	 EventQueue.invokeLater(new Runnable() {
           	         public void run() {
           	            try {
-          	              // Change_user frame = new Change_user();
-          	               //frame.setVisible(true);
+          	              Change_user frame = new Change_user();
+          	               frame.setVisible(true);
           	            } catch (Exception e) {
           	               e.printStackTrace();
           	            }
@@ -159,8 +190,8 @@ import java.awt.event.ActionEvent;
            	 EventQueue.invokeLater(new Runnable() {
           	         public void run() {
           	            try {
-          	               //Delete_user frame = new Delete_user();
-          	               //frame.setVisible(true);
+          	               Delete_user frame = new Delete_user();
+          	               frame.setVisible(true);
           	            } catch (Exception e) {
           	               e.printStackTrace();
           	            }
@@ -169,7 +200,23 @@ import java.awt.event.ActionEvent;
             }
          });
         
-        JMenu menu_1 = new JMenu("즐겨찾기");
-        mb.add(menu_1);
+        JMenu Fav = new JMenu("즐겨찾기 관리");
+        mb.add(Fav);
+        JMenuItem FavM = new JMenuItem("즐겨찾기 수정,삭제");
+        Fav.add(FavM);
+        FavM.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+              	 EventQueue.invokeLater(new Runnable() {
+             	         public void run() {
+             	            try {
+             	               Favorite frame = new Favorite();
+             	               frame.setVisible(true);
+             	            } catch (Exception e) {
+             	               e.printStackTrace();
+             	            }
+             	         }
+             	      });
+               }
+            });
      }
   }
