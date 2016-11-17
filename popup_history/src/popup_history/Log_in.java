@@ -20,6 +20,8 @@ public class Log_in extends JFrame {
 	private JPanel contentPane;
 	private JTextField ID;
 	private JPasswordField pwd;
+	String MID="swM", Mpwd ="swM1";
+
 
 	/**
 	 * Launch the application.
@@ -60,24 +62,47 @@ public class Log_in extends JFrame {
 		contentPane.add(label);
 		
 		ID = new JTextField();
-		ID.setForeground(new Color(255, 255, 255));
+		ID.setSelectedTextColor(Color.BLACK);
+		ID.setForeground(new Color(0, 0, 0));
 		ID.setBounds(159, 79, 130, 30);
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
+		pwd = new JPasswordField();
+		pwd.setText("");
+		pwd.setBounds(159, 130, 130, 30);
+		contentPane.add(pwd);
+		
+		//버튼에 몰아놓음
 		JButton btnNewButton = new JButton("LOGIN");
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(159, 180, 130, 30);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+       	         public void run() {
+       	            try {
+       	            	String Id=ID.getText();
+       	            	String Pwd=pwd.getText();
+       	            	if(Id.equals(MID)&&Pwd.equals(Mpwd)){
+       	            		Maneger_home Mh = new Maneger_home();
+       	            		Mh.setVisible(true);
+       	            		dispose();
+       	            	}
+       	            	else{
+       	            		ID.setText("");
+       	            		pwd.setText("");
+       	            		ExitMessage eM = new ExitMessage();
+       	            		eM.showMessage("로그인 오류","아이디 혹은 비밀번호가 틀립니다.");
+       	            	}
+       	            } catch (Exception e) {
+       	               e.printStackTrace();
+       	            }
+       	         }
+       	      });
 			}
 		});
 		
-		
-		pwd = new JPasswordField();
-		pwd.setText("");
-		pwd.setBounds(159, 130, 130, 30);
-		contentPane.add(pwd);
 	}
 }
