@@ -28,6 +28,7 @@ public class Widget extends javax.swing.JDialog{
         home = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
         jLabe = new javax.swing.JLabel();
+        workName = new JLabel("오늘 할 일");
         textArea = new JTextArea();
         textArea2 = new JTextArea();
         textArea3 = new JTextArea();
@@ -46,24 +47,27 @@ public class Widget extends javax.swing.JDialog{
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         
+        //할일
         textArea.setBackground(new java.awt.Color(255, 255, 255));
         textArea.setOpaque(true);
         textArea.setPreferredSize(new java.awt.Dimension(280, 60));
         textArea.setEditable(false);
         textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n");
-        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 230, -1, -1));
+        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
         
+        //맨위 이번달
         textArea2.setBackground(new java.awt.Color(255, 255, 255));
         textArea2.setOpaque(true);
-        textArea2.setPreferredSize(new java.awt.Dimension(100, 30));
+        textArea2.setPreferredSize(new java.awt.Dimension(130, 30));
         textArea2.setEditable(false);
-        textArea2.append("  "+today.get(Calendar.YEAR)+" / "+(today.get(Calendar.MONTH)+1));
+        textArea2.append("  "+today.get(Calendar.YEAR)+"년 "+(today.get(Calendar.MONTH)+1)+"월");
         textArea2.setFont(font1);
-        getContentPane().add(textArea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+        getContentPane().add(textArea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
         
+        //달력출력
         textArea3.setBackground(new java.awt.Color(255, 255, 255));
         textArea3.setOpaque(true);
-        textArea3.setPreferredSize(new java.awt.Dimension(280, 180));
+        textArea3.setPreferredSize(new java.awt.Dimension(280, 130));
         textArea3.setEditable(false);
         textArea3.setTabSize(4);
         textArea3.getTabSize();        
@@ -73,7 +77,7 @@ public class Widget extends javax.swing.JDialog{
         getContentPane().add(textArea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 45, -1, -1));
           
 
-        home.setBackground(new java.awt.Color(204, 204, 255));
+        home.setBackground(new java.awt.Color(255, 255, 255));
         home.setIcon(HomeIcon); // NOI18N
         home.setMaximumSize(new java.awt.Dimension(16, 16));
         home.setOpaque(true);
@@ -86,7 +90,7 @@ public class Widget extends javax.swing.JDialog{
         getContentPane().add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
         
-        exit.setBackground(new java.awt.Color(204, 204, 255));
+        exit.setBackground(new java.awt.Color(255, 255, 255));
         exit.setIcon(ExitIcon); // NOI18N
         exit.setMaximumSize(new java.awt.Dimension(16, 16));
         exit.setOpaque(true);
@@ -97,8 +101,12 @@ public class Widget extends javax.swing.JDialog{
             }
         });
         getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+        
+        workName.setHorizontalAlignment(SwingConstants.CENTER);
+        workName.setBounds(0, 180, 80, 25);
+        jLabe.add(workName);
 
-        jLabe.setBackground(new java.awt.Color(204, 204, 255));
+        jLabe.setBackground(new java.awt.Color(255, 255, 255));
         jLabe.setOpaque(true);
         jLabe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -110,7 +118,7 @@ public class Widget extends javax.swing.JDialog{
                 jLabeMouseDragged(evt);
             }
         });
-        getContentPane().add(jLabe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 300));
+        getContentPane().add(jLabe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 270));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -152,6 +160,7 @@ public class Widget extends javax.swing.JDialog{
     private javax.swing.JLabel home;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabe;
+    private JLabel workName;
     // End of variables declaration//GEN-END:variables
     private JTextArea textArea;
     private JTextArea textArea2;
