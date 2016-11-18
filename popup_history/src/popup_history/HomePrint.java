@@ -10,7 +10,7 @@ public class HomePrint {
 	public void HomePrintIndex(JList list) {
 		// TODO Auto-generated method stub
 	    ModifyQuery mq = new ModifyQuery();
-	    Vector<String> date_title = mq.modifyQuery("select date, title from history where date=current_date", null, null);
+	    Vector<String> date_title = mq.modifyQuery("select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)", null, null);
 	    list.setListData(date_title);
 	}
 	

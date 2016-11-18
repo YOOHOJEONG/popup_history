@@ -49,7 +49,7 @@ class ModifyQuery {
 			
 			PreparedStatement query = conn.prepareStatement(queryStmt);
 
-			if(queryStmt == "select date, title from history where date=current_date"){
+			if(queryStmt == "select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)"){
 				rset = st.executeQuery(queryStmt);
 			
 				String date, title;
