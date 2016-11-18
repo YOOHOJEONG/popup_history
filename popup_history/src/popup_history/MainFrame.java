@@ -248,7 +248,7 @@ import javax.swing.JOptionPane;
         
         JMenu Fav = new JMenu("즐겨찾기 관리");
         mb.add(Fav);
-        JMenuItem FavM = new JMenuItem("즐겨찾기 수정,삭제");
+        JMenuItem FavM = new JMenuItem("즐겨찾기 삭제");
         Fav.add(FavM);
         FavM.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {

@@ -62,7 +62,8 @@ class ModifyQuery {
 				}
 			}
 			
-			else if(queryStmt == "select contents from history where date=? and title=?"){
+			else if((queryStmt == "select contents from history where date=? and title=?")||
+					(queryStmt == "select contents from bookmark where date=? and title=?")){
 				query.setString(1, input_1);
 				query.setString(2, input_2);
 				rset = query.executeQuery();
@@ -108,11 +109,34 @@ class ModifyQuery {
 				query.setString(3, input_3);
 				query.executeUpdate();
 			}
-			else if(queryStmt == "delete from history where date=? and title=?;"){
+			else if((queryStmt == "delete from history where date=? and title=?;")||
+					(queryStmt == "delete from bookmark where date=? and title=?;")){
 				query.setString(1, input_1);
 				query.setString(2, input_2);
 				query.executeUpdate();
-			}		
+			}
+			else if(queryStmt == "select date, title from bookmark"){
+				rset = st.executeQuery(queryStmt);
+				
+				String date, title;
+				while(rset.next()){
+					date = rset.getString("date"); 
+					title = rset.getString("title");
+					resultVal.add(date+"¢º"+title);
+				}
+			}
+			else if(queryStmt == "select date, title from bookmark where date=? and title=?"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				rset=query.executeQuery();
+				
+				String date, title;
+				while(rset.next()){
+					date=rset.getString("date");
+					title = rset.getString("title");
+					resultVal.add(date+title);
+				}
+			}
 			
 			return resultVal;			
 	      } catch (SQLException sqex) {
