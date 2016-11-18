@@ -22,8 +22,9 @@ public class HomePrint {
 		String title = tokens.nextToken("¢º");
 
 		ModifyQuery mq = new ModifyQuery();
-		Vector<String> contents = mq.modifyQuery("select contents from history where date=? and title=?", date, title);
+		Vector<String> contents = mq.modifyQuery("select contents from history where date=? and title=?",  date, title);
         String text = (String)contents.get(0);      	       
        	textArea.setText(text);
-	}
+  	}
+	
 }

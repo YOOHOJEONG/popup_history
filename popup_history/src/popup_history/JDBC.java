@@ -44,13 +44,13 @@ class ModifyQuery {
 			conn = jdbc.jdbc();
 			st = conn.createStatement();
 			
-			PreparedStatement query = conn.prepareStatement(queryStmt);
-			
 			Vector<String> resultVal;
 			resultVal = new Vector<String>();
 			
+			PreparedStatement query = conn.prepareStatement(queryStmt);
+
 			if(queryStmt == "select date, title from history where date=current_date"){
-				rset = query.executeQuery();
+				rset = st.executeQuery(queryStmt);
 			
 				String date, title;
 				while(rset.next()){
@@ -72,18 +72,31 @@ class ModifyQuery {
 				}
 			}
 			
-			/*else if(queryStmt == "insert into bookmark(date, title, contents) "
-   					+ "select date, title, contents from history where date='"+input_1+"' and title='"+input_2+"';"){
-				//st.executeUpdate("insert into bookmark(date, title, contents) "
-       				//	+ "select date, title, contents from history where date="+input_1+"and title="+input_2);
-				
-				rset=query.executeQuery();
+			else if(queryStmt == "insert ignore into bookmark(date, title, contents) "
+   					+ "select date, title, contents from history where date=? and title=?;"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				query.executeUpdate();
 			}
-			else if(queryStmt == "delete from bookmark(date, title, contents) "
-   					+ "select date, title, contents from history where date='"+input_1+"' and title='"+input_2+"';"){
-				//st.executeUpdate("delete from bookmark(date, title, contents) "
-       			//		+ "select date, title, contents from history where date="+input_1+"and title="+input_2);
-				rset=query.executeQuery();
+			
+			else if(queryStmt == "delete ignore into bookmark(date, title, contents) "
+   					+ "select date, title, contents from history where date=? and title=?;"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				query.executeUpdate();
+			}
+			
+			/*else if(queryStmt == "select date, title from history where title like '%?%'"){
+				query.setString(1, input_1);
+				
+				rset = query.executeQuery();
+				
+				String date, title;
+				while(rset.next()){
+					date = rset.getString("date"); 
+					title = rset.getString("title");
+					resultVal.add(date+"¢º"+title);
+				}
 			}*/
 			
 			return resultVal;			

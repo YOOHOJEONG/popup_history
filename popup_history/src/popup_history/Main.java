@@ -14,7 +14,7 @@ public class Main {
 		            }
 		         }
 		      });
-		   Tray test= new Tray("트레이");
+		   /*Tray test= new Tray("트레이");
 		   	//frame1 test1=new frame1();
 		    java.awt.EventQueue.invokeLater(new Runnable() {
 		        public void run() {
@@ -27,6 +27,6 @@ public class Main {
 		            });
 		            dialog.setVisible(true);
 		        }
-		    });
+		    });*/
 	   }
 }

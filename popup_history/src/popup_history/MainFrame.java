@@ -24,6 +24,12 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
  
  public class MainFrame extends JFrame {
     protected static final String JList = null;
@@ -44,41 +50,19 @@ import java.awt.event.ItemEvent;
        setBounds(100, 100, 650, 469);
        getContentPane().setLayout(null);
        
-       
-       
-       
-      
-
-       
-       JButton btnNewButton = new JButton("복구");
-       btnNewButton.setFont(new Font("a옛날목욕탕B", Font.PLAIN, 18));
-       btnNewButton.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent arg0) {
-          }
-       });
-       btnNewButton.setBounds(486, 207, 125, 29);
-       getContentPane().add(btnNewButton);
-       
        String item[]={"기념일 추가", "기념일 수정", "기념일 삭제"};
- 		btnNewButton.addActionListener(new ActionListener() {
- 			public void actionPerformed(ActionEvent e) {
- 				
- 			}
- 		});
  					
        
        JLabel label = new JLabel("검색");
        label.setHorizontalAlignment(SwingConstants.CENTER);
-       label.setBounds(144, 204, 53, 37);
+       label.setBounds(220, 204, 53, 37);
        getContentPane().add(label);
        
-       textField = new JTextField();
-       textField.setBounds(209, 204, 156, 37);
-       getContentPane().add(textField);
-       textField.setColumns(10);
+     
         
       
        JList list = new JList();
+       list.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "date                 title ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 
        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
        list.setBounds(12, 10, 610, 184);
@@ -93,40 +77,60 @@ import java.awt.event.ItemEvent;
        getContentPane().add(textArea);
        
        list.addListSelectionListener(new ListSelectionListener() {
-          	public void valueChanged(ListSelectionEvent arg0) {
-          		if(arg0.getSource() == list){
-          	        HomePrint hp2 = new HomePrint();
-        			hp2.HomePrintContents(list, textArea);
-          		}
-          	}
-          });
+         	public void valueChanged(ListSelectionEvent arg0) {
+         		if(arg0.getSource() == list){
+         	        HomePrint hp2 = new HomePrint();
+       			hp2.HomePrintContents(list, textArea);
+         		}
+         	}
+         });
+      
        
-       JCheckBox checkBox = new JCheckBox("\uC990\uACA8\uCC3E\uAE30");
-      /* checkBox.addItemListener(new ItemListener() {
-       	public void itemStateChanged(ItemEvent arg0) {
-       		if(arg0.getStateChange()==1){
-       			ModifyQuery mq = new ModifyQuery();
-       			String str = (String)list.getSelectedValue();
-       			StringTokenizer tokens = new StringTokenizer(str);
-       			String date = tokens.nextToken("▶");//구분자
-       			String title = tokens.nextToken("▶");
-       			mq.modifyQuery("insert into bookmark(date, title, contents) "
-       					+ "select date, title, contents from history where date='"+date+"' and title='"+title+"''", date, title);
-       		}
-       		else if(arg0.getStateChange()==0){
-       			ModifyQuery mq = new ModifyQuery();
-       			String str = (String)list.getSelectedValue();
-       			StringTokenizer tokens = new StringTokenizer(str);
-       			String date = tokens.nextToken("▶");//구분자
-       			String title = tokens.nextToken("▶");
-       			mq.modifyQuery("delete from bookmark(date, title, contents) "
-       					+ "select date, title, contents from history where date='"+date+"' and title='"+title+"''", date, title);
-       		}
+       textField = new JTextField();
+       textField.setBounds(262, 204, 156, 37);
+       getContentPane().add(textField);
+       textField.setColumns(10);
+       
+       /*JButton btnSearch = new JButton("search");
+       btnSearch.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		String searchVal = textField.getText();
+       		//System.out.println(searchVal);
+    	    ModifyQuery mq = new ModifyQuery();
+    	    Vector<String> date_title = mq.modifyQuery("select date, title from history where title like '%?%'", searchVal, null);
+    	    list.setListData(date_title);	 
        	}
-       });*/
-       checkBox.setBackground(new Color(245, 245, 245));
-       checkBox.setBounds(373, 200, 105, 45);
-       getContentPane().add(checkBox);
+       });
+       
+       btnSearch.setBounds(424, 211, 85, 23);
+       getContentPane().add(btnSearch);*/
+       
+       JButton btnResoration = new JButton("restoration");
+       btnResoration.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       	}
+       });
+       btnResoration.setBounds(521, 211, 101, 23);
+       getContentPane().add(btnResoration);
+       
+       JButton btnNewButton = new JButton("insert bookmark");
+       btnNewButton.addMouseListener(new MouseAdapter() {
+       	@Override
+       	public void mouseClicked(MouseEvent arg0) {
+    		String str = (String)list.getSelectedValue();
+    		StringTokenizer tokens = new StringTokenizer(str);
+    		String date = tokens.nextToken("▶");//구분자
+    		String title = tokens.nextToken("▶");
+    		
+       		ModifyQuery mq = new ModifyQuery();
+       		mq.modifyQuery("insert ignore into bookmark(date, title, contents) "
+   					+ "select date, title, contents from history where date=? and title=?;", date, title);
+       	}
+       });
+       btnNewButton.setBounds(12, 204, 134, 23);
+       getContentPane().add(btnNewButton);
+       
+
        
         JMenuBar mb = new JMenuBar();
         setJMenuBar(mb);
