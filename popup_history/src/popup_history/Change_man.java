@@ -56,21 +56,21 @@ public class Change_man extends JFrame {
 		
 		JLabel label_1 = new JLabel("목록");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(12, 44, 53, 25);
+		label_1.setBounds(7, 44, 53, 25);
 		contentPane.add(label_1);
 		
 		JList CmL = new JList();
-		CmL.setBounds(12, 65, 400, 81);
+		CmL.setBounds(17, 65, 400, 81);
 		contentPane.add(CmL);
 		
 		JLabel label_2 = new JLabel("내용");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(12, 156, 57, 15);
+		label_2.setBounds(7, 156, 57, 15);
 		contentPane.add(label_2);
 		
 		
 		JTextArea CmT = new JTextArea();
-		CmT.setBounds(22, 171, 400, 89);
+		CmT.setBounds(17, 171, 400, 89);
 		contentPane.add(CmT);
 		
 		JButton button_1 = new JButton("수정");
