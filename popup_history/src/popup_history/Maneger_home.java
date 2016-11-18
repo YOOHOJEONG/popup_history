@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 public class Maneger_home extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -34,42 +33,23 @@ public class Maneger_home extends JFrame {
 	public Maneger_home() {
 		setTitle("\uAD00\uB9AC\uC790 \uD648\uD654\uBA74");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 350);
+		setBounds(100, 100, 339, 144);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("검색");
+		JLabel label = new JLabel("History DB 관리");
+		label.setFont(new Font("돋움", Font.PLAIN, 16));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(12, 10, 53, 24);
+		label.setBounds(89, 20, 145, 24);
 		contentPane.add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(69, 10, 234, 24);
-		contentPane.add(textField);
-		
-		JButton button = new JButton("확인");
-		button.setBounds(315, 10, 97, 24);
-		contentPane.add(button);
-		
-		JList MhL = new JList();
-		MhL.setBounds(12, 40, 414, 110);
-		contentPane.add(MhL);
-		
-		TextArea MhT = new TextArea();
-		MhT.setBounds(12, 156, 414, 110);
-		contentPane.add(MhT);
-		
-		JButton Mhbutton_1 = new JButton("삭제");
-		Mhbutton_1.setBounds(346, 279, 80, 23);
-		contentPane.add(Mhbutton_1);
-		
-		JButton Mhbutton_2 = new JButton("추가");
-		Mhbutton_2.setBounds(162, 279, 80, 23);
-		contentPane.add(Mhbutton_2);
-		Mhbutton_2.addActionListener(new ActionListener() {
+		JButton MhIn = new JButton("추가");
+		MhIn.setBounds(12, 65, 80, 23);
+		contentPane.add(MhIn);
+		MhIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		           	 EventQueue.invokeLater(new Runnable() {
 		          	         public void run() {
@@ -84,9 +64,41 @@ public class Maneger_home extends JFrame {
 		            }
 		         });
 		
+		JButton MhCh = new JButton("수정");
+		MhCh.setBounds(122, 65, 80, 23);
+		contentPane.add(MhCh);
+		MhCh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		           	 EventQueue.invokeLater(new Runnable() {
+		          	         public void run() {
+		          	            try {
+		          	            	Change_man frame = new Change_man();
+		          	               frame.setVisible(true);
+		          	            } catch (Exception e) {
+		          	               e.printStackTrace();
+		          	            }
+		          	         }
+		          	      });
+		            }
+		         });
 		
-		JButton Mhbutton_3 = new JButton("수정");
-		Mhbutton_3.setBounds(254, 279, 80, 23);
-		contentPane.add(Mhbutton_3);
+		JButton MhDe = new JButton("삭제");
+		MhDe.setBounds(232, 65, 80, 23);
+		contentPane.add(MhDe);
+		MhDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		           	 EventQueue.invokeLater(new Runnable() {
+		          	         public void run() {
+		          	            try {
+		          	            	Delete_man frame = new Delete_man();
+		          	               frame.setVisible(true);
+		          	            } catch (Exception e) {
+		          	               e.printStackTrace();
+		          	            }
+		          	         }
+		          	      });
+		            }
+		         });
+		
 	}
 }
