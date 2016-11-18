@@ -27,6 +27,21 @@ class Trayicon implements ActionListener {
 	// 트레이 아이콘의 초기설정을 해줍니다.
 	   MainFrame m_frame = new MainFrame();
 	   
+	   class ShowMessageListener implements ActionListener{
+		   String title;
+		   String message;
+		   TrayIcon.MessageType messageType;
+		   ShowMessageListener(TrayIcon trayicon, String title, String message, TrayIcon.MessageType messageType){
+			   m_ti=trayicon;
+			   this.title = title;
+			   this.message = message;
+			   this.messageType = messageType;
+		   }
+		   public void actionPerformed(ActionEvent e){
+			   m_ti.displayMessage(title, message, messageType);
+		   }
+		}
+	   
 	   void initTray(String m_strTrayTitle)
 	   {
 	    // 트레이 아이콘의 아이콘 역할을 할 이미지 입니다. 
@@ -61,15 +76,18 @@ class Trayicon implements ActionListener {
 	       
 	       MenuItem miShow = new MenuItem("위젯");
 	       MenuItem miQuit = new MenuItem("종료");
+	       MenuItem test = new MenuItem("Test");
 
 	       //각각에 항목에 대해 리스너 장착. 
 	       miShow.addActionListener(this);
 	       miQuit.addActionListener(this);
+	       test.addActionListener(new ShowMessageListener(m_ti,"타이틀","메시지 실험",TrayIcon.MessageType.NONE));
 	       
 	       //팝업 메뉴에 등록 
 	       popupMenu.add(miShow);
 	       // 줄 생성
 	       popupMenu.addSeparator();
+	       popupMenu.add(test);
 	       popupMenu.add(miQuit);
 	       
 	       return popupMenu;
@@ -95,7 +113,7 @@ class Trayicon implements ActionListener {
 	    else if(e.getActionCommand() == "종료")
 	    {
 	    	ExitMessage eM = new ExitMessage();
-	    	eM.showMessage("종료","종료합니당");
+	    	eM.showMessage("종료","종료합니다");
 	    	System.exit(0);
 	    }
 	   }
@@ -106,4 +124,3 @@ class ExitMessage{
 	   	JOptionPane.showMessageDialog(null,message,title,JOptionPane.INFORMATION_MESSAGE);
 	   }
 }
-
