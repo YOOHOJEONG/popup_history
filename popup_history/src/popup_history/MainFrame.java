@@ -1,9 +1,12 @@
 package popup_history;
  import java.awt.BorderLayout;
+
+
  import java.awt.EventQueue;
  import java.awt.FlowLayout;
  import java.awt.event.ActionListener;
  import java.awt.event.WindowEvent;
+import java.text.ParseException;
 import java.util.StringTokenizer;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -30,7 +33,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
- //
+import javax.swing.JOptionPane;
  public class MainFrame extends JFrame {
     protected static final String JList = null;
 	private JTextField textField;
@@ -43,7 +46,7 @@ import java.awt.event.MouseEvent;
      * Create the frame.
      */
     @SuppressWarnings("unchecked")
- public MainFrame() {
+ public MainFrame(){
     	getContentPane().setBackground(new Color(245, 245, 245));
  
  	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -94,9 +97,13 @@ import java.awt.event.MouseEvent;
        JButton btnSearch = new JButton("search");
        btnSearch.addActionListener(new ActionListener() {
        	public void actionPerformed(ActionEvent e) {
-       		String searchVal = textField.getText();
-       		HomeSearch hs = new HomeSearch();
-       		hs.HomeSearch(searchVal, list);
+   			String searchVal = textField.getText();
+   			if("".equals(searchVal))
+   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+   			else{
+   				HomeSearch hs = new HomeSearch();
+   				hs.HomeSearch(searchVal, list);	
+   			}       		
        	}
        });
        
@@ -107,7 +114,7 @@ import java.awt.event.MouseEvent;
        btnResoration.addActionListener(new ActionListener() {
        	public void actionPerformed(ActionEvent e) {
        		Restoration_btn rb = new Restoration_btn();
-       		rb.Restoration_btn(list);     
+       		rb.Restoration_btn(list);       		
        	}
        });
        btnResoration.setBounds(521, 211, 101, 23);
@@ -121,7 +128,7 @@ import java.awt.event.MouseEvent;
     		ibn.InsertBookmark_btn(list);
        	}
        });
-       btnNewButton.setBounds(12, 204, 134, 23);
+       btnNewButton.setBounds(12, 211, 134, 23);
        getContentPane().add(btnNewButton);
        
 
@@ -143,6 +150,7 @@ import java.awt.event.MouseEvent;
           	               frame.setVisible(true);
           	            } catch (Exception e) {
           	               e.printStackTrace();
+          	               
           	            }
           	         }
           	      });

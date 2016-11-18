@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 class JDBC {
@@ -35,7 +38,7 @@ class JDBC {
 }
 
 class ModifyQuery {
-	Vector<String> modifyQuery(String queryStmt, String input_1, String input_2/*insert 값, 검색한 값*/){
+	Vector<String> modifyQuery(String queryStmt, String input_1, String input_2, String input_3/*insert 값, 검색한 값*/) throws ParseException {
 		JDBC jdbc = new JDBC();
 		Connection conn = null;
 		java.sql.Statement st = null;
@@ -95,6 +98,15 @@ class ModifyQuery {
 					title = rset.getString("title");
 					resultVal.add(date+"▶"+title);
 				}
+			}
+			else if(queryStmt == "insert ignore into history values(?, ?, ?);"){
+   				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+   				java.util.Date to = transFormat.parse(input_1);
+				
+   				query.setString(1, input_1);
+				query.setString(2, input_2);
+				query.setString(3, input_3);
+				query.executeUpdate();
 			}
 			
 			return resultVal;			

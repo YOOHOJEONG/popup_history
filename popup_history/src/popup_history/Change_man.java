@@ -60,7 +60,7 @@ public class Change_man extends JFrame {
 		contentPane.add(label_1);
 		
 		JList CmL = new JList();
-		CmL.setBounds(22, 65, 400, 81);
+		CmL.setBounds(12, 65, 400, 81);
 		contentPane.add(CmL);
 		
 		JLabel label_2 = new JLabel("³»¿ë");

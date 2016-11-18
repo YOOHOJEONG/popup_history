@@ -1,5 +1,6 @@
 package popup_history;
-//
+
+import java.text.ParseException;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -7,24 +8,40 @@ import javax.swing.JList;
 import javax.swing.JTextArea;
 
 public class HomePrint {
-	public void HomePrintIndex(JList list) {
+	public void HomePrintIndex(JList list){
 		// TODO Auto-generated method stub
-	    ModifyQuery mq = new ModifyQuery();
-	    Vector<String> date_title = mq.modifyQuery("select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)", null, null);
-	    list.setListData(date_title);
+	   
+		try {
+			ModifyQuery mq = new ModifyQuery();
+			Vector<String> date_title;
+			date_title = mq.modifyQuery("select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)", null, null, null);
+		    list.setListData(date_title);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	public void HomePrintContents(JList list, JTextArea textArea) {
+	public void HomePrintContents(JList list, JTextArea textArea){
 		// TODO Auto-generated method stub
-		String str = (String)list.getSelectedValue();
-		StringTokenizer tokens = new StringTokenizer(str);
-		String date = tokens.nextToken("▶");//구분자
-		String title = tokens.nextToken("▶");
+		
+		try {
+			String str = (String)list.getSelectedValue();
+			StringTokenizer tokens = new StringTokenizer(str);
+			String date = tokens.nextToken("▶");//구분자
+			String title = tokens.nextToken("▶");
 
-		ModifyQuery mq = new ModifyQuery();
-		Vector<String> contents = mq.modifyQuery("select contents from history where date=? and title=?",  date, title);
-        String text = (String)contents.get(0);      	       
-       	textArea.setText(text);
+			ModifyQuery mq = new ModifyQuery();
+			Vector<String> contents;
+			contents = mq.modifyQuery("select contents from history where date=? and title=?",  date, title, null);
+			String text = (String)contents.get(0);      	       
+			textArea.setText(text);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
   	}
 	
 }
