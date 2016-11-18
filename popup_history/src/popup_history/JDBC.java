@@ -137,6 +137,12 @@ class ModifyQuery {
 					resultVal.add(date+title);
 				}
 			}
+			else if(queryStmt == "update history set title=?, contents=? where title = ?;"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				query.setString(3, input_3);
+				query.executeUpdate();
+			}
 			
 			return resultVal;			
 	      } catch (SQLException sqex) {

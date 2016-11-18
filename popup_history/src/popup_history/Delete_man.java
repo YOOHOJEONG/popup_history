@@ -47,7 +47,7 @@ public class Delete_man extends JFrame {
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(58, 10, 255, 24);
+		textField.setBounds(58, 10, 290, 24);
 		contentPane.add(textField);
 		
 		JLabel label = new JLabel("검색");
@@ -56,7 +56,7 @@ public class Delete_man extends JFrame {
 		contentPane.add(label);
 		
 		JList DmL = new JList();
-		DmL.setBounds(22, 65, 400, 150);
+		DmL.setBounds(22, 79, 400, 136);
 		contentPane.add(DmL);
 		
 		JButton button = new JButton("확인");
@@ -72,7 +72,7 @@ public class Delete_man extends JFrame {
 	   			}       		
 			}
 		});
-		button.setBounds(325, 10, 97, 24);
+		button.setBounds(360, 9, 62, 24);
 		contentPane.add(button);
 		
 		JLabel label_1 = new JLabel("목록");
@@ -86,25 +86,8 @@ public class Delete_man extends JFrame {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String str = (String)DmL.getSelectedValue();
-				if(str==null){
-	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
-				}
-				else{
-					StringTokenizer tokens = new StringTokenizer(str);
-					String date = tokens.nextToken("▶");//구분자
-					String title = tokens.nextToken("▶");
-
-					try {
-						ModifyQuery mq = new ModifyQuery();
-						Vector<String> deleteRec;
-						deleteRec = mq.modifyQuery("delete from history where date=? and title=?;",  date, title, null);
-						JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.PLAIN_MESSAGE);   					
-					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
+				AdminSearch dm = new AdminSearch();
+				dm.deleteHistory(DmL);
 			}
 		});
 		button_1.setBounds(216, 225, 97, 23);
@@ -113,6 +96,17 @@ public class Delete_man extends JFrame {
 		JButton button_2 = new JButton("취소");
 		button_2.setBounds(325, 225, 97, 23);
 		contentPane.add(button_2);
+		
+		JButton btnNewButton = new JButton("all");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String searchVal = textField.getText();
+				HomeSearch hs = new HomeSearch();
+   				hs.HomeSearch(searchVal, DmL);
+			}
+		});
+		btnNewButton.setBounds(55, 46, 53, 23);
+		contentPane.add(btnNewButton);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
