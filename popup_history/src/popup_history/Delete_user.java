@@ -43,12 +43,12 @@ public class Delete_user extends JFrame {
 		
 		JLabel label = new JLabel("검색");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(22, 14, 53, 24);
+		label.setBounds(12, 9, 53, 24);
 		contentPane.add(label);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(79, 14, 234, 24);
+		textField.setBounds(58, 10, 255, 24);
 		contentPane.add(textField);
 		
 		JButton btnNewButton = new JButton("확인");
@@ -56,19 +56,19 @@ public class Delete_user extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(325, 14, 97, 24);
+		btnNewButton.setBounds(325, 10, 97, 24);
 		contentPane.add(btnNewButton);
 		
 		JLabel label_1 = new JLabel("목록");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(22, 48, 53, 25);
+		label_1.setBounds(12, 44, 53, 25);
 		contentPane.add(label_1);
 		
 		JList DuL = new JList();
-		DuL.setBounds(22, 79, 400, 144);
+		DuL.setBounds(22, 65, 400, 150);
 		contentPane.add(DuL);
 		
-		JButton button = new JButton("확인");
+		JButton button = new JButton("삭제");
 		button.setBounds(216, 229, 97, 23);
 		contentPane.add(button);
 		

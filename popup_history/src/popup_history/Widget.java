@@ -34,8 +34,8 @@ public class Widget extends javax.swing.JDialog{
         textArea3 = new JTextArea();
         Cal.Calender();
         
-        ImageIcon HomeIcon1 = new ImageIcon("images/home.jpg");
-        ImageIcon ExitIcon1 = new ImageIcon("images/exit.jpg");
+        ImageIcon HomeIcon1 = new ImageIcon("src/images/home.jpg");
+        ImageIcon ExitIcon1 = new ImageIcon("src/images/exit.jpg");
         Image HomeIcon2 = HomeIcon1.getImage();
         Image ExitIcon2 = ExitIcon1.getImage();
         Image HomeIcon3 = HomeIcon2.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);

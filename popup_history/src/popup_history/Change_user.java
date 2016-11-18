@@ -42,33 +42,33 @@ public class Change_user extends JFrame {
 		
 		JLabel label = new JLabel("검색");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(22, 14, 53, 24);
+		label.setBounds(12, 9, 53, 24);
 		contentPane.add(label);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(79, 14, 234, 24);
+		textField.setBounds(58, 10, 255, 24);
 		contentPane.add(textField);
 		
 		JButton button = new JButton("확인");
-		button.setBounds(325, 14, 97, 24);
+		button.setBounds(325, 10, 97, 24);
 		contentPane.add(button);
 		
 		JLabel label_1 = new JLabel("목록");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(12, 56, 53, 25);
+		label_1.setBounds(12, 44, 53, 25);
 		contentPane.add(label_1);
 		
 		JList CuL = new JList();
-		CuL.setBounds(22, 79, 400, 144);
+		CuL.setBounds(22, 65, 400, 150);
 		contentPane.add(CuL);
 		
-		JButton button_1 = new JButton("확인");
-		button_1.setBounds(216, 229, 97, 23);
+		JButton button_1 = new JButton("수정");
+		button_1.setBounds(216, 225, 97, 23);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("취소");
-		button_2.setBounds(325, 229, 97, 23);
+		button_2.setBounds(325, 225, 97, 23);
 		contentPane.add(button_2);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

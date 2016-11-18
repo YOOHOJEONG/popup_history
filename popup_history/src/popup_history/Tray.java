@@ -30,7 +30,7 @@ class Trayicon implements ActionListener {
 	   void initTray(String m_strTrayTitle)
 	   {
 	    // 트레이 아이콘의 아이콘 역할을 할 이미지 입니다. 
-	    Image image = Toolkit.getDefaultToolkit().getImage("images/tray.jpg");
+	    Image image = Toolkit.getDefaultToolkit().getImage("src/images/tray.jpg");
 	    
 	    // TrayIcon을 생성합니다.
 	    m_ti = new TrayIcon(image, m_strTrayTitle, createPopupMenu());
