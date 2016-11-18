@@ -80,7 +80,7 @@ import java.awt.event.MouseEvent;
          	public void valueChanged(ListSelectionEvent arg0) {
          		if(arg0.getSource() == list){
          	        HomePrint hp2 = new HomePrint();
-       			hp2.HomePrintContents(list, textArea);
+         	        hp2.HomePrintContents(list, textArea);
          		}
          	}
          });
@@ -91,23 +91,23 @@ import java.awt.event.MouseEvent;
        getContentPane().add(textField);
        textField.setColumns(10);
        
-       /*JButton btnSearch = new JButton("search");
+       JButton btnSearch = new JButton("search");
        btnSearch.addActionListener(new ActionListener() {
        	public void actionPerformed(ActionEvent e) {
        		String searchVal = textField.getText();
-       		//System.out.println(searchVal);
-    	    ModifyQuery mq = new ModifyQuery();
-    	    Vector<String> date_title = mq.modifyQuery("select date, title from history where title like '%?%'", searchVal, null);
-    	    list.setListData(date_title);	 
+       		HomeSearch hs = new HomeSearch();
+       		hs.HomeSearch(searchVal, list);
        	}
        });
        
        btnSearch.setBounds(424, 211, 85, 23);
-       getContentPane().add(btnSearch);*/
+       getContentPane().add(btnSearch);
        
        JButton btnResoration = new JButton("restoration");
        btnResoration.addActionListener(new ActionListener() {
        	public void actionPerformed(ActionEvent e) {
+       		Restoration_btn rb = new Restoration_btn();
+       		rb.Restoration_btn(list);     
        	}
        });
        btnResoration.setBounds(521, 211, 101, 23);
@@ -117,14 +117,8 @@ import java.awt.event.MouseEvent;
        btnNewButton.addMouseListener(new MouseAdapter() {
        	@Override
        	public void mouseClicked(MouseEvent arg0) {
-    		String str = (String)list.getSelectedValue();
-    		StringTokenizer tokens = new StringTokenizer(str);
-    		String date = tokens.nextToken("¢º");//±¸ºÐÀÚ
-    		String title = tokens.nextToken("¢º");
-    		
-       		ModifyQuery mq = new ModifyQuery();
-       		mq.modifyQuery("insert ignore into bookmark(date, title, contents) "
-   					+ "select date, title, contents from history where date=? and title=?;", date, title);
+    		InsertBookmark_btn ibn = new InsertBookmark_btn();
+    		ibn.InsertBookmark_btn(list);
        	}
        });
        btnNewButton.setBounds(12, 204, 134, 23);

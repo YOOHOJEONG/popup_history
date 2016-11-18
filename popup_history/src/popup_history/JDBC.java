@@ -43,12 +43,11 @@ class ModifyQuery {
 		try {
 			conn = jdbc.jdbc();
 			st = conn.createStatement();
-			
+
 			Vector<String> resultVal;
 			resultVal = new Vector<String>();
-			
 			PreparedStatement query = conn.prepareStatement(queryStmt);
-
+			
 			if(queryStmt == "select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)"){
 				rset = st.executeQuery(queryStmt);
 			
@@ -86,18 +85,17 @@ class ModifyQuery {
 				query.executeUpdate();
 			}
 			
-			/*else if(queryStmt == "select date, title from history where title like '%?%'"){
-				query.setString(1, input_1);
-				
-				rset = query.executeQuery();
-				
+			else if(queryStmt == "select date, title from history where title like ?"){
+				query.setString(1, "%"+input_1+"%");
+				rset=query.executeQuery();
+
 				String date, title;
 				while(rset.next()){
 					date = rset.getString("date"); 
 					title = rset.getString("title");
 					resultVal.add(date+"¢º"+title);
 				}
-			}*/
+			}
 			
 			return resultVal;			
 	      } catch (SQLException sqex) {
