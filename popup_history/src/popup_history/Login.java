@@ -15,7 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
 import java.awt.Color;
 
-public class Log_in extends JFrame {
+public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField ID;
@@ -42,7 +42,7 @@ public class Log_in extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Log_in() {
+	public Login() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

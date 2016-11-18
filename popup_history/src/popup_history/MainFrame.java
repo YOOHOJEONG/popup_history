@@ -180,7 +180,7 @@ import javax.swing.JOptionPane;
            	 EventQueue.invokeLater(new Runnable() {
           	         public void run() {
           	            try {
-          	            	Log_in frame = new Log_in();
+          	            	Login frame = new Login();
           	               frame.setVisible(true);
           	            } catch (Exception e) {
           	               e.printStackTrace();

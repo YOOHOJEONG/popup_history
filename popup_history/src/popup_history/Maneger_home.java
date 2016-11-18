@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Maneger_home extends JFrame {
+public class Maneger_home extends Login {
 
 	private JPanel contentPane;
 
