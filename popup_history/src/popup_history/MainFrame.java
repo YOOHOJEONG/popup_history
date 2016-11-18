@@ -30,7 +30,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
- 
+ //
  public class MainFrame extends JFrame {
     protected static final String JList = null;
 	private JTextField textField;
