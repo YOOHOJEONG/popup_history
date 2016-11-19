@@ -130,19 +130,18 @@ public class Favorite extends JFrame {
 					String title = tokens.nextToken("▶");
 
 					try {
-						ModifyQuery mq = new ModifyQuery();
-						/*Vector<String> checkRec;
-						checkRec = mq.modifyQuery("select date, title from bookmark where date=? and title=?", date, title, null);
-						System.out.println(checkRec);
 
-						if("".equals(checkRec)){
-			   				JOptionPane.showMessageDialog(null, "이미 삭제 된 데이터입니다.","", JOptionPane.WARNING_MESSAGE );
-						}*/
-						//else{
-							Vector<String> deleteRec;
-							deleteRec = mq.modifyQuery("delete from bookmark where date=? and title=?;",  date, title, null);
-							JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.PLAIN_MESSAGE);
-						//}
+						ModifyQuery mq = new ModifyQuery();
+						Vector<String> deleteRec;
+						deleteRec = mq.modifyQuery("delete from bookmark where date=? and title=?;",  date, title, null);
+						JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.PLAIN_MESSAGE);
+						
+					    textArea.setText(null);	
+
+						ModifyQuery mq1 = new ModifyQuery();
+						Vector<String> date_title_bookmark;
+						date_title_bookmark = mq1.modifyQuery("select date, title from bookmark", null, null, null);
+					    FavL.setListData(date_title_bookmark);
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

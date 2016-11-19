@@ -9,9 +9,10 @@ import javax.swing.JTextArea;
 
 
 public class HomeSearch {
-	public void HomeSearch(String searchVal, JList list) {
+	public void HomeSearch(String searchVal, JList list, JTextArea textArea) {
 		
 		try {
+			textArea.setText(null);
 			ModifyQuery mq = new ModifyQuery();
 		    Vector<String> date_title;
 			date_title = mq.modifyQuery("select date, title from history where title like ?", searchVal, null, null);

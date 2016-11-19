@@ -17,7 +17,7 @@ import javax.swing.event.ListSelectionEvent;
 
 
 public class Change_man extends JFrame {
-
+	int flagAll=0;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -73,7 +73,7 @@ public class Change_man extends JFrame {
 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
 	   			else{
 	   				HomeSearch hs = new HomeSearch();
-	   				hs.HomeSearch(searchVal, CmL);	
+	   				hs.HomeSearch(searchVal, CmL, null);	
 	   			}
 			}
 		});
@@ -103,6 +103,16 @@ public class Change_man extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				AdminSearch mm = new AdminSearch();
 				mm.modifyHistory(CmL, textField_1, textField_2);
+				
+				String searchVal = textField.getText();
+				if(flagAll==1){
+					HomeSearch hs = new HomeSearch();
+	   				hs.HomeSearch("", CmL, null);
+				}
+				else{
+					HomeSearch hs = new HomeSearch();
+					hs.HomeSearch(searchVal, CmL, null);
+				}	
 			}
 		});
 		button_1.setBounds(216, 270, 97, 23);
@@ -125,9 +135,9 @@ public class Change_man extends JFrame {
 		JButton btnAll = new JButton("all");
 		btnAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String searchVal = textField.getText();
 				HomeSearch hs = new HomeSearch();
-   				hs.HomeSearch(searchVal, CmL);
+   				hs.HomeSearch("", CmL, null);
+   				flagAll=1;
 			}
 		});
 		btnAll.setBounds(57, 54, 63, 24);

@@ -14,6 +14,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 
 public class Delete_man extends JFrame {
+	int flagAll=0;
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -68,7 +69,7 @@ public class Delete_man extends JFrame {
 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
 	   			else{
 	   				HomeSearch hs = new HomeSearch();
-	   				hs.HomeSearch(searchVal, DmL);	
+	   				hs.HomeSearch(searchVal, DmL, null);	
 	   			}       		
 			}
 		});
@@ -81,13 +82,22 @@ public class Delete_man extends JFrame {
 		contentPane.add(label_1);
 		
 		
-		
 		JButton button_1 = new JButton("삭제");
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				AdminSearch dm = new AdminSearch();
 				dm.deleteHistory(DmL);
+				
+				String searchVal = textField.getText();
+				if(flagAll==1){
+					HomeSearch hs = new HomeSearch();
+	   				hs.HomeSearch("", DmL, null);
+				}
+				else{
+					HomeSearch hs = new HomeSearch();
+					hs.HomeSearch(searchVal, DmL, null);
+				}
 			}
 		});
 		button_1.setBounds(216, 225, 97, 23);
@@ -100,9 +110,9 @@ public class Delete_man extends JFrame {
 		JButton btnNewButton = new JButton("all");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String searchVal = textField.getText();
 				HomeSearch hs = new HomeSearch();
-   				hs.HomeSearch(searchVal, DmL);
+   				hs.HomeSearch("", DmL, null);
+   				flagAll=1;
 			}
 		});
 		btnNewButton.setBounds(55, 46, 53, 23);

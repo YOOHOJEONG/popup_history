@@ -143,8 +143,34 @@ class ModifyQuery {
 				query.setString(3, input_3);
 				query.executeUpdate();
 			}
+			else if(queryStmt == "insert ignore into calender values(?, ?);"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				query.executeUpdate();
+			}
+			else if(queryStmt == "select date, plan from calender where plan like ?"){
+				query.setString(1, "%"+input_1+"%");
+				rset=query.executeQuery();
+
+				String date, plan;
+				while(rset.next()){
+					date = rset.getString("date"); 
+					plan = rset.getString("plan");
+					resultVal.add(date+"¢º"+plan);
+				}
+			}
+			else if(queryStmt == "delete from calender where date=? and plan=?;"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				query.executeUpdate();
+			}
+			else if(queryStmt == "update calender set plan = ? where plan = ?;"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				query.executeUpdate();
+			}
+			return resultVal;
 			
-			return resultVal;			
 	      } catch (SQLException sqex) {
 	         System.out.println("SQLException: " + sqex.getMessage());
 	         System.out.println("SQLState: " + sqex.getSQLState());

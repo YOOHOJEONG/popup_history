@@ -102,7 +102,8 @@ import javax.swing.JOptionPane;
    				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
    			else{
    				HomeSearch hs = new HomeSearch();
-   				hs.HomeSearch(searchVal, list);	
+   				hs.HomeSearch(searchVal, list, textArea);	
+   		        textArea.setText(null);
    			}       		
        	}
        });
@@ -114,7 +115,8 @@ import javax.swing.JOptionPane;
        btnResoration.addActionListener(new ActionListener() {
        	public void actionPerformed(ActionEvent e) {
        		Restoration_btn rb = new Restoration_btn();
-       		rb.Restoration_btn(list);       		
+       		rb.Restoration_btn(list, textArea);
+       		textField.setText(null);
        	}
        });
        btnResoration.setBounds(521, 211, 101, 23);
@@ -126,6 +128,7 @@ import javax.swing.JOptionPane;
        	public void mouseClicked(MouseEvent arg0) {
     		InsertBookmark_btn ibn = new InsertBookmark_btn();
     		ibn.InsertBookmark_btn(list);
+			JOptionPane.showMessageDialog(null, "즐겨찾기 등록 완료","", JOptionPane.PLAIN_MESSAGE);
        	}
        });
        btnNewButton.setBounds(12, 211, 134, 23);

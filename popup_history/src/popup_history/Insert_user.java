@@ -14,7 +14,11 @@ import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
 
 public class Insert_user extends JFrame {
 
@@ -56,7 +60,7 @@ public class Insert_user extends JFrame {
 		arr[0]="년도";
 		for(int i=1; i<101; i++)
 		{
-			arr[i]= 2023-i+"년";
+			arr[i] = String.valueOf(2023-i);
 		}
 		
 		JComboBox comboBox = new JComboBox(arr);
@@ -65,10 +69,10 @@ public class Insert_user extends JFrame {
 		contentPane.add(comboBox);
 		comboBox.setSelectedIndex(0);
 		//?뀈 ?꽑?깮?떆 ?썡
-		comboBox.addActionListener(comboBox);
+		/*comboBox.addActionListener(comboBox);
 	      comboBox.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent arg0) {
-	        	 String wal[]={"월", "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"};
+	        	String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
 	     		JComboBox comboBox_1 = new JComboBox(wal);
 	     		comboBox_1.setFont(new Font("양재본목각체M", Font.BOLD, 12));
 	     		comboBox_1.setBounds(177, 27, 87, 30);
@@ -76,18 +80,18 @@ public class Insert_user extends JFrame {
 	     		comboBox_1.setSelectedIndex(0);
 	     	//?썡 ?꽑?깮?떆
 	         }
-	      });
+	      });*////왜있어요??
 	    
 	      
-	    String wal[]={"월", "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"};
+	    String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
    		JComboBox comboBox_1 = new JComboBox(wal);
    		comboBox_1.setFont(new Font("양재본목각체M", Font.BOLD, 12));
    		comboBox_1.setBounds(177, 27, 87, 30);
    		contentPane.add(comboBox_1);
    		comboBox_1.setSelectedIndex(0);
 	      
-		String date[]={"일","1일","2일","3일","4일","5일","6일","7일","8일","9일","10일","11일","12일","13일","14일","15일",
-				"16일","17일","18일","19일","20일","21일","22일","23일","24일","25일","26일","27일","28일","29일","30일","31일"};
+		String date[]={"일","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 		JComboBox comboBox_2 = new JComboBox(date);
 		comboBox_2.setSelectedIndex(0);
 		comboBox_2.setFont(new Font("양재본목각체M", Font.BOLD, 12));
@@ -118,6 +122,13 @@ public class Insert_user extends JFrame {
 		
 		
 		JButton btnNewButton_1 = new JButton("추가");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+	   			InsertCal ic = new InsertCal();
+	   			ic.Insertcal(textField_1, comboBox, comboBox_1, comboBox_2);
+			}
+		});
 		btnNewButton_1.setBounds(216, 209, 97, 23);
 		contentPane.add(btnNewButton_1);
 		

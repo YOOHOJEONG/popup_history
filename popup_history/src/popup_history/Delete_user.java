@@ -7,10 +7,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.util.Vector;
 
 
 public class Delete_user extends JFrame {
-
+	int flagAll=0;
+	
 	private JPanel contentPane;
 	private JTextField textField;
 
@@ -51,7 +56,30 @@ public class Delete_user extends JFrame {
 		textField.setBounds(58, 10, 255, 24);
 		contentPane.add(textField);
 		
+		JList DuL = new JList();
+		DuL.setBounds(22, 90, 400, 125);
+		contentPane.add(DuL);
+		
 		JButton btnNewButton = new JButton("확인");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String searchVal = textField.getText();
+	   			if("".equals(searchVal))
+	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+	   			else{
+	   					try {
+	   						ModifyQuery mq = new ModifyQuery();
+		   				    Vector<String> date_plan;
+							date_plan = mq.modifyQuery("select date, plan from calender where plan like ?", searchVal, null, null);
+		   					DuL.setListData(date_plan);
+	   					} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+	   			} 
+			}
+		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -61,20 +89,67 @@ public class Delete_user extends JFrame {
 		
 		JLabel label_1 = new JLabel("목록");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(12, 44, 53, 25);
+		label_1.setBounds(12, 55, 53, 25);
 		contentPane.add(label_1);
-		
-		JList DuL = new JList();
-		DuL.setBounds(22, 65, 400, 150);
-		contentPane.add(DuL);
+	
 		
 		JButton button = new JButton("삭제");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DeleteCal dc  = new DeleteCal();
+				dc.DeleteCal(DuL);
+				
+				String searchVal = textField.getText();
+				if(flagAll==1){
+					try {
+   						ModifyQuery mq = new ModifyQuery();
+	   				    Vector<String> date_plan;
+						date_plan = mq.modifyQuery("select date, plan from calender where plan like ?", "", null, null);
+	   					DuL.setListData(date_plan);
+   					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else{
+					try {
+   						ModifyQuery mq = new ModifyQuery();
+	   				    Vector<String> date_plan;
+						date_plan = mq.modifyQuery("select date, plan from calender where plan like ?", searchVal, null, null);
+	   					DuL.setListData(date_plan);
+   					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		button.setBounds(216, 229, 97, 23);
 		contentPane.add(button);
 		
 		JButton button_1 = new JButton("취소");
 		button_1.setBounds(325, 229, 97, 23);
 		contentPane.add(button_1);
+		
+		JButton button_2 = new JButton("all");
+		button_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					ModifyQuery mq = new ModifyQuery();
+				    Vector<String> date_title;
+					date_title = mq.modifyQuery("select date, plan from calender where plan like ?", "", null, null);
+					DuL.setListData(date_title);
+					flagAll=1;
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		button_2.setBounds(58, 55, 63, 24);
+		contentPane.add(button_2);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
