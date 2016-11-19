@@ -3,6 +3,8 @@ package popup_history;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.text.ParseException;
+
 import javax.swing.*;
 import java.util.*;
 
@@ -52,8 +54,17 @@ public class Widget extends javax.swing.JDialog{
         textArea.setOpaque(true);
         textArea.setPreferredSize(new java.awt.Dimension(280, 60));
         textArea.setEditable(false);
-        textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n");
-        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
+        ModifyQuery mq = new ModifyQuery();
+		Vector<String> plan;
+		try {
+			plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
+	        textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n"+plan);
+	        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
         
         //맨위 이번달
         textArea2.setBackground(new java.awt.Color(255, 255, 255));

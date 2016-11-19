@@ -121,9 +121,14 @@ import javax.swing.JOptionPane;
        btnNewButton.addMouseListener(new MouseAdapter() {
        	@Override
        	public void mouseClicked(MouseEvent arg0) {
+       		if(list.getSelectedValue()==null){
+   				JOptionPane.showMessageDialog(null, "즐겨찾기 할 목록을 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+       		}
+       		else{
     		InsertBookmark_btn ibn = new InsertBookmark_btn();
     		ibn.InsertBookmark_btn(list);
 			JOptionPane.showMessageDialog(null, "즐겨찾기 등록 완료","", JOptionPane.PLAIN_MESSAGE);
+       		}
        	}
        });
        btnNewButton.setBounds(12, 211, 134, 23);

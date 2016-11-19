@@ -122,7 +122,7 @@ public class Favorite extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String str = (String)FavL.getSelectedValue();
 				if(str==null){
-	   				JOptionPane.showMessageDialog(null, "삭제 할 목록을 선택하십시오.","", JOptionPane.WARNING_MESSAGE );
+	   				JOptionPane.showMessageDialog(null, "삭제 할 목록을 선택하세요.","", JOptionPane.WARNING_MESSAGE );
 				}
 				else{
 					StringTokenizer tokens = new StringTokenizer(str);

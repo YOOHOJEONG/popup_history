@@ -64,6 +64,8 @@ public class Delete_user extends JFrame {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				flagAll=0;
+
 				String searchVal = textField.getText();
 	   			if("".equals(searchVal))
 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
@@ -97,30 +99,37 @@ public class Delete_user extends JFrame {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				DeleteCal dc  = new DeleteCal();
-				dc.DeleteCal(DuL);
-				
 				String searchVal = textField.getText();
-				if(flagAll==1){
-					try {
-   						ModifyQuery mq = new ModifyQuery();
-	   				    Vector<String> date_plan;
-						date_plan = mq.modifyQuery("select date, plan from calender where plan like ?", "", null, null);
-	   					DuL.setListData(date_plan);
-   					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				if(DuL.getSelectedValue()==null){
+					if("".equals(searchVal))
+		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+					else
+						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
 				}
 				else{
-					try {
-   						ModifyQuery mq = new ModifyQuery();
-	   				    Vector<String> date_plan;
-						date_plan = mq.modifyQuery("select date, plan from calender where plan like ?", searchVal, null, null);
-	   					DuL.setListData(date_plan);
-   					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					DeleteCal dc  = new DeleteCal();
+					dc.DeleteCal(DuL);
+					if(flagAll==1){
+						try {
+	   						ModifyQuery mq = new ModifyQuery();
+		   				    Vector<String> date_plan;
+							date_plan = mq.modifyQuery("select date, plan from calender where plan like ?", "", null, null);
+		   					DuL.setListData(date_plan);						
+	   					} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					else{
+						try {
+	   						ModifyQuery mq = new ModifyQuery();
+		   				    Vector<String> date_plan;
+							date_plan = mq.modifyQuery("select date, plan from calender where plan like ?", searchVal, null, null);
+		   					DuL.setListData(date_plan);
+	   					} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				}
 			}
@@ -137,6 +146,7 @@ public class Delete_user extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
+					textField.setText(null);
 					ModifyQuery mq = new ModifyQuery();
 				    Vector<String> date_title;
 					date_title = mq.modifyQuery("select date, plan from calender where plan like ?", "", null, null);

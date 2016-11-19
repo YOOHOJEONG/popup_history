@@ -64,12 +64,23 @@ public class Delete_man extends JFrame {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				flagAll=0;
+
 				String searchVal = textField.getText();
 	   			if("".equals(searchVal))
 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
 	   			else{
-	   				HomeSearch hs = new HomeSearch();
-	   				hs.HomeSearch(searchVal, DmL, null);	
+	   				//HomeSearch hs = new HomeSearch();
+	   				//hs.HomeSearch(searchVal, DmL);
+	   				try {
+						ModifyQuery mq = new ModifyQuery();
+					    Vector<String> date_title;
+						date_title = mq.modifyQuery("select date, title from history where title like ?", searchVal, null, null);
+						DmL.setListData(date_title);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	   			}       		
 			}
 		});
@@ -86,17 +97,41 @@ public class Delete_man extends JFrame {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String searchVal = textField.getText();
+
+				if(DmL.getSelectedValue()==null){
+					if("".equals(searchVal))
+		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+					else
+						JOptionPane.showMessageDialog(null, "삭제 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+				}
+				else{
 				AdminSearch dm = new AdminSearch();
 				dm.deleteHistory(DmL);
 				
-				String searchVal = textField.getText();
 				if(flagAll==1){
-					HomeSearch hs = new HomeSearch();
-	   				hs.HomeSearch("", DmL, null);
+					try {
+						textField.setText(null);
+						ModifyQuery mq = new ModifyQuery();
+					    Vector<String> date_title;
+						date_title = mq.modifyQuery("select date, title from history where title like ?", "", null, null);
+						DmL.setListData(date_title);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}	
 				}
 				else{
-					HomeSearch hs = new HomeSearch();
-					hs.HomeSearch(searchVal, DmL, null);
+					try {
+						ModifyQuery mq = new ModifyQuery();
+					    Vector<String> date_title;
+						date_title = mq.modifyQuery("select date, title from history where title like ?", searchVal, null, null);
+						DmL.setListData(date_title);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 				}
 			}
 		});
@@ -110,8 +145,16 @@ public class Delete_man extends JFrame {
 		JButton btnNewButton = new JButton("all");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				HomeSearch hs = new HomeSearch();
-   				hs.HomeSearch("", DmL, null);
+				try {
+					textField.setText(null);
+					ModifyQuery mq = new ModifyQuery();
+				    Vector<String> date_title;
+					date_title = mq.modifyQuery("select date, title from history where title like ?", "", null, null);
+					DmL.setListData(date_title);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
    				flagAll=1;
 			}
 		});

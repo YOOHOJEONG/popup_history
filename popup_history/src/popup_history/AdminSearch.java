@@ -13,7 +13,7 @@ public class AdminSearch {
 	public void deleteHistory(JList DmL){
 		String str = (String)DmL.getSelectedValue();
 		if(str==null){
-				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+			JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
 		}
 		else{
 			StringTokenizer tokens = new StringTokenizer(str);
@@ -22,8 +22,7 @@ public class AdminSearch {
 
 			try {
 				ModifyQuery mq = new ModifyQuery();
-				Vector<String> deleteRec;
-				deleteRec = mq.modifyQuery("delete from history where date=? and title=?;",  date, title, null);
+				mq.modifyQuery("delete from history where date=? and title=?;", date, title, null);
 				JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.PLAIN_MESSAGE);   					
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block

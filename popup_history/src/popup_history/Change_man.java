@@ -68,12 +68,23 @@ public class Change_man extends JFrame {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				flagAll=0;
+
 				String searchVal = textField.getText();
 	   			if("".equals(searchVal))
 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
 	   			else{
-	   				HomeSearch hs = new HomeSearch();
-	   				hs.HomeSearch(searchVal, CmL, null);	
+	   				//HomeSearch hs = new HomeSearch();
+	   				//hs.HomeSearch(searchVal, CmL);
+	   				try {
+						ModifyQuery mq = new ModifyQuery();
+					    Vector<String> date_title;
+						date_title = mq.modifyQuery("select date, title from history where title like ?", searchVal, null, null);
+						CmL.setListData(date_title);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	   			}
 			}
 		});
@@ -101,18 +112,43 @@ public class Change_man extends JFrame {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AdminSearch mm = new AdminSearch();
-				mm.modifyHistory(CmL, textField_1, textField_2);
 				
 				String searchVal = textField.getText();
-				if(flagAll==1){
-					HomeSearch hs = new HomeSearch();
-	   				hs.HomeSearch("", CmL, null);
+
+				if(CmL.getSelectedValue()==null){
+					if("".equals(searchVal))
+		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+					else
+						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
 				}
 				else{
-					HomeSearch hs = new HomeSearch();
-					hs.HomeSearch(searchVal, CmL, null);
-				}	
+					AdminSearch mm = new AdminSearch();
+					mm.modifyHistory(CmL, textField_1, textField_2);
+					if(flagAll==1){
+						try {
+							textField.setText(null);
+							ModifyQuery mq = new ModifyQuery();
+						    Vector<String> date_title;
+							date_title = mq.modifyQuery("select date, title from history where title like ?", "", null, null);
+							CmL.setListData(date_title);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					else{
+						try {
+							ModifyQuery mq = new ModifyQuery();
+						    Vector<String> date_title;
+							date_title = mq.modifyQuery("select date, title from history where title like ?", searchVal, null, null);
+							CmL.setListData(date_title);
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+					
 			}
 		});
 		button_1.setBounds(216, 270, 97, 23);
@@ -135,9 +171,17 @@ public class Change_man extends JFrame {
 		JButton btnAll = new JButton("all");
 		btnAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeSearch hs = new HomeSearch();
-   				hs.HomeSearch("", CmL, null);
-   				flagAll=1;
+				try {
+					textField.setText(null);
+					ModifyQuery mq = new ModifyQuery();
+				    Vector<String> date_title;
+					date_title = mq.modifyQuery("select date, title from history where title like ?", "", null, null);
+					CmL.setListData(date_title);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				flagAll=1;
 			}
 		});
 		btnAll.setBounds(57, 54, 63, 24);

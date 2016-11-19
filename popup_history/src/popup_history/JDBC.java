@@ -169,6 +169,15 @@ class ModifyQuery {
 				query.setString(2, input_2);
 				query.executeUpdate();
 			}
+			else if(queryStmt == "select plan from calender where date=current_date"){
+				rset = st.executeQuery(queryStmt);
+				
+				String plan;
+				while(rset.next()){
+					plan = rset.getString("plan"); 
+					resultVal.add(plan);
+				}
+			}
 			return resultVal;
 			
 	      } catch (SQLException sqex) {
