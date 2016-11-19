@@ -2,6 +2,8 @@ package popup_history;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Calendar;
+
 import javax.swing.*;
 
 public class Tray extends Trayicon{
@@ -11,10 +13,11 @@ public class Tray extends Trayicon{
    
    public Tray(String strTrayTitle)
    {
+	   Calendar today = Calendar.getInstance();
+	   System.out.println(today.get(Calendar.MINUTE));
+	   m_strTrayTitle = strTrayTitle;
 
-    m_strTrayTitle = strTrayTitle;
-    
-    initTray(m_strTrayTitle);
+	   initTray(m_strTrayTitle);
    }
 }
 
@@ -26,6 +29,8 @@ class Trayicon implements ActionListener {
 	   //String m_strTrayTitle;
 	// 트레이 아이콘의 초기설정을 해줍니다.
 	   MainFrame m_frame = new MainFrame();
+	   
+	   ShowMessageListener SML = new ShowMessageListener(m_ti,"타이틀","메시지 실험",TrayIcon.MessageType.NONE);
 	   
 	   class ShowMessageListener implements ActionListener{
 		   String title;
@@ -40,7 +45,29 @@ class Trayicon implements ActionListener {
 		   public void actionPerformed(ActionEvent e){
 			   m_ti.displayMessage(title, message, messageType);
 		   }
+		   public void playMessage(){
+			   m_ti.displayMessage(title, message, messageType);
+		   }
 		}
+	   class TimerMessage extends Thread{
+		   public void run(){
+			   while(true){
+				   Calendar today = Calendar.getInstance();
+				   if(today.get(Calendar.MINUTE)==0){
+					   SML.playMessage();
+					   try{
+				    	   Thread.sleep(10000);
+				       }catch(Exception e){
+				    	   System.out.println("Message down");
+				       }
+					   System.out.println("한 사이클 끝"); 
+				   }
+				   try {
+					Thread.sleep(5000);
+				   } catch (InterruptedException e) {}
+			   }
+		   }   
+	   }
 	   
 	   void initTray(String m_strTrayTitle)
 	   {
@@ -81,7 +108,7 @@ class Trayicon implements ActionListener {
 	       //각각에 항목에 대해 리스너 장착. 
 	       miShow.addActionListener(this);
 	       miQuit.addActionListener(this);
-	       test.addActionListener(new ShowMessageListener(m_ti,"타이틀","메시지 실험",TrayIcon.MessageType.NONE));
+	       test.addActionListener(new ShowMessageListener(m_ti,"타이틀","메시지 실험",TrayIcon.MessageType.INFO));
 	       
 	       //팝업 메뉴에 등록 
 	       popupMenu.add(miShow);
@@ -89,7 +116,8 @@ class Trayicon implements ActionListener {
 	       popupMenu.addSeparator();
 	       popupMenu.add(test);
 	       popupMenu.add(miQuit);
-	       
+	       TimerMessage TM=new TimerMessage();
+	       TM.start();
 	       return popupMenu;
 	   }
 	   
@@ -117,8 +145,11 @@ class Trayicon implements ActionListener {
 	    	System.exit(0);
 	    }
 	   }
+	   
+	   
 	     
 }
+
 class ExitMessage{
 	void showMessage(String title,String message){
 	   	JOptionPane.showMessageDialog(null,message,title,JOptionPane.INFORMATION_MESSAGE);
