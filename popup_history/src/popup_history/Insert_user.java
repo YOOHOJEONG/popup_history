@@ -1,56 +1,21 @@
 package popup_history;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.JCheckBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.text.ParseException;
 
 public class Insert_user extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextArea IuT;
 
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Insert_user frame = new Insert_user();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Insert_user() {
 
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 283);
+		setBounds(100, 100, 414, 283);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -84,13 +49,18 @@ public class Insert_user extends JFrame {
 		comboBox_2.setBounds(276, 27, 87, 30);
 		contentPane.add(comboBox_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(78, 67, 285, 130);
-		contentPane.add(textField_1);
+		JScrollPane JSP= new JScrollPane();
+		JSP.setBounds(78, 67, 285, 130);
+		contentPane.add(JSP);
+		
+		IuT = new JTextArea();
+		IuT.setLineWrap(true);
+		IuT.setColumns(10);
+		JSP.setViewportView(IuT);
+		
 		
 		JButton btnNewButton = new JButton("취소");
-		btnNewButton.setBounds(325, 209, 97, 23);
+		btnNewButton.setBounds(266, 209, 97, 23);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -112,10 +82,10 @@ public class Insert_user extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 	   			InsertCal ic = new InsertCal();
-	   			ic.Insertcal(textField_1, comboBox, comboBox_1, comboBox_2);
+	   			ic.Insertcal(IuT, comboBox, comboBox_1, comboBox_2);
 			}
 		});
-		btnNewButton_1.setBounds(216, 209, 97, 23);
+		btnNewButton_1.setBounds(153, 209, 97, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel label = new JLabel("날짜");

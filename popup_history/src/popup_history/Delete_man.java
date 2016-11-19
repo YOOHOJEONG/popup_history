@@ -19,25 +19,7 @@ public class Delete_man extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Delete_man frame = new Delete_man();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public Delete_man() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -56,9 +38,12 @@ public class Delete_man extends JFrame {
 		label.setBounds(12, 9, 53, 24);
 		contentPane.add(label);
 		
+		JScrollPane JSP= new JScrollPane();
+		JSP.setBounds(22, 79, 400, 136);
+		contentPane.add(JSP);
+		
 		JList DmL = new JList();
-		DmL.setBounds(22, 79, 400, 136);
-		contentPane.add(DmL);
+		JSP.setViewportView(DmL);
 		
 		JButton button = new JButton("»Æ¿Œ");
 		button.addMouseListener(new MouseAdapter() {

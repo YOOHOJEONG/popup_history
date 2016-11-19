@@ -14,7 +14,6 @@ public class Tray extends Trayicon{
    public Tray(String strTrayTitle)
    {
 	   Calendar today = Calendar.getInstance();
-	   System.out.println(today.get(Calendar.MINUTE));
 	   m_strTrayTitle = strTrayTitle;
 
 	   initTray(m_strTrayTitle);
@@ -27,11 +26,13 @@ class Trayicon implements ActionListener {
 	   //아이콘 입니다. 
 	   TrayIcon m_ti;
 	   //String m_strTrayTitle;
-	// 트레이 아이콘의 초기설정을 해줍니다.
-	   MainFrame m_frame = new MainFrame();
+	   // 트레이 아이콘의 초기설정을 해줍니다.
 	   
+	   MainFrame m_frame = new MainFrame();
+	   //테스트용 메시지
 	   ShowMessageListener SML = new ShowMessageListener(m_ti,"타이틀","메시지 실험",TrayIcon.MessageType.NONE);
 	   
+	   //트레이 메시지 출력
 	   class ShowMessageListener implements ActionListener{
 		   String title;
 		   String message;
@@ -49,6 +50,7 @@ class Trayicon implements ActionListener {
 			   m_ti.displayMessage(title, message, messageType);
 		   }
 		}
+	   //시간에 마춰서 트레이 메시지 출력
 	   class TimerMessage extends Thread{
 		   public void run(){
 			   while(true){
@@ -56,19 +58,20 @@ class Trayicon implements ActionListener {
 				   if(today.get(Calendar.MINUTE)==0){
 					   SML.playMessage();
 					   try{
-				    	   Thread.sleep(10000);
+				    	   Thread.sleep(10000);//10초에 한번씩 1분 뜸
 				       }catch(Exception e){
 				    	   System.out.println("Message down");
 				       }
-					   System.out.println("한 사이클 끝"); 
+					   //System.out.println("한 사이클 끝"); 
 				   }
 				   try {
 					Thread.sleep(5000);
-				   } catch (InterruptedException e) {}
+				   } catch (Exception e) {}
 			   }
 		   }   
 	   }
 	   
+	   //트레이 아이콘 ui
 	   void initTray(String m_strTrayTitle)
 	   {
 	    // 트레이 아이콘의 아이콘 역할을 할 이미지 입니다. 
@@ -144,10 +147,7 @@ class Trayicon implements ActionListener {
 	    	eM.showMessage("종료","종료합니다");
 	    	System.exit(0);
 	    }
-	   }
-	   
-	   
-	     
+	   }	     
 }
 
 class ExitMessage{

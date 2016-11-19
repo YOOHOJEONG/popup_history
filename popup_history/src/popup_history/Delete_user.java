@@ -19,25 +19,7 @@ public class Delete_user extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Delete_user frame = new Delete_user();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public Delete_user() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -56,9 +38,12 @@ public class Delete_user extends JFrame {
 		textField.setBounds(58, 10, 255, 24);
 		contentPane.add(textField);
 		
+		JScrollPane JSP= new JScrollPane();
+		JSP.setBounds(22, 90, 400, 125);
+		contentPane.add(JSP);
+		
 		JList DuL = new JList();
-		DuL.setBounds(22, 90, 400, 125);
-		contentPane.add(DuL);
+		JSP.setViewportView(DuL);
 		
 		JButton btnNewButton = new JButton("»Æ¿Œ");
 		btnNewButton.addMouseListener(new MouseAdapter() {

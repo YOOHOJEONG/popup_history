@@ -23,25 +23,6 @@ public class Favorite extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame5 frame = new frame5();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Favorite() {
 		//EXIT_ON_CLOSE
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -52,8 +33,14 @@ public class Favorite extends JFrame {
 		contentPane.setLayout(null);
 		
 
+		JScrollPane JSP= new JScrollPane();
+		JSP.setBounds(10, 30, 414, 101);
+		contentPane.add(JSP);
+		
 		JList FavL = new JList();
+		JSP.setViewportView(FavL);
 
+		
 		
 		try {
 			ModifyQuery mq = new ModifyQuery();
@@ -96,8 +83,7 @@ public class Favorite extends JFrame {
 				}
 			}
 		});
-		FavL.setBounds(10, 30, 414, 101);
-		contentPane.add(FavL);
+		
 	      
 		JButton button = new JButton("√Îº“");
 		button.addActionListener(new ActionListener() {

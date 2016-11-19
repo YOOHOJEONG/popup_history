@@ -1,21 +1,10 @@
 package popup_history;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Date;
@@ -26,28 +15,9 @@ import java.text.SimpleDateFormat;
 public class Insert_man extends JFrame {
 
    private JPanel contentPane;
-   private JTextField textField;
-   private JTextField textField_1;
+   private JTextField ImT_1;
+   private JTextArea ImT_2;
 
-   /**
-    * Launch the application.
-    */
-   public static void main(String[] args) {
-      EventQueue.invokeLater(new Runnable() {
-         public void run() {
-            try {
-               Insert_man frame = new Insert_man();
-               frame.setVisible(true);
-            } catch (Exception e) {
-               e.printStackTrace();
-            }
-         }
-      });
-   }
-
-   /**
-    * Create the frame.
-    */
    public Insert_man() {
 
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -99,22 +69,27 @@ public class Insert_man extends JFrame {
       label_1.setBounds(12, 130, 58, 30);
       contentPane.add(label_1);
       
-      textField = new JTextField();
-      textField.setBounds(82, 90, 281, 30);
-      contentPane.add(textField);
-      textField.setColumns(10);
+      ImT_1 = new JTextField();
+      ImT_1.setBounds(82, 90, 281, 30);
+      contentPane.add(ImT_1);
+      ImT_1.setColumns(10);
       
-      textField_1 = new JTextField();
-      textField_1.setColumns(10);
-      textField_1.setBounds(82, 130, 281, 70);
-      contentPane.add(textField_1);
+      JScrollPane JSP= new JScrollPane();
+      JSP.setBounds(82, 130, 281, 70);
+      contentPane.add(JSP);
+      
+      ImT_2 = new JTextArea();
+      ImT_2.setLineWrap(true);
+      ImT_2.setColumns(10);
+      JSP.setViewportView(ImT_2);
+      
       
       JButton button = new JButton("확인");
       button.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent e) {
-   			String title = textField.getText();
-   			String contents = textField_1.getText();
+   			String title = ImT_1.getText();
+   			String contents = ImT_2.getText();
    			if(comboBox.getSelectedIndex()==0||comboBox_1.getSelectedIndex()==0||comboBox_2.getSelectedIndex()==0)
    				JOptionPane.showMessageDialog(null, "날짜를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
    			else if("".equals(title))
@@ -128,7 +103,6 @@ public class Insert_man extends JFrame {
 				try {
 					mq.modifyQuery("insert ignore into history values(?, ?, ?);", date, title, contents);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
    				JOptionPane.showMessageDialog(null, "입력 완료","", JOptionPane.PLAIN_MESSAGE);   					

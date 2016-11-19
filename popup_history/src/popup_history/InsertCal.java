@@ -1,13 +1,11 @@
 package popup_history;
 
 import java.text.ParseException;
+import javax.swing.*;
 
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class InsertCal {
-	public void Insertcal(JTextField textField_1, JComboBox comboBox, JComboBox comboBox_1, JComboBox comboBox_2){
+	public void Insertcal(JTextArea textField_1, JComboBox comboBox, JComboBox comboBox_1, JComboBox comboBox_2){
 		String plan = textField_1.getText();
 			if(comboBox.getSelectedIndex()==0||comboBox_1.getSelectedIndex()==0||comboBox_2.getSelectedIndex()==0)
 				JOptionPane.showMessageDialog(null, "날짜를 입력하세요.","", JOptionPane.WARNING_MESSAGE );

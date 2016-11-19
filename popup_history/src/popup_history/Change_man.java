@@ -23,25 +23,7 @@ public class Change_man extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Change_man frame = new Change_man();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	/**
-	 * Create the frame.
-	 */
+
 	public Change_man() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 342);
@@ -60,8 +42,14 @@ public class Change_man extends JFrame {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(label);
 		
+		
+		JScrollPane JSP= new JScrollPane();
+		JSP.setBounds(17, 90, 400, 81);
+		contentPane.add(JSP);
+		
 		JList CmL = new JList();
-		CmL.setBounds(17, 90, 400, 81);
+		JSP.setViewportView(CmL);
+		
 
 		JButton button = new JButton("»Æ¿Œ");
 		button.setBounds(354, 9, 63, 24);
@@ -94,7 +82,6 @@ public class Change_man extends JFrame {
 		label_1.setBounds(7, 54, 53, 25);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(label_1);
-		contentPane.add(CmL);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(100, 181, 310, 24);
