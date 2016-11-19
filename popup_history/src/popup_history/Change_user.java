@@ -53,16 +53,13 @@ public class Change_user extends JFrame {
 		textField.setColumns(10);
 		textField.setBounds(58, 10, 255, 24);
 		contentPane.add(textField);
-				//CuL.setBounds(17, 55, 400, 75);
-				//CuL.setListData(Con);
-				JScrollPane JSP= new JScrollPane();
-				JSP.setBounds(22, 90, 400, 79);
-				//contentPane.add(CuL);
-				contentPane.add(JSP);
 				
-				//String[] Con ={"a","d","c","d","e","f","g","h","i","j"};
-						JList CuL = new JList();
-						JSP.setViewportView(CuL);
+		JScrollPane JSP= new JScrollPane();
+		JSP.setBounds(22, 90, 400, 79);
+		contentPane.add(JSP);
+				
+		JList CuL = new JList();
+		JSP.setViewportView(CuL);
 				
 				
 		JButton button = new JButton("»Æ¿Œ");

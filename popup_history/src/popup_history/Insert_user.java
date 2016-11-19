@@ -68,20 +68,6 @@ public class Insert_user extends JFrame {
 		comboBox.setBounds(78, 27, 87, 30);
 		contentPane.add(comboBox);
 		comboBox.setSelectedIndex(0);
-		//?뀈 ?꽑?깮?떆 ?썡
-		/*comboBox.addActionListener(comboBox);
-	      comboBox.addActionListener(new ActionListener() {
-	         public void actionPerformed(ActionEvent arg0) {
-	        	String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
-	     		JComboBox comboBox_1 = new JComboBox(wal);
-	     		comboBox_1.setFont(new Font("양재본목각체M", Font.BOLD, 12));
-	     		comboBox_1.setBounds(177, 27, 87, 30);
-	     		contentPane.add(comboBox_1);
-	     		comboBox_1.setSelectedIndex(0);
-	     	//?썡 ?꽑?깮?떆
-	         }
-	      });*////왜있어요??
-	    
 	      
 	    String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
    		JComboBox comboBox_1 = new JComboBox(wal);

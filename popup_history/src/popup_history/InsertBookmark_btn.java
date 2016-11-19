@@ -7,9 +7,7 @@ import javax.swing.JList;
 
 public class InsertBookmark_btn {
 	public void InsertBookmark_btn(JList list){
-		
-		
-   		try {
+		try {
    			String str = (String)list.getSelectedValue();
    			StringTokenizer tokens = new StringTokenizer(str);
    			String date = tokens.nextToken("¢º");//±¸ºÐÀÚ

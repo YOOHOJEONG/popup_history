@@ -55,14 +55,10 @@ import javax.swing.JOptionPane;
        
        String item[]={"기념일 추가", "기념일 수정", "기념일 삭제"};
  					
-       
        JLabel label = new JLabel("검색");
        label.setHorizontalAlignment(SwingConstants.CENTER);
        label.setBounds(220, 204, 53, 37);
        getContentPane().add(label);
-       
-     
-        
       
        JList list = new JList();
        list.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "date                 title ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -88,7 +84,6 @@ import javax.swing.JOptionPane;
          	}
          });
       
-       
        textField = new JTextField();
        textField.setBounds(262, 204, 156, 37);
        getContentPane().add(textField);
