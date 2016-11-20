@@ -6,7 +6,6 @@ public class Main {
 	   public static void main(String[] args) {
 		   
 		   Tray test= new Tray("∆Æ∑π¿Ã");
-		   	//frame1 test1=new frame1();
 		   Thread wP = new Thread(new widgetPlay());
 		   MainFrame frame = new MainFrame();
            frame.setVisible(true);

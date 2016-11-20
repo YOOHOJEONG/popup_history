@@ -19,10 +19,13 @@ public class Insert_man extends JFrame {
    private JTextArea ImT_2;
 
    public Insert_man() {
+   	setTitle("History DB 추가");
+   	setIconImage(Toolkit.getDefaultToolkit().getImage(Insert_man.class.getResource("/images/tray.jpg")));
 
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      setBounds(100, 100, 450, 300);
+      setBounds(100, 100, 411, 272);
       contentPane = new JPanel();
+      contentPane.setBackground(new Color(255, 255, 255));
       contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
       setContentPane(contentPane);
       contentPane.setLayout(null);
@@ -36,14 +39,14 @@ public class Insert_man extends JFrame {
       JComboBox comboBox = new JComboBox(arr);
       comboBox.setSelectedIndex(0);
       comboBox.setFont(new Font("양재본목각체M", Font.BOLD, 12));
-      comboBox.setBounds(82, 50, 87, 30);
+      comboBox.setBounds(82, 30, 87, 30);
       contentPane.add(comboBox);
       
       String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
          JComboBox comboBox_1 = new JComboBox(wal);
       comboBox_1.setSelectedIndex(0);
       comboBox_1.setFont(new Font("양재본목각체M", Font.BOLD, 12));
-      comboBox_1.setBounds(181, 50, 87, 30);
+      comboBox_1.setBounds(181, 30, 87, 30);
       contentPane.add(comboBox_1);
       
       String date[]={"일","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
@@ -51,31 +54,31 @@ public class Insert_man extends JFrame {
       JComboBox comboBox_2 = new JComboBox(date);
       comboBox_2.setSelectedIndex(0);
       comboBox_2.setFont(new Font("양재본목각체M", Font.BOLD, 12));
-      comboBox_2.setBounds(280, 50, 87, 30);
+      comboBox_2.setBounds(280, 30, 87, 30);
       contentPane.add(comboBox_2);
       
       JLabel lblNewLabel = new JLabel("날짜");
       lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-      lblNewLabel.setBounds(12, 50, 58, 30);
+      lblNewLabel.setBounds(12, 30, 58, 30);
       contentPane.add(lblNewLabel);
       
       JLabel label = new JLabel("제목");
       label.setHorizontalAlignment(SwingConstants.CENTER);
-      label.setBounds(12, 90, 58, 30);
+      label.setBounds(12, 70, 58, 30);
       contentPane.add(label);
       
       JLabel label_1 = new JLabel("내용");
       label_1.setHorizontalAlignment(SwingConstants.CENTER);
-      label_1.setBounds(12, 130, 58, 30);
+      label_1.setBounds(12, 110, 58, 30);
       contentPane.add(label_1);
       
       ImT_1 = new JTextField();
-      ImT_1.setBounds(82, 90, 281, 30);
+      ImT_1.setBounds(82, 70, 281, 30);
       contentPane.add(ImT_1);
       ImT_1.setColumns(10);
       
       JScrollPane JSP= new JScrollPane();
-      JSP.setBounds(82, 130, 281, 70);
+      JSP.setBounds(82, 110, 281, 70);
       contentPane.add(JSP);
       
       ImT_2 = new JTextArea();
@@ -84,7 +87,7 @@ public class Insert_man extends JFrame {
       JSP.setViewportView(ImT_2);
       
       
-      JButton button = new JButton("확인");
+      JButton button = new JButton("추가");
       button.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent e) {
@@ -110,11 +113,11 @@ public class Insert_man extends JFrame {
    				
       	}
       });
-      button.setBounds(250, 229, 80, 23);
+      button.setBounds(195, 192, 80, 23);
       contentPane.add(button);
       
       JButton button_1 = new JButton("취소");
-      button_1.setBounds(342, 229, 80, 23);
+      button_1.setBounds(287, 192, 80, 23);
       contentPane.add(button_1);
       button_1.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {

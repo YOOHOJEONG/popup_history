@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.Vector;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class Change_user extends JFrame {
 	int flagAll=0;
@@ -19,12 +21,24 @@ public class Change_user extends JFrame {
 
 
 	public Change_user() {
+		setTitle("일정 수정");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Change_user.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 318);
+		setBounds(100, 100, 458, 318);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JScrollPane JSP1= new JScrollPane();
+		JTextArea CuT = new JTextArea();
+		CuT.setLineWrap(true);
+		JSP1.setBounds(58, 184, 364, 51);
+		JSP1.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
+		contentPane.add(JSP1);
+		
+		JSP1.setViewportView(CuT);
 		
 		JLabel label = new JLabel("검색");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -36,12 +50,12 @@ public class Change_user extends JFrame {
 		textField.setBounds(58, 10, 255, 24);
 		contentPane.add(textField);
 				
-		JScrollPane JSP= new JScrollPane();
-		JSP.setBounds(22, 90, 400, 79);
-		contentPane.add(JSP);
+		JScrollPane JSP2= new JScrollPane();
+		JSP2.setBounds(22, 90, 400, 79);
+		contentPane.add(JSP2);
 				
 		JList CuL = new JList();
-		JSP.setViewportView(CuL);
+		JSP2.setViewportView(CuL);
 				
 				
 		JButton button = new JButton("확인");
@@ -76,12 +90,8 @@ public class Change_user extends JFrame {
 		
 		JLabel lblPlan = new JLabel("plan");
 		lblPlan.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlan.setBounds(8, 188, 57, 15);
+		lblPlan.setBounds(8, 200, 57, 15);
 		contentPane.add(lblPlan);
-		
-		JTextArea CuT = new JTextArea();
-		CuT.setBounds(58, 184, 364, 24);
-		contentPane.add(CuT);
 		
 		JButton button_1 = new JButton("수정");
 		button_1.addMouseListener(new MouseAdapter() {

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -17,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.StringTokenizer;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 
 public class Favorite extends JFrame {
@@ -24,20 +27,25 @@ public class Favorite extends JFrame {
 	private JPanel contentPane;
 
 	public Favorite() {
+		setTitle("즐겨찾기 목록 관리");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Favorite.class.getResource("/images/tray.jpg")));
 		//EXIT_ON_CLOSE
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 288);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 
 		JScrollPane JSP= new JScrollPane();
-		JSP.setBounds(10, 30, 414, 101);
+		JSP.setBounds(12, 10, 414, 101);
 		contentPane.add(JSP);
 		
 		JList FavL = new JList();
+		FavL.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "date                 title ", 
+        		TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		JSP.setViewportView(FavL);
 
 		
@@ -53,15 +61,15 @@ public class Favorite extends JFrame {
 			e2.printStackTrace();
 		}
 		
-		JLabel label = new JLabel("목록");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(0, 10, 53, 25);
-		contentPane.add(label);
-		
+		JScrollPane JSP2= new JScrollPane();
 		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
 		textArea.setEditable(false);
-		textArea.setBounds(10, 137, 414, 90);
-		contentPane.add(textArea);
+		JSP2.setBounds(12, 117, 414, 90);
+		textArea.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Contents ", 
+        		TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		contentPane.add(JSP2);
+		JSP2.setViewportView(textArea);
 		
 		FavL.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
@@ -99,7 +107,7 @@ public class Favorite extends JFrame {
          	      });
 			}
 		});
-		button.setBounds(344, 233, 80, 23);
+		button.setBounds(346, 213, 80, 23);
 		contentPane.add(button);
 		
 		JButton button_2 = new JButton("삭제");
@@ -139,7 +147,7 @@ public class Favorite extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_2.setBounds(252, 233, 80, 23);
+		button_2.setBounds(254, 213, 80, 23);
 		contentPane.add(button_2);
 	}
 

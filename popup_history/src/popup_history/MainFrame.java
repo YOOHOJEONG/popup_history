@@ -1,7 +1,5 @@
 package popup_history;
  import java.awt.BorderLayout;
-
-
  import java.awt.EventQueue;
  import java.awt.FlowLayout;
  import java.awt.event.ActionListener;
@@ -33,11 +31,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
  public class MainFrame extends JFrame {
     protected static final String JList = null;
 	private JTextField textField;
 
 	public MainFrame(){
+		setTitle("PopUp_History");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/tray.jpg")));
     	getContentPane().setBackground(new Color(255, 255, 255));
  
     	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

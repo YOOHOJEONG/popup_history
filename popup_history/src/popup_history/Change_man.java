@@ -14,6 +14,8 @@ import java.util.Vector;
 
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 
 public class Change_man extends JFrame {
@@ -21,13 +23,16 @@ public class Change_man extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextArea textField_2;
 
 
 	public Change_man() {
+		setTitle("History DB 수정");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Change_man.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 342);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -84,14 +89,17 @@ public class Change_man extends JFrame {
 		contentPane.add(label_1);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(100, 181, 310, 24);
+		textField_1.setBounds(100, 181, 317, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);		
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(100, 215, 310, 24);
+		JScrollPane JSP2= new JScrollPane();
+		textField_2 = new JTextArea();
+		textField_2.setLineWrap(true);
+		JSP2.setBounds(100, 215, 317, 45);
 		textField_2.setColumns(10);
-		contentPane.add(textField_2);
+		JSP2.setViewportView(textField_2);
+		contentPane.add(JSP2);
 		
 		
 		JButton button_1 = new JButton("수정");

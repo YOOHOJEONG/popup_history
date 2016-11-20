@@ -2,7 +2,9 @@ package popup_history;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Vector;
 
 import javax.swing.*;
 
@@ -13,7 +15,6 @@ public class Tray extends Trayicon{
    
    public Tray(String strTrayTitle)
    {
-	   Calendar today = Calendar.getInstance();
 	   m_strTrayTitle = strTrayTitle;
 
 	   initTray(m_strTrayTitle);
@@ -25,12 +26,11 @@ class Trayicon implements ActionListener {
 	   SystemTray m_tray = SystemTray.getSystemTray();
 	   //아이콘 입니다. 
 	   TrayIcon m_ti;
-	   //String m_strTrayTitle;
-	   // 트레이 아이콘의 초기설정을 해줍니다.
-	   
+	   String message;
 	   MainFrame m_frame = new MainFrame();
-	   //테스트용 메시지
-	   ShowMessageListener SML = new ShowMessageListener(m_ti,"타이틀","메시지 실험",TrayIcon.MessageType.NONE);
+	   
+	   
+	   
 	   
 	   //트레이 메시지 출력
 	   class ShowMessageListener implements ActionListener{
@@ -53,9 +53,17 @@ class Trayicon implements ActionListener {
 	   //시간에 마춰서 트레이 메시지 출력
 	   class TimerMessage extends Thread{
 		   public void run(){
+			   Message Hm=new Message();
+			   message=Hm.Message(message);
+			   int t=0;
+			   Calendar today = Calendar.getInstance();
+			   
+			   ShowMessageListener SML = new ShowMessageListener(m_ti,today.get(Calendar.YEAR)+"/"+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+".",
+					   message,TrayIcon.MessageType.NONE);
+			   
 			   while(true){
-				   Calendar today = Calendar.getInstance();
-				   if(today.get(Calendar.MINUTE)==0){
+				   today=Calendar.getInstance();
+				   if(today.get(Calendar.MINUTE)==00){
 					   SML.playMessage();
 					   try{
 				    	   Thread.sleep(10000);//10초에 한번씩 1분 뜸
@@ -148,6 +156,22 @@ class Trayicon implements ActionListener {
 	    	System.exit(0);
 	    }
 	   }	     
+}
+
+class Message{
+	public String Message(String message){
+		ModifyQuery mq = new ModifyQuery();
+		Vector<String> plan;
+		message = "";
+		try {
+			plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
+	        for(int i=0;i<plan.size();i++)
+	        	message=message+plan.elementAt(i)+"\n";
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return message;
+	}
 }
 
 class ExitMessage{

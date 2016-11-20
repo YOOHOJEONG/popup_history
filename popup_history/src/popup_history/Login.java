@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -23,6 +24,8 @@ public class Login extends JFrame {
 	String MID="swM", Mpwd ="swM1";
 
 	public Login() {
+		setTitle("관리자 Log-In");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -33,30 +36,30 @@ public class Login extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("ID :");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(47, 79, 100, 30);
+		lblNewLabel.setBounds(47, 74, 100, 30);
 		contentPane.add(lblNewLabel);
 		
 		JLabel label = new JLabel("Password :");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(47, 130, 100, 30);
+		label.setBounds(47, 125, 100, 30);
 		contentPane.add(label);
 		
 		ID = new JTextField();
 		ID.setSelectedTextColor(Color.BLACK);
 		ID.setForeground(new Color(0, 0, 0));
-		ID.setBounds(159, 79, 130, 30);
+		ID.setBounds(159, 74, 130, 30);
 		contentPane.add(ID);
 		ID.setColumns(10);
 		
 		pwd = new JPasswordField();
 		pwd.setText("");
-		pwd.setBounds(159, 130, 130, 30);
+		pwd.setBounds(159, 125, 130, 30);
 		contentPane.add(pwd);
 		
 		//버튼에 몰아놓음
 		JButton btnNewButton = new JButton("LOGIN");
 		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setBounds(159, 180, 130, 30);
+		btnNewButton.setBounds(159, 175, 130, 30);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

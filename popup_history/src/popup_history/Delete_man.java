@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import java.awt.Toolkit;
+import java.awt.Color;
 
 public class Delete_man extends JFrame {
 	int flagAll=0;
@@ -21,9 +23,12 @@ public class Delete_man extends JFrame {
 
 	
 	public Delete_man() {
+		setTitle("History DB ªË¡¶");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Delete_man.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 460, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -143,7 +148,7 @@ public class Delete_man extends JFrame {
    				flagAll=1;
 			}
 		});
-		btnNewButton.setBounds(55, 46, 53, 23);
+		btnNewButton.setBounds(58, 46, 53, 23);
 		contentPane.add(btnNewButton);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

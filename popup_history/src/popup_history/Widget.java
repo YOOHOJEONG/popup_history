@@ -11,7 +11,7 @@ import java.util.*;
 public class Widget extends javax.swing.JDialog{
     
 
-	int x,y,xEkran,yEkran,i;
+	int x,y,xEkran,yEkran,i,a;
 	Font font1 = new Font("Serif", Font.PLAIN, 20);
 	Calendar today = Calendar.getInstance();
 	MainFrame m_frame = new MainFrame();
@@ -19,14 +19,18 @@ public class Widget extends javax.swing.JDialog{
 	
     public Widget(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        Dimension frameSize = parent.getSize();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        parent.setLocation(screenSize.width-frameSize.width, 0);
         initComponents();
     }
 
   
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+    	
         home = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
         jLabe = new javax.swing.JLabel();
@@ -58,10 +62,11 @@ public class Widget extends javax.swing.JDialog{
 		Vector<String> plan;
 		try {
 			plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
-	        textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n"+plan);
+	        textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n");
+	        for(i=0;i<plan.size();i++)
+	        	textArea.append(plan.elementAt(i)+"\n");
 	        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -82,9 +87,8 @@ public class Widget extends javax.swing.JDialog{
         textArea3.setEditable(false);
         textArea3.setTabSize(4);
         textArea3.getTabSize();        
-        for(i=0;i<6;i++){
-        	textArea3.append(Cal.Cal[i]);}
-        //textArea3.setFont(font1);
+        for(a=0;a<6;a++){
+        	textArea3.append(Cal.Cal[a]);}
         getContentPane().add(textArea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 45, -1, -1));
           
 

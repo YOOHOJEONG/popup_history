@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.Vector;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 
 public class Delete_user extends JFrame {
@@ -21,9 +23,12 @@ public class Delete_user extends JFrame {
 
 	
 	public Delete_user() {
+		setTitle("일정 삭제");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Delete_user.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 463, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

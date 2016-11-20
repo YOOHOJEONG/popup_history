@@ -3,10 +3,7 @@ package popup_history;
 import java.text.ParseException;
 import java.util.StringTokenizer;
 import java.util.Vector;
-
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class AdminSearch {
 
@@ -31,7 +28,7 @@ public class AdminSearch {
 		}
 	}
 	
-	public void modifyHistory(JList CmL, JTextField textField_1, JTextField textField_2){
+	public void modifyHistory(JList CmL, JTextField textField_1, JTextArea textField_2){
 		String str = (String)CmL.getSelectedValue();
 		StringTokenizer tokens = new StringTokenizer(str);
 		String date = tokens.nextToken("¢º");//±¸ºÐÀÚ

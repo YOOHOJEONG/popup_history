@@ -12,11 +12,14 @@ public class Insert_user extends JFrame {
 	private JTextArea IuT;
 
 	public Insert_user() {
+		setTitle("일정 추가");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Insert_user.class.getResource("/images/tray.jpg")));
 
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 414, 283);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
