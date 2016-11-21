@@ -87,7 +87,7 @@ import java.awt.Toolkit;
         getContentPane().add(textField);
         textField.setColumns(10);
         
-        JButton btnSearch = new JButton("search");
+        JButton btnSearch = new JButton("검색");
         btnSearch.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
     			String searchVal = textField.getText();
@@ -104,7 +104,7 @@ import java.awt.Toolkit;
         btnSearch.setBounds(424, 211, 85, 23);
         getContentPane().add(btnSearch);
         
-        JButton btnResoration = new JButton("restoration");
+        JButton btnResoration = new JButton("복구");
         btnResoration.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		Restoration_btn rb = new Restoration_btn();
@@ -115,7 +115,7 @@ import java.awt.Toolkit;
         btnResoration.setBounds(521, 211, 101, 23);
         getContentPane().add(btnResoration);
         
-        JButton btnNewButton = new JButton("insert bookmark");
+        JButton btnNewButton = new JButton("즐겨찾기 추가");
         btnNewButton.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent arg0) {
@@ -181,7 +181,7 @@ import java.awt.Toolkit;
             	 EventQueue.invokeLater(new Runnable() {
            	         public void run() {
            	            try {
-           	            	Login frame = new Login();
+           	            	AdminLoginFrame frame = new AdminLoginFrame();
            	               frame.setVisible(true);
            	            } catch (Exception e) {
            	               e.printStackTrace();
@@ -203,7 +203,7 @@ import java.awt.Toolkit;
             	 EventQueue.invokeLater(new Runnable() {
            	         public void run() {
            	            try {
-           	               Insert_user frame = new Insert_user();
+           	               InsertCalFrame frame = new InsertCalFrame();
            	               frame.setVisible(true);
            	            } catch (Exception e) {
            	               e.printStackTrace();
@@ -220,7 +220,7 @@ import java.awt.Toolkit;
             	 EventQueue.invokeLater(new Runnable() {
            	         public void run() {
            	            try {
-           	              Change_user frame = new Change_user();
+           	            	modifyCalFrame frame = new modifyCalFrame();
            	               frame.setVisible(true);
            	            } catch (Exception e) {
            	               e.printStackTrace();
@@ -237,7 +237,7 @@ import java.awt.Toolkit;
             	 EventQueue.invokeLater(new Runnable() {
            	         public void run() {
            	            try {
-           	               Delete_user frame = new Delete_user();
+           	               DeleteCalFrame frame = new DeleteCalFrame();
            	               frame.setVisible(true);
            	            } catch (Exception e) {
            	               e.printStackTrace();
@@ -256,7 +256,7 @@ import java.awt.Toolkit;
                	 EventQueue.invokeLater(new Runnable() {
               	         public void run() {
               	            try {
-              	               Favorite frame = new Favorite();
+              	            	deleteBookmarkFrame frame = new deleteBookmarkFrame();
               	               frame.setVisible(true);
               	            } catch (Exception e) {
               	               e.printStackTrace();

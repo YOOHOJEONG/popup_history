@@ -16,16 +16,16 @@ import javax.swing.JFormattedTextField;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-public class Login extends JFrame {
+public class AdminLoginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField ID;
 	private JPasswordField pwd;
 	String MID="swM", Mpwd ="swM1";
 
-	public Login() {
+	public AdminLoginFrame() {
 		setTitle("°ü¸®ÀÚ Log-In");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/images/tray.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AdminLoginFrame.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -69,7 +69,7 @@ public class Login extends JFrame {
        	            	String Id=ID.getText();
        	            	String Pwd=pwd.getText();
        	            	if(Id.equals(MID)&&Pwd.equals(Mpwd)){
-       	            		Maneger_home Mh = new Maneger_home();
+       	            		AdminhomeFrame Mh = new AdminhomeFrame();
        	            		Mh.setVisible(true);
        	            		dispose();
        	            	}

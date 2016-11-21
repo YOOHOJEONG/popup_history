@@ -18,17 +18,17 @@ import java.awt.Color;
 import java.awt.Toolkit;
 
 
-public class Change_man extends JFrame {
+public class ModifyHistoryFrame extends JFrame {
 	int flagAll=0;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextArea textField_2;
+	private JTextArea textArea;
 
 
-	public Change_man() {
+	public ModifyHistoryFrame() {
 		setTitle("History DB 수정");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Change_man.class.getResource("/images/tray.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ModifyHistoryFrame.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 457, 366);
 		contentPane = new JPanel();
@@ -117,16 +117,16 @@ public class Change_man extends JFrame {
 		contentPane.add(label_1);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(105, 205, 317, 24);
+		textField_1.setBounds(62, 205, 360, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);		
 		
 		JScrollPane JSP2= new JScrollPane();
-		textField_2 = new JTextArea();
-		textField_2.setLineWrap(true);
-		JSP2.setBounds(105, 239, 317, 45);
-		textField_2.setColumns(10);
-		JSP2.setViewportView(textField_2);
+		textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		JSP2.setBounds(62, 239, 360, 45);
+		textArea.setColumns(10);
+		JSP2.setViewportView(textArea);
 		contentPane.add(JSP2);
 		
 		
@@ -146,7 +146,7 @@ public class Change_man extends JFrame {
 				}
 				else{
 					AdminSearch mm = new AdminSearch();
-					mm.modifyHistory(CmL, textField_1, textField_2);
+					mm.modifyHistory(CmL, textField_1, textArea);
 					if(flagAll==1){
 						try {
 							textField.setText(null);
@@ -197,11 +197,11 @@ public class Change_man extends JFrame {
 		
 		
 		
-		JLabel lblTitle = new JLabel("title");
+		JLabel lblTitle = new JLabel("제목");
 		lblTitle.setBounds(36, 209, 57, 15);
 		contentPane.add(lblTitle);
 		
-		JLabel lblContents = new JLabel("contents");
+		JLabel lblContents = new JLabel("내용");
 		lblContents.setBounds(36, 243, 57, 15);
 		contentPane.add(lblContents);
 		

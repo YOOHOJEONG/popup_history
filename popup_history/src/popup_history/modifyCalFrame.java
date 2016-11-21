@@ -14,15 +14,15 @@ import java.util.Vector;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-public class Change_user extends JFrame {
+public class modifyCalFrame extends JFrame {
 	int flagAll=0;
 	private JPanel contentPane;
 	private JTextField textField;
 
 
-	public Change_user() {
+	public modifyCalFrame() {
 		setTitle("일정 수정");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Change_user.class.getResource("/images/tray.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(modifyCalFrame.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 458, 339);
 		contentPane = new JPanel();
@@ -58,7 +58,7 @@ public class Change_user extends JFrame {
 		JScrollPane JSP1= new JScrollPane();
 		JTextArea CuT = new JTextArea();
 		CuT.setLineWrap(true);
-		JSP1.setBounds(68, 207, 364, 51);
+		JSP1.setBounds(52, 207, 380, 51);
 		JSP1.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 		contentPane.add(JSP1);
 		
@@ -112,7 +112,7 @@ public class Change_user extends JFrame {
 		label_1.setBounds(18, 79, 53, 25);
 		contentPane.add(label_1);		
 		
-		JLabel lblPlan = new JLabel("plan");
+		JLabel lblPlan = new JLabel("일정");
 		lblPlan.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlan.setBounds(0, 223, 57, 15);
 		contentPane.add(lblPlan);

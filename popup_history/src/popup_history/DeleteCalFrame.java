@@ -15,16 +15,16 @@ import java.awt.Color;
 import java.awt.Toolkit;
 
 
-public class Delete_user extends JFrame {
+public class DeleteCalFrame extends JFrame {
 	int flagAll=0;
 	
 	private JPanel contentPane;
 	private JTextField textField;
 
 	
-	public Delete_user() {
+	public DeleteCalFrame() {
 		setTitle("일정 삭제");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Delete_user.class.getResource("/images/tray.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DeleteCalFrame.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 463, 320);
 		contentPane = new JPanel();

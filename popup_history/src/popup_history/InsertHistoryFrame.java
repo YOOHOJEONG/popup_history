@@ -12,15 +12,15 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class Insert_man extends JFrame {
+public class InsertHistoryFrame extends JFrame {
 
    private JPanel contentPane;
    private JTextField ImT_1;
    private JTextArea ImT_2;
 
-   public Insert_man() {
+   public InsertHistoryFrame() {
    	setTitle("History DB Ãß°¡");
-   	setIconImage(Toolkit.getDefaultToolkit().getImage(Insert_man.class.getResource("/images/tray.jpg")));
+   	setIconImage(Toolkit.getDefaultToolkit().getImage(InsertHistoryFrame.class.getResource("/images/tray.jpg")));
 
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       setBounds(100, 100, 411, 272);

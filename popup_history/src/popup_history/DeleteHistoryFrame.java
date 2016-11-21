@@ -15,16 +15,16 @@ import java.util.Vector;
 import java.awt.Toolkit;
 import java.awt.Color;
 
-public class Delete_man extends JFrame {
+public class DeleteHistoryFrame extends JFrame {
 	int flagAll=0;
 
 	private JPanel contentPane;
 	private JTextField textField;
 
 	
-	public Delete_man() {
+	public DeleteHistoryFrame() {
 		setTitle("History DB ªË¡¶");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Delete_man.class.getResource("/images/tray.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DeleteHistoryFrame.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 460, 330);
 		contentPane = new JPanel();

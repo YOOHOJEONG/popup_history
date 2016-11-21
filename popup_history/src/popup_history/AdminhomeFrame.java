@@ -6,31 +6,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Maneger_home extends Login {
+public class AdminhomeFrame extends AdminLoginFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Maneger_home frame = new Maneger_home();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Maneger_home() {
+	public AdminhomeFrame() {
 		setTitle("\uAD00\uB9AC\uC790 \uD648\uD654\uBA74");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 339, 144);
@@ -54,7 +34,7 @@ public class Maneger_home extends Login {
 		           	 EventQueue.invokeLater(new Runnable() {
 		          	         public void run() {
 		          	            try {
-		          	            	Insert_man frame = new Insert_man();
+		          	            	InsertHistoryFrame frame = new InsertHistoryFrame();
 		          	               frame.setVisible(true);
 		          	            } catch (Exception e) {
 		          	               e.printStackTrace();
@@ -72,7 +52,7 @@ public class Maneger_home extends Login {
 		           	 EventQueue.invokeLater(new Runnable() {
 		          	         public void run() {
 		          	            try {
-		          	            	Change_man frame = new Change_man();
+		          	            	ModifyHistoryFrame frame = new ModifyHistoryFrame();
 		          	               frame.setVisible(true);
 		          	            } catch (Exception e) {
 		          	               e.printStackTrace();
@@ -90,7 +70,7 @@ public class Maneger_home extends Login {
 		           	 EventQueue.invokeLater(new Runnable() {
 		          	         public void run() {
 		          	            try {
-		          	            	Delete_man frame = new Delete_man();
+		          	            	DeleteHistoryFrame frame = new DeleteHistoryFrame();
 		          	               frame.setVisible(true);
 		          	            } catch (Exception e) {
 		          	               e.printStackTrace();

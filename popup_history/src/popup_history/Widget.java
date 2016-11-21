@@ -11,7 +11,7 @@ import java.util.*;
 public class Widget extends javax.swing.JDialog{
     
 
-	int x,y,xEkran,yEkran,i,a;
+	int x,y,xEkran,yEkran,a;
 	Font font1 = new Font("Serif", Font.PLAIN, 20);
 	Calendar today = Calendar.getInstance();
 	MainFrame m_frame = new MainFrame();
@@ -58,17 +58,10 @@ public class Widget extends javax.swing.JDialog{
         textArea.setOpaque(true);
         textArea.setPreferredSize(new java.awt.Dimension(280, 60));
         textArea.setEditable(false);
-        ModifyQuery mq = new ModifyQuery();
-		Vector<String> plan;
-		try {
-			plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
-	        textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n");
-	        for(i=0;i<plan.size();i++)
-	        	textArea.append(plan.elementAt(i)+"\n");
-	        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
+        Work work = new Work();
+        work.Work(textArea);
+        
 
         
         //맨위 이번달
@@ -180,6 +173,24 @@ public class Widget extends javax.swing.JDialog{
     private JTextArea textArea;
     private JTextArea textArea2;
     private JTextArea textArea3;
+}
+class Work{
+	int i;
+	Calendar today = Calendar.getInstance();
+	
+	void Work(JTextArea textArea){
+		ModifyQuery mq = new ModifyQuery();
+		Vector<String> plan;
+		try {
+			plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
+	        textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n");
+	        for(i=0;i<plan.size();i++)
+	        	textArea.append(plan.elementAt(i)+"\n");
+	        
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 class Calender{

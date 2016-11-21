@@ -6,14 +6,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.*;
 import java.text.ParseException;
 
-public class Insert_user extends JFrame {
+public class InsertCalFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextArea IuT;
 
-	public Insert_user() {
+	public InsertCalFrame() {
 		setTitle("일정 추가");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Insert_user.class.getResource("/images/tray.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InsertCalFrame.class.getResource("/images/tray.jpg")));
 
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

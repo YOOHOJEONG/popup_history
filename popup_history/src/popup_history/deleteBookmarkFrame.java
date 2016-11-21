@@ -22,13 +22,13 @@ import java.awt.Color;
 import java.awt.Toolkit;
 
 
-public class Favorite extends JFrame {
+public class deleteBookmarkFrame extends JFrame {
 
 	private JPanel contentPane;
 
-	public Favorite() {
+	public deleteBookmarkFrame() {
 		setTitle("즐겨찾기 목록 관리");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Favorite.class.getResource("/images/tray.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(deleteBookmarkFrame.class.getResource("/images/tray.jpg")));
 		//EXIT_ON_CLOSE
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 288);
