@@ -30,7 +30,7 @@ public class Change_man extends JFrame {
 		setTitle("History DB 수정");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Change_man.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 342);
+		setBounds(100, 100, 457, 366);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -38,18 +38,42 @@ public class Change_man extends JFrame {
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(57, 10, 285, 24);
+		textField.setBounds(77, 44, 286, 24);
 		textField.setColumns(10);
 		contentPane.add(textField);
 		
-		JLabel label = new JLabel("검색");
-		label.setBounds(7, 9, 53, 24);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(label);
+		String arr[] = new String[101];
+		arr[0]="년도";
+		for(int i=1; i<101; i++)
+		{
+			arr[i] = String.valueOf(2023-i);
+		}		
+		JComboBox comboBox = new JComboBox(arr);
+		comboBox.setBounds(77, 10, 86, 24);
+		comboBox.setSelectedIndex(0);
+		contentPane.add(comboBox);
+		
+		String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+		JComboBox comboBox_1 = new JComboBox(wal);
+		comboBox_1.setBounds(177, 10, 86, 24);
+		comboBox_1.setSelectedIndex(0);
+		contentPane.add(comboBox_1);
+		
+		String date[]={"일","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		JComboBox comboBox_2 = new JComboBox(date);
+		comboBox_2.setBounds(277, 10, 86, 24);
+		comboBox_2.setSelectedIndex(0);
+		contentPane.add(comboBox_2);
+		
+		JLabel label_2 = new JLabel("검색");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setBounds(12, 10, 53, 24);
+		contentPane.add(label_2);
 		
 		
 		JScrollPane JSP= new JScrollPane();
-		JSP.setBounds(17, 90, 400, 81);
+		JSP.setBounds(22, 114, 400, 81);
 		contentPane.add(JSP);
 		
 		JList CmL = new JList();
@@ -57,7 +81,11 @@ public class Change_man extends JFrame {
 		
 
 		JButton button = new JButton("확인");
-		button.setBounds(354, 9, 63, 24);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		button.setBounds(370, 44, 62, 24);
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,19 +112,19 @@ public class Change_man extends JFrame {
 		contentPane.add(button);
 		
 		JLabel label_1 = new JLabel("목록");
-		label_1.setBounds(7, 54, 53, 25);
+		label_1.setBounds(12, 78, 53, 25);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(label_1);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(100, 181, 317, 24);
+		textField_1.setBounds(105, 205, 317, 24);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);		
 		
 		JScrollPane JSP2= new JScrollPane();
 		textField_2 = new JTextArea();
 		textField_2.setLineWrap(true);
-		JSP2.setBounds(100, 215, 317, 45);
+		JSP2.setBounds(105, 239, 317, 45);
 		textField_2.setColumns(10);
 		JSP2.setViewportView(textField_2);
 		contentPane.add(JSP2);
@@ -146,21 +174,35 @@ public class Change_man extends JFrame {
 					
 			}
 		});
-		button_1.setBounds(216, 270, 97, 23);
+		button_1.setBounds(221, 294, 97, 23);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("취소");
-		button_2.setBounds(325, 270, 97, 23);
+		button_2.setBounds(330, 294, 97, 23);
 		contentPane.add(button_2);
+		
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+        	         public void run() {
+        	            try {
+        	            	dispose();
+        	            } catch (Exception e) {
+        	               e.printStackTrace();
+        	            }
+        	         }
+        	      });
+			}
+		});
 		
 		
 		
 		JLabel lblTitle = new JLabel("title");
-		lblTitle.setBounds(31, 185, 57, 15);
+		lblTitle.setBounds(36, 209, 57, 15);
 		contentPane.add(lblTitle);
 		
 		JLabel lblContents = new JLabel("contents");
-		lblContents.setBounds(31, 219, 57, 15);
+		lblContents.setBounds(36, 243, 57, 15);
 		contentPane.add(lblContents);
 		
 		JButton btnAll = new JButton("all");
@@ -179,23 +221,9 @@ public class Change_man extends JFrame {
 				flagAll=1;
 			}
 		});
-		btnAll.setBounds(57, 54, 63, 24);
+		btnAll.setBounds(62, 78, 63, 24);
 		contentPane.add(btnAll);
 		
-		
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
-        	         public void run() {
-        	            try {
-        	            	dispose();
-        	            } catch (Exception e) {
-        	               e.printStackTrace();
-        	            }
-        	         }
-        	      });
-			}
-		});
 		
 	}
 }

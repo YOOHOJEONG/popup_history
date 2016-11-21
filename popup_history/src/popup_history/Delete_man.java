@@ -26,25 +26,49 @@ public class Delete_man extends JFrame {
 		setTitle("History DB 삭제");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Delete_man.class.getResource("/images/tray.jpg")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 460, 300);
+		setBounds(100, 100, 460, 330);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		String arr[] = new String[101];
+		arr[0]="년도";
+		for(int i=1; i<101; i++)
+		{
+			arr[i] = String.valueOf(2023-i);
+		}		
+		JComboBox comboBox = new JComboBox(arr);
+		comboBox.setBounds(77, 10, 86, 24);
+		comboBox.setSelectedIndex(0);
+		contentPane.add(comboBox);
+		
+		String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+		JComboBox comboBox_1 = new JComboBox(wal);
+		comboBox_1.setBounds(177, 10, 86, 24);
+		comboBox_1.setSelectedIndex(0);
+		contentPane.add(comboBox_1);
+		
+		String date[]={"일","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		JComboBox comboBox_2 = new JComboBox(date);
+		comboBox_2.setBounds(277, 10, 86, 24);
+		comboBox_2.setSelectedIndex(0);
+		contentPane.add(comboBox_2);
+		
 		textField = new JTextField();
 		textField.setColumns(10);
-		textField.setBounds(58, 10, 290, 24);
+		textField.setBounds(77, 44, 286, 24);
 		contentPane.add(textField);
 		
 		JLabel label = new JLabel("검색");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(12, 9, 53, 24);
+		label.setBounds(12, 10, 53, 24);
 		contentPane.add(label);
 		
 		JScrollPane JSP= new JScrollPane();
-		JSP.setBounds(22, 79, 400, 136);
+		JSP.setBounds(22, 114, 400, 136);
 		contentPane.add(JSP);
 		
 		JList DmL = new JList();
@@ -74,12 +98,12 @@ public class Delete_man extends JFrame {
 	   			}       		
 			}
 		});
-		button.setBounds(360, 9, 62, 24);
+		button.setBounds(370, 44, 62, 24);
 		contentPane.add(button);
 		
 		JLabel label_1 = new JLabel("목록");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(12, 44, 53, 25);
+		label_1.setBounds(12, 79, 53, 25);
 		contentPane.add(label_1);
 		
 		
@@ -125,11 +149,11 @@ public class Delete_man extends JFrame {
 				}
 			}
 		});
-		button_1.setBounds(216, 225, 97, 23);
+		button_1.setBounds(216, 260, 97, 23);
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("취소");
-		button_2.setBounds(325, 225, 97, 23);
+		button_2.setBounds(325, 260, 97, 23);
 		contentPane.add(button_2);
 		
 		JButton btnNewButton = new JButton("all");
@@ -148,7 +172,7 @@ public class Delete_man extends JFrame {
    				flagAll=1;
 			}
 		});
-		btnNewButton.setBounds(58, 46, 53, 23);
+		btnNewButton.setBounds(58, 81, 53, 23);
 		contentPane.add(btnNewButton);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
