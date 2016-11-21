@@ -164,7 +164,7 @@ class Message{
 		Vector<String> plan;
 		message = "";
 		try {
-			plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
+			plan = mq.modifyQuery("select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)", null, null, null);
 	        for(int i=0;i<plan.size();i++)
 	        	message=message+plan.elementAt(i)+"\n";
 		} catch (ParseException e) {
