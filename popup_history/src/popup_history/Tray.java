@@ -55,7 +55,6 @@ class Trayicon implements ActionListener {
 		   public void run(){
 			   Message Hm=new Message();
 			   message=Hm.Message(message);
-			   int t=0;
 			   Calendar today = Calendar.getInstance();
 			   
 			   ShowMessageListener SML = new ShowMessageListener(m_ti,today.get(Calendar.YEAR)+"/"+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+".",
@@ -114,18 +113,15 @@ class Trayicon implements ActionListener {
 	       
 	       MenuItem miShow = new MenuItem("위젯");
 	       MenuItem miQuit = new MenuItem("종료");
-	       MenuItem test = new MenuItem("Test");
 
 	       //각각에 항목에 대해 리스너 장착. 
 	       miShow.addActionListener(this);
 	       miQuit.addActionListener(this);
-	       test.addActionListener(new ShowMessageListener(m_ti,"타이틀","메시지 실험",TrayIcon.MessageType.INFO));
 	       
 	       //팝업 메뉴에 등록 
 	       popupMenu.add(miShow);
 	       // 줄 생성
 	       popupMenu.addSeparator();
-	       popupMenu.add(test);
 	       popupMenu.add(miQuit);
 	       TimerMessage TM=new TimerMessage();
 	       TM.start();

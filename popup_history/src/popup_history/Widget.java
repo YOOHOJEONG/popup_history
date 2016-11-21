@@ -19,9 +19,8 @@ public class Widget extends javax.swing.JDialog{
 	
     public Widget(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        Dimension frameSize = parent.getSize();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        parent.setLocation(screenSize.width-frameSize.width, 0);
+        setBounds(new Rectangle(screenSize.width-300, 0, 0, 0));
         initComponents();
     }
 
@@ -29,8 +28,6 @@ public class Widget extends javax.swing.JDialog{
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-    	
         home = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
         jLabe = new javax.swing.JLabel();
