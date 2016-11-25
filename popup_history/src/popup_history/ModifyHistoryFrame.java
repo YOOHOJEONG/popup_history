@@ -38,31 +38,20 @@ public class ModifyHistoryFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(77, 44, 286, 24);
+		textField.setBounds(62, 44, 286, 24);
 		textField.setColumns(10);
 		contentPane.add(textField);
 		
-		String arr[] = new String[101];
-		arr[0]="년도";
-		for(int i=1; i<101; i++)
-		{
-			arr[i] = String.valueOf(2023-i);
-		}		
-		JComboBox comboBox = new JComboBox(arr);
-		comboBox.setBounds(77, 10, 86, 24);
-		comboBox.setSelectedIndex(0);
-		contentPane.add(comboBox);
-		
-		String wal[]={"월", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+		String wal[]={"월", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
 		JComboBox comboBox_1 = new JComboBox(wal);
-		comboBox_1.setBounds(177, 10, 86, 24);
+		comboBox_1.setBounds(62, 10, 86, 24);
 		comboBox_1.setSelectedIndex(0);
 		contentPane.add(comboBox_1);
 		
-		String date[]={"일","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+		String date[]={"일","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
 				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 		JComboBox comboBox_2 = new JComboBox(date);
-		comboBox_2.setBounds(277, 10, 86, 24);
+		comboBox_2.setBounds(161, 10, 86, 24);
 		comboBox_2.setSelectedIndex(0);
 		contentPane.add(comboBox_2);
 		
@@ -73,46 +62,88 @@ public class ModifyHistoryFrame extends JFrame {
 		
 		
 		JScrollPane JSP= new JScrollPane();
-		JSP.setBounds(22, 114, 400, 81);
+		JSP.setBounds(22, 120, 400, 52);
 		contentPane.add(JSP);
 		
 		JList CmL = new JList();
-		JSP.setViewportView(CmL);
-		
+		CmL.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				try {
+						String str = (String)CmL.getSelectedValue();
+						StringTokenizer tokens = new StringTokenizer(str);
+						String date = tokens.nextToken("▶");//구분자
+						String title = tokens.nextToken("▶");
+						
+						ModifyQuery mq1 = new ModifyQuery();
+						Vector<String> field_title = mq1.modifyQuery("select title from history where date=? and title=?", date, title, null);
+						Vector<String> area_contents = mq1.modifyQuery("select contents from history where date=? and title=?", date, title, null);
+						String text1 = (String)field_title.get(0);
+						String text = (String)area_contents.get(0);      	       
 
-		JButton button = new JButton("확인");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		button.setBounds(370, 44, 62, 24);
-		button.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				flagAll=0;
-
-				String searchVal = textField.getText();
-	   			if("".equals(searchVal))
-	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
-	   			else{
-	   				//HomeSearch hs = new HomeSearch();
-	   				//hs.HomeSearch(searchVal, CmL);
-	   				try {
-						ModifyQuery mq = new ModifyQuery();
-					    Vector<String> date_title;
-						date_title = mq.modifyQuery("select date, title from history where title like ?", searchVal, null, null);
-						CmL.setListData(date_title);
+						textField_1.setText(text1);
+						textArea.setText(text);
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-	   			}
 			}
 		});
-		contentPane.add(button);
+		JSP.setViewportView(CmL);
+		
+
+		JButton button = new JButton("확인");
+  		button.setBounds(360, 43, 63, 24);
+ 		button.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mouseClicked(MouseEvent e) {
+ 				flagAll=0;
+ 
+ 				String searchVal = textField.getText();
+ 				if(((comboBox_1.getSelectedIndex()>0)&&(comboBox_2.getSelectedIndex()>0))
+ 						&&(!"".equals(searchVal))){
+ 					try{
+ 						ModifyQuery mq=new ModifyQuery();
+ 						Vector<String> date_title;
+ 						String month_date = "____-"+comboBox_1.getSelectedItem().toString()+"-"+comboBox_2.getSelectedItem().toString();
+ 						date_title=mq.modifyQuery("select date, title from history where title like ? and date like ? order by month(date), day(date)", searchVal, month_date,null );
+ 						CmL.setListData(date_title);
+ 					}catch(ParseException e1){
+ 						e1.printStackTrace();
+ 					}
+ 					
+ 				}
+ 				else if((comboBox_1.getSelectedIndex()>0)&&(comboBox_2.getSelectedIndex()>0)){
+ 					try {
+ 						ModifyQuery mq = new ModifyQuery();
+ 	 					Vector<String> date_title;
+ 						String month_date = "____-"+comboBox_1.getSelectedItem().toString()+"-"+comboBox_2.getSelectedItem().toString();
+						date_title=mq.modifyQuery("select date, title from history where date like ? order by month(date), day(date)", month_date, comboBox_1.getSelectedItem().toString(), comboBox_2.getSelectedItem().toString());
+	 					CmL.setListData(date_title);
+
+ 					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+ 				}
+ 				else if(!"".equals(searchVal)){
+ 					try {
+ 						ModifyQuery mq = new ModifyQuery();
+ 	 					Vector<String> date_title;
+						date_title = mq.modifyQuery("select date, title from history where title like ? order by month(date), day(date)", searchVal, null, null);
+	 					CmL.setListData(date_title);
+ 					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+ 				}
+ 				else
+ 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+ 			}
+ 		});
+ 		contentPane.add(button);
 		
 		JLabel label_1 = new JLabel("목록");
-		label_1.setBounds(12, 78, 53, 25);
+		label_1.setBounds(12, 85, 53, 25);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(label_1);
 		
@@ -131,51 +162,53 @@ public class ModifyHistoryFrame extends JFrame {
 		
 		
 		JButton button_1 = new JButton("수정");
-		
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				String searchVal = textField.getText();
-
-				if(CmL.getSelectedValue()==null){
-					if("".equals(searchVal))
-		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
-					else
-						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
-				}
-				else{
-					AdminSearch mm = new AdminSearch();
-					mm.modifyHistory(CmL, textField_1, textArea);
-					if(flagAll==1){
-						try {
-							textField.setText(null);
-							ModifyQuery mq = new ModifyQuery();
-						    Vector<String> date_title;
-							date_title = mq.modifyQuery("select date, title from history where title like ?", "", null, null);
-							CmL.setListData(date_title);
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-					else{
-						try {
-							ModifyQuery mq = new ModifyQuery();
-						    Vector<String> date_title;
-							date_title = mq.modifyQuery("select date, title from history where title like ?", searchVal, null, null);
-							CmL.setListData(date_title);
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				}
-					
-			}
-		});
-		button_1.setBounds(221, 294, 97, 23);
-		contentPane.add(button_1);
+ 		
+ 		button_1.addMouseListener(new MouseAdapter() {
+ 			@Override
+ 			public void mouseClicked(MouseEvent e) {
+ 				
+ 				String searchVal = textField.getText();
+ 
+ 				if(CmL.getSelectedValue()==null){
+ 					if("".equals(searchVal))
+ 		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+ 					else
+ 						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+ 				}
+ 				else{
+ 					AdminSearch mm = new AdminSearch();
+ 					mm.modifyHistory(CmL, textField_1, textArea);
+ 					if(flagAll==1){
+ 						try {
+ 							textField.setText(null);
+ 							textField_1.setText(null);
+ 							textArea.setText(null);
+ 							ModifyQuery mq = new ModifyQuery();
+ 						    Vector<String> date_title;
+ 							date_title = mq.modifyQuery("select date, title from history where title like ? order by month(date), day(date)", "", null, null);
+ 							CmL.setListData(date_title);
+ 						} catch (ParseException e1) {
+ 							// TODO Auto-generated catch block
+ 							e1.printStackTrace();
+ 						}
+ 					}
+ 					else{
+ 						try {
+ 							ModifyQuery mq = new ModifyQuery();
+ 						    Vector<String> date_title;
+ 							date_title = mq.modifyQuery("select date, title from history where title like ? order by month(date), day(date)", searchVal, null, null);
+ 							CmL.setListData(date_title);
+ 						} catch (ParseException e1) {
+ 							// TODO Auto-generated catch block
+ 							e1.printStackTrace();
+ 						}
+ 					}
+ 				}
+ 					
+ 			}
+ 		});
+ 		button_1.setBounds(221, 294, 97, 23);
+ 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("취소");
 		button_2.setBounds(330, 294, 97, 23);
@@ -198,11 +231,11 @@ public class ModifyHistoryFrame extends JFrame {
 		
 		
 		JLabel lblTitle = new JLabel("제목");
-		lblTitle.setBounds(36, 209, 57, 15);
+		lblTitle.setBounds(22, 209, 57, 15);
 		contentPane.add(lblTitle);
 		
 		JLabel lblContents = new JLabel("내용");
-		lblContents.setBounds(36, 243, 57, 15);
+		lblContents.setBounds(22, 244, 57, 15);
 		contentPane.add(lblContents);
 		
 		JButton btnAll = new JButton("all");
@@ -210,9 +243,11 @@ public class ModifyHistoryFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					textField.setText(null);
+					textField_1.setText(null);
+					textArea.setText(null);
 					ModifyQuery mq = new ModifyQuery();
 				    Vector<String> date_title;
-					date_title = mq.modifyQuery("select date, title from history where title like ?", "", null, null);
+					date_title = mq.modifyQuery("select date, title from history where title like ? order by month(date), day(date)", "", null, null);
 					CmL.setListData(date_title);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
@@ -221,7 +256,7 @@ public class ModifyHistoryFrame extends JFrame {
 				flagAll=1;
 			}
 		});
-		btnAll.setBounds(62, 78, 63, 24);
+		btnAll.setBounds(62, 85, 63, 24);
 		contentPane.add(btnAll);
 		
 		

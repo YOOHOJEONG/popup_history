@@ -53,7 +53,7 @@ public class deleteBookmarkFrame extends JFrame {
 		try {
 			ModifyQuery mq = new ModifyQuery();
 			Vector<String> date_title_bookmark;
-			date_title_bookmark = mq.modifyQuery("select date, title from bookmark", null, null, null);
+			date_title_bookmark = mq.modifyQuery("select date, title from bookmark order by month(date), day(date), title", null, null, null);
 		    FavL.setListData(date_title_bookmark);
 
 		} catch (ParseException e2) {

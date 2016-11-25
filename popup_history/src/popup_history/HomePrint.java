@@ -14,7 +14,7 @@ public class HomePrint {
 		try {
 			ModifyQuery mq = new ModifyQuery();
 			Vector<String> date_title;
-			date_title = mq.modifyQuery("select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)", null, null, null);
+			date_title = mq.modifyQuery("select date, title from history where month(date)=month(current_date) and day(date)=day(current_date) order by year(date)", null, null, null);
 		    list.setListData(date_title);
 
 		} catch (ParseException e) {
@@ -34,7 +34,7 @@ public class HomePrint {
 
 			ModifyQuery mq = new ModifyQuery();
 			Vector<String> contents;
-			contents = mq.modifyQuery("select contents from history where date=? and title=?",  date, title, null);
+			contents = mq.modifyQuery("select contents from history where date=? and title=?", date, title, null);
 
 			String text = (String)contents.get(0);      	       
 			textArea.setText(text);

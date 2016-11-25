@@ -6,10 +6,10 @@ public class Main {
 	   public static void main(String[] args) {
 		   
 		   Tray test= new Tray("∆Æ∑π¿Ã");
-		   Thread wP = new Thread(new widgetPlay());
+		   //Thread wP = new Thread(new widgetPlay());
 		   MainFrame frame = new MainFrame();
            frame.setVisible(true);
-           wP.start();
+           //wP.start();
 	   }
 }
 

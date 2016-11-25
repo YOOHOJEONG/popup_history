@@ -1,5 +1,5 @@
 package popup_history;
-//
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -37,7 +37,7 @@ class JDBC {
 	}
 }
 
-class ModifyQuery {
+class ModifyQuery{
 	Vector<String> modifyQuery(String queryStmt, String input_1, String input_2, String input_3/*insert 값, 검색한 값*/) throws ParseException {
 		JDBC jdbc = new JDBC();
 		Connection conn = null;
@@ -51,7 +51,7 @@ class ModifyQuery {
 			resultVal = new Vector<String>();
 			PreparedStatement query = conn.prepareStatement(queryStmt);
 			
-			if(queryStmt == "select date, title from history where month(date)=month(current_date) and day(date)=day(current_date)"){
+			if(queryStmt == "select date, title from history where month(date)=month(current_date) and day(date)=day(current_date) order by year(date)"){
 				rset = st.executeQuery(queryStmt);
 			
 				String date, title;
@@ -115,7 +115,7 @@ class ModifyQuery {
 				query.setString(2, input_2);
 				query.executeUpdate();
 			}
-			else if(queryStmt == "select date, title from bookmark"){
+			else if(queryStmt == "select date, title from bookmark order by month(date), day(date), title"){
 				rset = st.executeQuery(queryStmt);
 				
 				String date, title;
@@ -148,7 +148,7 @@ class ModifyQuery {
 				query.setString(2, input_2);
 				query.executeUpdate();
 			}
-			else if(queryStmt == "select date, plan from calender where plan like ?"){
+			else if(queryStmt == "select date, plan from calender where plan like ? order by date"){
 				query.setString(1, "%"+input_1+"%");
 				rset=query.executeQuery();
 
@@ -178,6 +178,119 @@ class ModifyQuery {
 					resultVal.add(plan);
 				}
 			}
+			else if(queryStmt == "select date, title from history where title like ? order by month(date), day(date)"){
+				query.setString(1, "%"+input_1+"%");
+				rset=query.executeQuery();
+				String date, title;
+				while(rset.next()){
+					date=rset.getString("date");
+					title = rset.getString("title");
+					resultVal.add(date+"▶"+title);
+				}
+			}
+			else if(queryStmt == "select title from history where date=? and title=?"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				rset=query.executeQuery();
+				
+				String title;
+				while(rset.next()){
+					title=rset.getString("title");
+					resultVal.add(title);			
+				}
+			}
+			else if(queryStmt == "select contents from history where date=? and title=?"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				rset=query.executeQuery();
+				
+				String contents;
+				while(rset.next()){
+					contents=rset.getString("contents");
+					resultVal.add(contents);
+				}
+			}
+			else if(queryStmt == "select plan from calender where date=? and plan=?"){
+				query.setString(1, input_1);
+				query.setString(2, input_2);
+				rset=query.executeQuery();
+				
+				String plan;
+				while(rset.next()){
+					plan=rset.getString("plan");
+					resultVal.add(plan);
+				}
+			}
+			
+			else if(queryStmt == "select date, title from history where title like ? and date like ? order by month(date), day(date)"){
+				query.setString(1, "%"+input_1+"%");
+				query.setString(2, input_2);
+				rset=query.executeQuery();
+				
+				String date, title;
+				while(rset.next()){
+					date=rset.getString("date");
+					title = rset.getString("title");
+					resultVal.add(date+"▶"+title);
+				}
+			}
+			else if(queryStmt == "select date, title from history where date like ? order by month(date), day(date)"){
+				query.setString(1, input_1);
+				rset=query.executeQuery();
+				
+				String date, title;
+				while(rset.next()){
+					date=rset.getString("date");
+					title = rset.getString("title");
+					resultVal.add(date+"▶"+title);
+				}
+			}
+			else if(queryStmt == "select date, title from history where title like ? order by month(date), day(date)"){
+				query.setString(1, "%"+input_1+"%");
+				rset=query.executeQuery();
+				
+				String date, title;
+				while(rset.next()){
+					date=rset.getString("date");
+					title = rset.getString("title");
+					resultVal.add(date+"▶"+title);
+				}
+			}
+			else if(queryStmt == "select date, plan from calender where plan like ? and date like ? order by date, plan"){
+				query.setString(1, "%"+input_1+"%");
+				query.setString(2, input_2);
+				rset=query.executeQuery();
+				
+				String date, plan;
+				while(rset.next()){
+					date = rset.getString("date"); 
+					plan = rset.getString("plan");
+					resultVal.add(date+"▶"+plan);
+				}
+			}
+			else if(queryStmt == "select date, plan from calender where date like ? order by date, plan"){
+				query.setString(1, input_1);
+				rset=query.executeQuery();
+				
+				String date, plan;
+				while(rset.next()){
+					date = rset.getString("date"); 
+					plan = rset.getString("plan");
+					resultVal.add(date+"▶"+plan);
+				}
+			}
+			else if(queryStmt == "select date, plan from calender where plan like ? order by date, plan"){
+				query.setString(1, "%"+input_1+"%");
+				rset=query.executeQuery();
+				
+				String date, plan;
+				while(rset.next()){
+					date = rset.getString("date"); 
+					plan = rset.getString("plan");
+					resultVal.add(date+"▶"+plan);
+				}
+			}
+			
 			return resultVal;
 			
 	      } catch (SQLException sqex) {
