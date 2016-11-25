@@ -31,7 +31,7 @@ public class Widget extends JFrame{
         home = new JLabel();
         exit = new JLabel();
         jLabe = new JLabel();
-        workName = new JLabel("오늘 할 일");
+        workName = new JLabel("today's plan");
         textArea = new JTextArea();
         textArea2 = new JTextArea();
         textArea3 = new JTextArea();
@@ -67,7 +67,7 @@ public class Widget extends JFrame{
         textArea2.setOpaque(true);
         textArea2.setPreferredSize(new Dimension(130, 30));
         textArea2.setEditable(false);
-        textArea2.append("  "+today.get(Calendar.YEAR)+"년 "+(today.get(Calendar.MONTH)+1)+"월");
+        textArea2.append("  "+(today.get(Calendar.MONTH)+1)+", "+today.get(Calendar.YEAR));
         textArea2.setFont(font1);
         getContentPane().add(textArea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
         
@@ -181,7 +181,7 @@ class Work{
       Vector<String> plan;
       try {
          plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
-           textArea.append( today.get(Calendar.YEAR)+"년"+(today.get(Calendar.MONTH)+1)+"월"+today.get(Calendar.DATE)+"일"+"입니다.\n");
+           textArea.append( "today is "+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+"/"+today.get(Calendar.YEAR)+"\n");
            for(i=0;i<plan.size();i++)
               textArea.append("· "+plan.elementAt(i)+"\n");
            
@@ -196,7 +196,7 @@ class Calender{
    String[] Cal = {"","","","","",""};
    Calendar today = Calendar.getInstance();
    void Calender(){
-      Cal[0]="일\t월\t화\t수\t목\t금\t토\n";
+      Cal[0]="sun\tmon\ttue\twed\tthu\tfri\tsat\n";
       today.set(Calendar.DATE, 1);
       Fweek=today.get(Calendar.DAY_OF_WEEK);
       for(i=1;i<Fweek;i++){
