@@ -62,7 +62,7 @@ public class ModifyHistoryFrame extends JFrame {
 		
 		
 		JScrollPane JSP= new JScrollPane();
-		JSP.setBounds(22, 120, 400, 52);
+		JSP.setBounds(22, 120, 400, 75);
 		contentPane.add(JSP);
 		
 		JList CmL = new JList();
