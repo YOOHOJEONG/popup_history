@@ -108,7 +108,7 @@ public class DeleteHistoryFrame extends JFrame {
 					}
  				}
  				else
- 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );       		
+ 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );       		
 			}
 		});
 		button.setBounds(370, 43, 62, 24);
@@ -128,9 +128,9 @@ public class DeleteHistoryFrame extends JFrame {
 
 				if(DmL.getSelectedValue()==null){
 					if("".equals(searchVal))
-		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 					else
-						JOptionPane.showMessageDialog(null, "삭제 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+						JOptionPane.showMessageDialog(null, "삭제 할 데이터를 선택하세요.","", JOptionPane.ERROR_MESSAGE );
 				}
 				else{
 				AdminSearch dm = new AdminSearch();

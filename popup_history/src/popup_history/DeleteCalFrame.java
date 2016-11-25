@@ -119,7 +119,7 @@ public class DeleteCalFrame extends JFrame {
 					}
  				}
  				else
- 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+ 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
@@ -142,9 +142,9 @@ public class DeleteCalFrame extends JFrame {
 				String searchVal = textField.getText();
 				if(DuL.getSelectedValue()==null){
 					if("".equals(searchVal))
-		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 					else
-						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.ERROR_MESSAGE );
 				}
 				else{
 					DeleteCal dc  = new DeleteCal();

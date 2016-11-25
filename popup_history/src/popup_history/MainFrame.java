@@ -92,7 +92,7 @@ import java.awt.Toolkit;
         	public void actionPerformed(ActionEvent e) {
     			String searchVal = textField.getText();
     			if("".equals(searchVal))
-    				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+    				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
     			else{
     				HomeSearch hs = new HomeSearch();
     				hs.HomeSearch(searchVal, list, textArea);	
@@ -120,12 +120,12 @@ import java.awt.Toolkit;
         	@Override
         	public void mouseClicked(MouseEvent arg0) {
         		if(list.getSelectedValue()==null){
-    				JOptionPane.showMessageDialog(null, "즐겨찾기 할 목록을 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+    				JOptionPane.showMessageDialog(null, "즐겨찾기 할 목록을 선택하세요.","", JOptionPane.ERROR_MESSAGE );
         		}
         		else{
      		InsertBookmark_btn ibn = new InsertBookmark_btn();
      		ibn.InsertBookmark_btn(list);
- 			JOptionPane.showMessageDialog(null, "즐겨찾기 등록 완료","", JOptionPane.PLAIN_MESSAGE);
+ 			JOptionPane.showMessageDialog(null, "즐겨찾기 등록 완료","", JOptionPane.INFORMATION_MESSAGE);
         		}
         	}
         });

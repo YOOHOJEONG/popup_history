@@ -116,7 +116,7 @@ public class deleteBookmarkFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String str = (String)FavL.getSelectedValue();
 				if(str==null){
-	   				JOptionPane.showMessageDialog(null, "삭제 할 목록을 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+	   				JOptionPane.showMessageDialog(null, "삭제 할 목록을 선택하세요.","", JOptionPane.ERROR_MESSAGE );
 				}
 				else{
 					StringTokenizer tokens = new StringTokenizer(str);
@@ -128,13 +128,13 @@ public class deleteBookmarkFrame extends JFrame {
 						ModifyQuery mq = new ModifyQuery();
 						Vector<String> deleteRec;
 						deleteRec = mq.modifyQuery("delete from bookmark where date=? and title=?;",  date, title, null);
-						JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.INFORMATION_MESSAGE);
 						
 					    textArea.setText(null);	
 
 						ModifyQuery mq1 = new ModifyQuery();
 						Vector<String> date_title_bookmark;
-						date_title_bookmark = mq1.modifyQuery("select date, title from bookmark", null, null, null);
+						date_title_bookmark = mq1.modifyQuery("select date, title from bookmark order by month(date), day(date), title", null, null, null);
 					    FavL.setListData(date_title_bookmark);
 					} catch (ParseException e1) {
 						// TODO Auto-generated catch block

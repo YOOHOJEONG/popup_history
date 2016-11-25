@@ -149,7 +149,7 @@ public class modifyCalFrame extends JFrame {
 					}
  				}
  				else
- 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+ 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 			}
 		});
 		button.setBounds(370, 37, 62, 24);
@@ -173,9 +173,9 @@ public class modifyCalFrame extends JFrame {
 				
 				if(CuL.getSelectedValue()==null){
 					if("".equals(searchVal))
-		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 					else
-						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.ERROR_MESSAGE );
 				}
 				else{
 					ModifyCal dc = new ModifyCal();

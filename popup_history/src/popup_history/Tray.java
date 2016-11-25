@@ -54,15 +54,14 @@ class Trayicon implements ActionListener {
       class TimerMessage extends Thread{
          public void run(){
             Message Hm=new Message();
-            message=Hm.Message(message);
             Calendar today = Calendar.getInstance();
-            
-            ShowMessageListener SML = new ShowMessageListener(m_ti,today.get(Calendar.YEAR)+"/"+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+".",
-                  message,TrayIcon.MessageType.NONE);
-            
+           
             while(true){
                today=Calendar.getInstance();
-               if(today.get(Calendar.MINUTE)==00){
+               message=Hm.Message(message);
+               ShowMessageListener SML = new ShowMessageListener(m_ti,today.get(Calendar.YEAR)+"/"+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+".",
+                       message,TrayIcon.MessageType.NONE);   //지속적으로 내용을 받음
+               if(today.get(Calendar.MINUTE)==00){   //분 단위
                   SML.playMessage();
                   try{
                       Thread.sleep(10000);//10초에 한번씩 1분 뜸
@@ -134,7 +133,7 @@ class Trayicon implements ActionListener {
        {
            java.awt.EventQueue.invokeLater(new Runnable() {
                public void run() {
-                   Widget dialog = new Widget(new javax.swing.JFrame(), true);
+                   Widget dialog = new Widget();//new JFrame(), true);
                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                        @Override
                        public void windowClosing(java.awt.event.WindowEvent e) {

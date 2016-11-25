@@ -94,11 +94,11 @@ public class InsertHistoryFrame extends JFrame {
    			String title = ImT_1.getText();
    			String contents = ImT_2.getText();
    			if(comboBox.getSelectedIndex()==0||comboBox_1.getSelectedIndex()==0||comboBox_2.getSelectedIndex()==0)
-   				JOptionPane.showMessageDialog(null, "날짜를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+   				JOptionPane.showMessageDialog(null, "날짜를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
    			else if("".equals(title))
-   				JOptionPane.showMessageDialog(null, "제목을 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+   				JOptionPane.showMessageDialog(null, "제목을 입력하세요.","", JOptionPane.ERROR_MESSAGE );
    			else if("".equals(contents))
-   				JOptionPane.showMessageDialog(null, "내용을 입력하세요.","", JOptionPane.WARNING_MESSAGE );   					
+   				JOptionPane.showMessageDialog(null, "내용을 입력하세요.","", JOptionPane.ERROR_MESSAGE );   					
    			else{
    				String date = comboBox.getSelectedItem().toString()+"-"+comboBox_1.getSelectedItem().toString()+"-"+comboBox_2.getSelectedItem().toString();
 
@@ -108,7 +108,7 @@ public class InsertHistoryFrame extends JFrame {
 				} catch (ParseException e1) {
 					e1.printStackTrace();
 				}
-   				JOptionPane.showMessageDialog(null, "입력 완료","", JOptionPane.PLAIN_MESSAGE);   					
+   				JOptionPane.showMessageDialog(null, "입력 완료","", JOptionPane.INFORMATION_MESSAGE);   					
    			}
    				
       	}

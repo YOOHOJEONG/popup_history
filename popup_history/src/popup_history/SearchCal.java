@@ -13,7 +13,7 @@ public class SearchCal {
 	public void deleteCal(JList DuL){
 		String str = (String)DuL.getSelectedValue();
 		if(str==null){
-				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 		}
 		else{
 			StringTokenizer tokens = new StringTokenizer(str);
@@ -24,7 +24,7 @@ public class SearchCal {
 				ModifyQuery mq = new ModifyQuery();
 				Vector<String> deleteRec;
 				deleteRec = mq.modifyQuery("delete from calender where date=? and plan=?;", date, plan, null);
-				JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.PLAIN_MESSAGE);   					
+				JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.INFORMATION_MESSAGE);   					
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -40,12 +40,12 @@ public class SearchCal {
 		String update_plan = CuT.getText();
 
 		if("".equals(update_plan))
-				JOptionPane.showMessageDialog(null, "내용을 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+				JOptionPane.showMessageDialog(null, "내용을 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 		else{
 			ModifyQuery mq = new ModifyQuery();
 			try {
 				mq.modifyQuery("update calender set plan = ? where plan = ?;", update_plan, plan, null);
-				JOptionPane.showMessageDialog(null, "수정 완료","", JOptionPane.PLAIN_MESSAGE);   					
+				JOptionPane.showMessageDialog(null, "수정 완료","", JOptionPane.INFORMATION_MESSAGE);   					
 
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block

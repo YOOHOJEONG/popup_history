@@ -137,7 +137,7 @@ public class ModifyHistoryFrame extends JFrame {
 					}
  				}
  				else
- 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+ 	   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
  			}
  		});
  		contentPane.add(button);
@@ -171,9 +171,9 @@ public class ModifyHistoryFrame extends JFrame {
  
  				if(CmL.getSelectedValue()==null){
  					if("".equals(searchVal))
- 		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.WARNING_MESSAGE );
+ 		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
  					else
- 						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.WARNING_MESSAGE );
+ 						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.ERROR_MESSAGE );
  				}
  				else{
  					AdminSearch mm = new AdminSearch();

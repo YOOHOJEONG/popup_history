@@ -20,7 +20,7 @@ public class AdminSearch {
 			try {
 				ModifyQuery mq = new ModifyQuery();
 				mq.modifyQuery("delete from history where date=? and title=?;", date, title, null);
-				JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.PLAIN_MESSAGE);   					
+				JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.INFORMATION_MESSAGE);   					
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -44,7 +44,7 @@ public class AdminSearch {
 			try {
 				ModifyQuery mq = new ModifyQuery();
 				mq.modifyQuery("update history set title=?, contents=? where title = ?;", update_title, update_contents, title);	   			
-				JOptionPane.showMessageDialog(null, "수정 완료","", JOptionPane.PLAIN_MESSAGE);   					
+				JOptionPane.showMessageDialog(null, "수정 완료","", JOptionPane.INFORMATION_MESSAGE);   					
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
