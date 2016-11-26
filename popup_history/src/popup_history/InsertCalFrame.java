@@ -10,6 +10,7 @@ public class InsertCalFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextArea IuT;
+	static int set=0;
 
 	public InsertCalFrame() {
 		setTitle("일정 추가");
@@ -84,8 +85,14 @@ public class InsertCalFrame extends JFrame {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				set=1;
 	   			InsertCal ic = new InsertCal();
 	   			ic.Insertcal(IuT, comboBox, comboBox_1, comboBox_2);
+	   			IuT.setText("");
+	   			comboBox.setSelectedIndex(0);
+	   			comboBox_1.setSelectedIndex(0);
+	   			comboBox_2.setSelectedIndex(0);
+	   			set=0;
 			}
 		});
 		btnNewButton_1.setBounds(153, 209, 97, 23);

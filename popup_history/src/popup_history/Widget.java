@@ -9,13 +9,13 @@ import javax.swing.*;
 import java.util.*;
 
 public class Widget extends JFrame{
-    
 
    int x,y,xEkran,yEkran,a;
+   static int reset=0;
    Font font1 = new Font("Serif", Font.PLAIN, 20);
    Calendar today = Calendar.getInstance();
    MainFrame m_frame = new MainFrame();
-   Calender Cal=new Calender();
+   CalendarShow Cal=new CalendarShow();
    
     public Widget(){//Frame parent, boolean modal) {
         //super(parent, modal);
@@ -24,10 +24,8 @@ public class Widget extends JFrame{
         initComponents();
     }
 
-  
-
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    void initComponents() {
         home = new JLabel();
         exit = new JLabel();
         jLabe = new JLabel();
@@ -35,7 +33,10 @@ public class Widget extends JFrame{
         textArea = new JTextArea();
         textArea2 = new JTextArea();
         textArea3 = new JTextArea();
-        Cal.Calender();
+        InsertCalFrame icf = new InsertCalFrame();
+        DeleteCalFrame dcf = new DeleteCalFrame();
+        modifyCalFrame mcf = new modifyCalFrame();
+        Work work = new Work();
         
         ImageIcon HomeIcon1 = new ImageIcon("src/images/home.jpg");
         ImageIcon ExitIcon1 = new ImageIcon("src/images/exit.jpg");
@@ -51,16 +52,14 @@ public class Widget extends JFrame{
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         
         //할일
+        JScrollPane JSP= new JScrollPane();
         textArea.setBackground(new Color(255, 255, 255));
         textArea.setOpaque(true);
-        textArea.setPreferredSize(new Dimension(280, 60));
+        JSP.setPreferredSize(new Dimension(280, 60));
         textArea.setEditable(false);
         textArea.setLineWrap(true);
-        getContentPane().add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
-        Work work = new Work();
-        work.Work(textArea);
-        
-
+        JSP.setViewportView(textArea);
+        getContentPane().add(JSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 200, -1, -1));
         
         //맨위 이번달
         textArea2.setBackground(new Color(255, 255, 255));
@@ -77,9 +76,7 @@ public class Widget extends JFrame{
         textArea3.setPreferredSize(new Dimension(280, 130));
         textArea3.setEditable(false);
         textArea3.setTabSize(4);
-        textArea3.getTabSize();        
-        for(a=0;a<6;a++){
-           textArea3.append(Cal.Cal[a]);}
+        textArea3.getTabSize();
         getContentPane().add(textArea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 45, -1, -1));
           
 
@@ -127,6 +124,51 @@ public class Widget extends JFrame{
         getContentPane().add(jLabe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 270));
 
         pack();
+		
+        class ShowText extends Thread{
+        	public void run(){
+        		while(true){
+                	Cal.CalendarShow();
+                	for(a=0;a<6;a++)
+                		textArea3.append(Cal.Cal[a]);
+                	work.Work(textArea);
+                	System.out.println("\t"+reset);
+                	try {
+                        Thread.sleep(3600000);	//한시간 단위로 텍스트에리어 변환
+                        } catch (Exception e) {} 
+                	textArea.setText("");
+                	textArea3.setText("");
+                }
+        	}
+        }
+        class ResetWork extends Thread{
+        	public void run(){
+        		while(true){
+        			if(icf.set==1)
+        				reset=icf.set;
+        			else if(dcf.set==1)
+        				reset=dcf.set;
+        			else if(mcf.set==1)
+        				reset=mcf.set;
+        			else
+        				reset=0;
+        			System.out.println(reset);
+        			if(reset==1){
+        				textArea.setText("");
+        				work.Work(textArea);
+        			}
+        			try{
+        				Thread.sleep(1000);	//한시간 단위로 텍스트에리어 변환
+                    } catch (Exception e) {} 
+        		}
+        	}
+        }
+
+        Thread st = new Thread(new ShowText());
+        Thread rw = new Thread(new ResetWork());
+        st.start();
+        rw.start();   
+        
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabeMousePressed(MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
@@ -168,7 +210,7 @@ public class Widget extends JFrame{
     private JLabel jLabe;
     private JLabel workName;
     // End of variables declaration//GEN-END:variables
-    private JTextArea textArea;
+    JTextArea textArea;
     private JTextArea textArea2;
     private JTextArea textArea3;
 }
@@ -191,11 +233,14 @@ class Work{
    }
 }
 
-class Calender{
+class CalendarShow{
    int Fweek,a,i,day=1;
    String[] Cal = {"","","","","",""};
    Calendar today = Calendar.getInstance();
-   void Calender(){
+   void CalendarShow(){
+	   day=1;
+	   for(i=1;i<6;i++)
+		   Cal[i]="";
       Cal[0]="sun\tmon\ttue\twed\tthu\tfri\tsat\n";
       today.set(Calendar.DATE, 1);
       Fweek=today.get(Calendar.DAY_OF_WEEK);
@@ -211,14 +256,11 @@ class Calender{
          for(i=1;i<8;i++){
             Cal[a]=Cal[a]+day+"\t";
             day++;
-            if(day==today.getActualMaximum(Calendar.DATE))break;
+            if(day==(today.getActualMaximum(Calendar.DATE)+1))break;
       }
       Cal[a]=Cal[a]+"\n";
       }
       
-      /*for(a=0;a<6;a++){
-         System.out.print(Cal[a]);
-      }*/
    }
     
 }

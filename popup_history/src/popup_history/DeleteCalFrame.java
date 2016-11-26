@@ -21,6 +21,7 @@ public class DeleteCalFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
+	static int set=0;
 	
 	public DeleteCalFrame() {
 		setTitle("일정 삭제");
@@ -148,7 +149,9 @@ public class DeleteCalFrame extends JFrame {
 				}
 				else{
 					DeleteCal dc  = new DeleteCal();
+					set=1;
 					dc.DeleteCal(DuL);
+					
 					if(flagAll==1){
 						try {
 	   						ModifyQuery mq = new ModifyQuery();
@@ -171,6 +174,7 @@ public class DeleteCalFrame extends JFrame {
 							e1.printStackTrace();
 						}
 					}
+					set=0;
 				}
 			}
 		});

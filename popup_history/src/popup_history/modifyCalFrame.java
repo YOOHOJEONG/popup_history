@@ -21,6 +21,7 @@ public class modifyCalFrame extends JFrame {
 	int flagAll=0;
 	private JPanel contentPane;
 	private JTextField textField;
+	static int set=0;
 
 
 	public modifyCalFrame() {
@@ -179,32 +180,44 @@ public class modifyCalFrame extends JFrame {
 				}
 				else{
 					ModifyCal dc = new ModifyCal();
+					set=1;
 					dc.modifyCal(CuL, CuT);
+					
 					if(flagAll==1){
+						
 						try {
 							textField.setText(null);
  							CuT.setText(null);
 							ModifyQuery mq = new ModifyQuery();
 							Vector<String> date_plan;
 							date_plan = mq.modifyQuery("select date, plan from calender where plan like ? order by date", "", null, null);
+							set=0;
 							CuL.setListData(date_plan);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
+							set=0;
 						}
+						
 					}
 					else{
+						
 						try {
 							ModifyQuery mq = new ModifyQuery();
 							Vector<String> date_plan;
 							date_plan = mq.modifyQuery("select date, plan from calender where plan like ? order by date", searchVal, null, null);
+							set=0;
 							CuL.setListData(date_plan);
 						} catch (ParseException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
+							set=0;
 						}
+						
 					}
+					
 				}
+				set=0;
 			}
 		});
 		button_1.setBounds(226, 268, 97, 23);
