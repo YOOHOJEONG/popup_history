@@ -169,7 +169,7 @@ import java.awt.Toolkit;
             	 EventQueue.invokeLater(new Runnable() {
            	         public void run() {
            	            try {
-           	            	System.exit(0);
+           	            	dispose();
            	            } catch (Exception e) {
            	               e.printStackTrace();
            	            }
