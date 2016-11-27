@@ -222,9 +222,10 @@ class Work{
       ModifyQuery mq = new ModifyQuery();
       Vector<String> plan;
       try {
-         plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
-           textArea.append( "today is "+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+"/"+today.get(Calendar.YEAR)+"\n");
-           for(i=0;i<plan.size();i++)
+    	  plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
+    	  textArea.append( "today is "+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+"/"+today.get(Calendar.YEAR)+"\n");
+           
+    	  for(i=0;i<plan.size();i++)
               textArea.append("¡¤ "+plan.elementAt(i)+"\n");
            
       } catch (ParseException e) {
