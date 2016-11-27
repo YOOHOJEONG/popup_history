@@ -17,7 +17,7 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-
+//역사 수정의 UI 및 기능
 public class ModifyHistoryFrame extends JFrame {
 	int flagAll=0;
 	private JPanel contentPane;
@@ -66,6 +66,7 @@ public class ModifyHistoryFrame extends JFrame {
 		contentPane.add(JSP);
 		
 		JList CmL = new JList();
+		//검색한 목록을 리스트에 출력
 		CmL.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				try {
@@ -90,7 +91,7 @@ public class ModifyHistoryFrame extends JFrame {
 		});
 		JSP.setViewportView(CmL);
 		
-
+		//날짜 또는 텍스트로 검색함
 		JButton button = new JButton("확인");
   		button.setBounds(360, 43, 63, 24);
  		button.addMouseListener(new MouseAdapter() {
@@ -99,6 +100,7 @@ public class ModifyHistoryFrame extends JFrame {
  				flagAll=0;
  
  				String searchVal = textField.getText();
+ 				//날짜로 검색
  				if(((comboBox_1.getSelectedIndex()>0)&&(comboBox_2.getSelectedIndex()>0))
  						&&(!"".equals(searchVal))){
  					try{
@@ -121,10 +123,10 @@ public class ModifyHistoryFrame extends JFrame {
 	 					CmL.setListData(date_title);
 
  					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
  				}
+ 				//text로 검색
  				else if(!"".equals(searchVal)){
  					try {
  						ModifyQuery mq = new ModifyQuery();
@@ -160,9 +162,8 @@ public class ModifyHistoryFrame extends JFrame {
 		JSP2.setViewportView(textArea);
 		contentPane.add(JSP2);
 		
-		
+		//수정된 text로 테이블의 정보를 수정
 		JButton button_1 = new JButton("수정");
- 		
  		button_1.addMouseListener(new MouseAdapter() {
  			@Override
  			public void mouseClicked(MouseEvent e) {
@@ -178,6 +179,7 @@ public class ModifyHistoryFrame extends JFrame {
  				else{
  					AdminSearch mm = new AdminSearch();
  					mm.modifyHistory(CmL, textField_1, textArea);
+ 					//목록 새로고침
  					if(flagAll==1){
  						try {
  							textField.setText(null);
@@ -238,6 +240,7 @@ public class ModifyHistoryFrame extends JFrame {
 		lblContents.setBounds(22, 244, 57, 15);
 		contentPane.add(lblContents);
 		
+		//테이블에 있는 모든 역사를 불러오는 버튼
 		JButton btnAll = new JButton("all");
 		btnAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -250,7 +253,6 @@ public class ModifyHistoryFrame extends JFrame {
 					date_title = mq.modifyQuery("select date, title from history where title like ? order by month(date), day(date)", "", null, null);
 					CmL.setListData(date_title);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				flagAll=1;

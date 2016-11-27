@@ -63,6 +63,7 @@ public class DeleteHistoryFrame extends JFrame {
 		JList DmL = new JList();
 		JSP.setViewportView(DmL);
 		
+		//입력된 날짜나 text로 검색
 		JButton button = new JButton("확인");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
@@ -70,6 +71,7 @@ public class DeleteHistoryFrame extends JFrame {
 				flagAll=0;
 
 				String searchVal = textField.getText();
+				//날짜로 검색
  				if(((comboBox_1.getSelectedIndex()>0)&&(comboBox_2.getSelectedIndex()>0))
  						&&(!"".equals(searchVal))){
  					try{
@@ -92,10 +94,10 @@ public class DeleteHistoryFrame extends JFrame {
 	 					DmL.setListData(date_title);
 
  					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
  				}
+ 				//text로 검색
  				else if(!"".equals(searchVal)){
  					try {
  						ModifyQuery mq = new ModifyQuery();
@@ -134,8 +136,8 @@ public class DeleteHistoryFrame extends JFrame {
 				}
 				else{
 				AdminSearch dm = new AdminSearch();
-				dm.deleteHistory(DmL);
-				
+				dm.deleteHistory(DmL);  //선택된 역사를 역사 테이블에서 삭제
+				//리스트 새로고침
 				if(flagAll==1){
 					try {
 						textField.setText(null);
@@ -155,7 +157,6 @@ public class DeleteHistoryFrame extends JFrame {
 						date_title = mq.modifyQuery("select date, title from history where title like ? order by month(date), day(date)", searchVal, null, null);
 						DmL.setListData(date_title);
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -169,6 +170,7 @@ public class DeleteHistoryFrame extends JFrame {
 		button_2.setBounds(325, 260, 97, 23);
 		contentPane.add(button_2);
 		
+		//역사 테이블에 있는 모든 정보를 불러와서 출력
 		JButton btnNewButton = new JButton("all");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -179,7 +181,6 @@ public class DeleteHistoryFrame extends JFrame {
 					date_title = mq.modifyQuery("select date, title from history where title like ? order by month(date), day(date)", "", null, null);
 					DmL.setListData(date_title);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
    				flagAll=1;

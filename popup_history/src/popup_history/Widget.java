@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.text.ParseException;
-
 import javax.swing.*;
 import java.util.*;
 
@@ -17,14 +16,14 @@ public class Widget extends JFrame{
    MainFrame m_frame = new MainFrame();
    CalendarShow Cal=new CalendarShow();
    
-    public Widget(){//Frame parent, boolean modal) {
-        //super(parent, modal);
+    public Widget(){
+        //위젯의 처음 위치를 스크린의 크기를 받아와서 오른쪽 맨 위에 위치시킴
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(new Rectangle(screenSize.width-300, 0, 0, 0));
         initComponents();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    //위젯의 UI및 기능 셋팅
     void initComponents() {
         home = new JLabel();
         exit = new JLabel();
@@ -38,6 +37,7 @@ public class Widget extends JFrame{
         modifyCalFrame mcf = new modifyCalFrame();
         Work work = new Work();
         
+        //아이콘 모양 세팅
         ImageIcon HomeIcon1 = new ImageIcon("src/images/home.jpg");
         ImageIcon ExitIcon1 = new ImageIcon("src/images/exit.jpg");
         Image HomeIcon2 = HomeIcon1.getImage();
@@ -45,7 +45,7 @@ public class Widget extends JFrame{
         Image HomeIcon3 = HomeIcon2.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);
         Image ExitIcon3 = ExitIcon2.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);
         ImageIcon HomeIcon = new ImageIcon(HomeIcon3);
-        ImageIcon ExitIcon = new ImageIcon(ExitIcon3);         //아이콘 모양 세팅
+        ImageIcon ExitIcon = new ImageIcon(ExitIcon3);         
         
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -128,11 +128,11 @@ public class Widget extends JFrame{
         class ShowText extends Thread{
         	public void run(){
         		while(true){
+        			//매일 1시간 단위로 달력과 일정 출력을 새로고침 시간은 재조정 가능
                 	Cal.CalendarShow();
                 	for(a=0;a<6;a++)
                 		textArea3.append(Cal.Cal[a]);
                 	work.Work(textArea);
-                	System.out.println("\t"+reset);
                 	try {
                         Thread.sleep(3600000);	//한시간 단위로 텍스트에리어 변환
                         } catch (Exception e) {} 
@@ -144,6 +144,7 @@ public class Widget extends JFrame{
         class ResetWork extends Thread{
         	public void run(){
         		while(true){
+        			//버튼 클릭 여부를 받아와서 일정 출력을 새로고침 한 번의 새로고침 후 다시 대기
         			if(icf.set==1)
         				reset=icf.set;
         			else if(dcf.set==1)
@@ -152,38 +153,38 @@ public class Widget extends JFrame{
         				reset=mcf.set;
         			else
         				reset=0;
-        			System.out.println(reset);
         			if(reset==1){
         				textArea.setText("");
         				work.Work(textArea);
         			}
         			try{
-        				Thread.sleep(1000);	//한시간 단위로 텍스트에리어 변환
+        				Thread.sleep(1000);	//1초 단위로 텍스트에리어 변환
                     } catch (Exception e) {} 
         		}
         	}
         }
 
+        //멀티 스레드로 실행(rw가 우선순위가 더 높음)
         Thread st = new Thread(new ShowText());
         Thread rw = new Thread(new ResetWork());
         st.start();
         rw.start();   
         
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void jLabeMousePressed(MouseEvent evt) {//GEN-FIRST:event_jLabel5MousePressed
+    private void jLabeMousePressed(MouseEvent evt) {//처음 마우스 클릭 위치를 받아옴
           x=evt.getX();
           y=evt.getY();
           
-       }//GEN-LAST:event_jLabel5MousePressed
+       }
 
-   private void jLabeMouseDragged(MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseDragged
+   private void jLabeMouseDragged(MouseEvent evt) {//위젯의 위치를 마우스 따라가도록
       xEkran=evt.getXOnScreen();
       yEkran=evt.getYOnScreen();
       this.setLocation(xEkran-x,yEkran-y);
-      }//GEN-LAST:event_jLabel5MouseDragged
+      }
 
-   private void homeMousePressed(MouseEvent evt) {//GEN-FIRST:event_faceMousePressed
+   private void homeMousePressed(MouseEvent evt) {//홈 버튼 마우스 클릭시 홈 프레임 출력
       try
       {
          m_frame.setVisible(!m_frame.isVisible());
@@ -191,12 +192,11 @@ public class Widget extends JFrame{
       {
          JOptionPane.showMessageDialog(null,ex.getMessage());
       }
-   }//GEN-LAST:event_faceMousePressed
+   }
    
-   private void exitMousePressed(MouseEvent evt) {//GEN-FIRST:event_youtubeMousePressed
+   private void exitMousePressed(MouseEvent evt) {//종료 버튼 마우스 클릭시 위젯 창만 종료
       try{
          dispose();
-         //System.exit(0);
       }catch(Exception ex)
       {
          JOptionPane.showMessageDialog(null,ex.getMessage());
@@ -204,7 +204,6 @@ public class Widget extends JFrame{
    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private JLabel home;
     private JLabel exit;
     private JLabel jLabe;
@@ -214,6 +213,8 @@ public class Widget extends JFrame{
     private JTextArea textArea2;
     private JTextArea textArea3;
 }
+
+//오늘의 할일을 textArea에 출력
 class Work{
    int i;
    Calendar today = Calendar.getInstance();
@@ -223,6 +224,7 @@ class Work{
       Vector<String> plan;
       try {
     	  plan = mq.modifyQuery("select plan from calender where date=current_date", null, null, null);
+    	  //오늘 할 일을 벡터변수인 plan에 받아옴
     	  textArea.append( "today is "+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+"/"+today.get(Calendar.YEAR)+"\n");
            
     	  for(i=0;i<plan.size();i++)
@@ -234,6 +236,7 @@ class Work{
    }
 }
 
+//Cal 변수에 출력용 달력을 입력
 class CalendarShow{
    int Fweek,a,i,day=1;
    String[] Cal = {"","","","","",""};

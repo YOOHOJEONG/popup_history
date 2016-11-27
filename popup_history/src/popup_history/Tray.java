@@ -33,7 +33,7 @@ class Trayicon implements ActionListener {
       
       
       //트레이 메시지 출력
-      class ShowMessageListener implements ActionListener{
+      class ShowMessageListener {
          String title;
          String message;
          TrayIcon.MessageType messageType;
@@ -43,13 +43,11 @@ class Trayicon implements ActionListener {
             this.message = message;
             this.messageType = messageType;
          }
-         public void actionPerformed(ActionEvent e){
-            m_ti.displayMessage(title, message, messageType);
-         }
          public void playMessage(){
             m_ti.displayMessage(title, message, messageType);
          }
       }
+      
       //시간에 마춰서 트레이 메시지 출력
       class TimerMessage extends Thread{
          public void run(){
@@ -67,8 +65,7 @@ class Trayicon implements ActionListener {
                       Thread.sleep(10000);//10초에 한번씩 1분 뜸
                    }catch(Exception e){
                       System.out.println("Message down");
-                   }
-                  //System.out.println("한 사이클 끝"); 
+                   } 
                }
                try {
                Thread.sleep(5000);
@@ -77,7 +74,7 @@ class Trayicon implements ActionListener {
          }   
       }
       
-      //트레이 아이콘 ui
+      //트레이 아이콘 UI
       void initTray(String m_strTrayTitle)
       {
        // 트레이 아이콘의 아이콘 역할을 할 이미지 입니다. 
@@ -105,7 +102,7 @@ class Trayicon implements ActionListener {
           }
        }
       
-      // 트레이 아이콘에서 사용할 팝업 매뉴를 만듭니다.
+      // 트레이 아이콘에서 사용할 오른쪽 마우스 클릭 팝업 메뉴를 만듭니다.
       private PopupMenu createPopupMenu()
       {
           PopupMenu popupMenu = new PopupMenu();
@@ -127,6 +124,7 @@ class Trayicon implements ActionListener {
           return popupMenu;
       }
       
+      //오른쪽 마우스 입력시 뜨는 팝업 메뉴의 각 기능
       public void actionPerformed(ActionEvent e)
       {
        if(e.getActionCommand() == "위젯")
@@ -153,6 +151,7 @@ class Trayicon implements ActionListener {
       }        
 }
 
+//오늘의 역사를 출력양식에 마추어서 스트링으로 리턴
 class Message{
    public String Message(String message){
       ModifyQuery mq = new ModifyQuery();
@@ -169,6 +168,7 @@ class Message{
    }
 }
 
+//종료시 받아온 타이틀과 메시지 출력을 메시지 판으로 생성
 class ExitMessage{
    void showMessage(String title,String message){
          JOptionPane.showMessageDialog(null,message,title,JOptionPane.INFORMATION_MESSAGE);
