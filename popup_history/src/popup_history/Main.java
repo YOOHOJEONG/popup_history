@@ -4,8 +4,8 @@ import java.awt.EventQueue;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Main {
-      public static void main(String[] args) {
+public class Main {//프로그램 실행을 위한 클래스
+      public static void main(String[] args) {//프로그램 실행
          
          Tray test= new Tray("Popup History");
          Thread wP = new Thread(new widgetPlay());
@@ -15,7 +15,7 @@ public class Main {
       }
 }
 
-class widgetPlay extends Thread{
+class widgetPlay extends Thread{//위젯을 실행시켜주는 클래스
    public void run(){
       java.awt.EventQueue.invokeLater(new Runnable() {
            public void run() {

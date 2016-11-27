@@ -7,8 +7,8 @@ import java.util.Vector;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 
-public class HomePrint {
-	public void HomePrintIndex(JList list){
+public class HomePrint {//메인 프레임에서 역사를 출력해주는 기능의 클래스
+	public void HomePrintIndex(JList list){//MainFrame에 오늘 날짜와 관련 된 역사 인덱스 출력
 		// TODO Auto-generated method stub
 	   
 		try {
@@ -23,7 +23,7 @@ public class HomePrint {
 		}
 	}
 	
-	public void HomePrintContents(JList list, JTextArea textArea){
+	public void HomePrintContents(JList list, JTextArea textArea){//MainFrame에서 선택한 인덱스의 상세 내용 출력
 		// TODO Auto-generated method stub
 		
 		try {

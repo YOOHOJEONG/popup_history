@@ -11,8 +11,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
 
-class JDBC {
-	Connection jdbc(){
+class JDBC {//DB에 접속을 위한 기능 클래스
+	Connection jdbc(){//DB에 접속을 위한 기능
         Connection conn = null;
 
 		try {
@@ -37,7 +37,7 @@ class JDBC {
 	}
 }
 
-class ModifyQuery{
+class ModifyQuery{//필요한 기능에 따라 쿼리문 명령 후 결과 반환해주는 기능 클래스
 	Vector<String> modifyQuery(String queryStmt, String input_1, String input_2, String input_3/*insert 값, 검색한 값*/) throws ParseException {
 		JDBC jdbc = new JDBC();
 		Connection conn = null;

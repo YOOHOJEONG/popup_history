@@ -9,13 +9,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class SearchCal {
-	public void deleteCal(JList DuL){
-		String str = (String)DuL.getSelectedValue();
+public class SearchCal {//일정을 수정, 삭제할 때  검색하는  기능의  클래스
+	public void deleteCal(JList DuL){//일정 삭제를 위한 기능
+		String str = (String)DuL.getSelectedValue();//삭제를 위해 선택한 인덱스 값
 		if(str==null){
 				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 		}
-		else{
+		else{//선택한 인덱스 값이 있다면 삭제 실행
 			StringTokenizer tokens = new StringTokenizer(str);
 			String date = tokens.nextToken("▶");//구분자
 			String plan = tokens.nextToken("▶");
@@ -32,8 +32,8 @@ public class SearchCal {
 		}
 	}
 	
-	public void modifyCal(JList CuL, JTextArea CuT){
-		String str = (String)CuL.getSelectedValue();
+	public void modifyCal(JList CuL, JTextArea CuT){//일정 수정을 위한 기능
+		String str = (String)CuL.getSelectedValue();//수정을 위해 선택한 인덱스 값
 		StringTokenizer tokens = new StringTokenizer(str);
 		String date = tokens.nextToken("▶");//구분자
 		String plan = tokens.nextToken("▶");
@@ -41,7 +41,7 @@ public class SearchCal {
 
 		if("".equals(update_plan))
 				JOptionPane.showMessageDialog(null, "내용을 입력하세요.","", JOptionPane.ERROR_MESSAGE );
-		else{
+		else{//선택한 인덱스 값이 있다면 수정 실행
 			ModifyQuery mq = new ModifyQuery();
 			try {
 				mq.modifyQuery("update calender set plan = ? where plan = ?;", update_plan, plan, null);
