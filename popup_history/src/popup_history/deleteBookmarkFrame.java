@@ -26,10 +26,10 @@ public class deleteBookmarkFrame extends JFrame {
 
 	private JPanel contentPane;
 
+	//즐겨찾기 삭제 UI와 기능
 	public deleteBookmarkFrame() {
 		setTitle("즐겨찾기 목록 관리");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(deleteBookmarkFrame.class.getResource("/images/tray.jpg")));
-		//EXIT_ON_CLOSE
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 288);
 		contentPane = new JPanel();
@@ -48,8 +48,7 @@ public class deleteBookmarkFrame extends JFrame {
         		TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		JSP.setViewportView(FavL);
 
-		
-		
+		//즐겨찾기 테이블에 있는 date와 title을 출력
 		try {
 			ModifyQuery mq = new ModifyQuery();
 			Vector<String> date_title_bookmark;
@@ -57,7 +56,6 @@ public class deleteBookmarkFrame extends JFrame {
 		    FavL.setListData(date_title_bookmark);
 
 		} catch (ParseException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		
@@ -73,7 +71,7 @@ public class deleteBookmarkFrame extends JFrame {
 		
 		FavL.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				
+				//클릭한 역사의 내용을 출력
 				try {
 					String str = (String)FavL.getSelectedValue();
 					StringTokenizer tokens = new StringTokenizer(str);
@@ -86,7 +84,6 @@ public class deleteBookmarkFrame extends JFrame {
 					String text = (String)contents.get(0);      	       
 					textArea.setText(text);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -126,18 +123,18 @@ public class deleteBookmarkFrame extends JFrame {
 					try {
 
 						ModifyQuery mq = new ModifyQuery();
-						Vector<String> deleteRec;
+						Vector<String> deleteRec;	//선택한 역사를 즐겨찾기 테이블에서 삭제
 						deleteRec = mq.modifyQuery("delete from bookmark where date=? and title=?;",  date, title, null);
 						JOptionPane.showMessageDialog(null, "삭제 완료","", JOptionPane.INFORMATION_MESSAGE);
 						
 					    textArea.setText(null);	
 
+					    //리스트에 떠있는 목록을 새로고침
 						ModifyQuery mq1 = new ModifyQuery();
 						Vector<String> date_title_bookmark;
 						date_title_bookmark = mq1.modifyQuery("select date, title from bookmark order by month(date), day(date), title", null, null, null);
 					    FavL.setListData(date_title_bookmark);
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}

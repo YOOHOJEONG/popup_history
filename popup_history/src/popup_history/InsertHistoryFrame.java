@@ -17,7 +17,7 @@ public class InsertHistoryFrame extends JFrame {
    private JPanel contentPane;
    private JTextField ImT_1;
    private JTextArea ImT_2;
-
+   //역사 추가의 UI및 기능
    public InsertHistoryFrame() {
    	setTitle("History DB 추가");
    	setIconImage(Toolkit.getDefaultToolkit().getImage(InsertHistoryFrame.class.getResource("/images/tray.jpg")));
@@ -86,7 +86,7 @@ public class InsertHistoryFrame extends JFrame {
       ImT_2.setColumns(10);
       JSP.setViewportView(ImT_2);
       
-      
+      //버튼 클릭시 입력된 텍스트와 날짜로 역사 테이블에 추가
       JButton button = new JButton("추가");
       button.addMouseListener(new MouseAdapter() {
       	@Override

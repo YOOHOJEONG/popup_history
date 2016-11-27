@@ -21,7 +21,7 @@ public class DeleteHistoryFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 
-	
+	//역사 삭제의 UI와 기능
 	public DeleteHistoryFrame() {
 		setTitle("History DB 삭제");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DeleteHistoryFrame.class.getResource("/images/tray.jpg")));

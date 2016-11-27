@@ -10,8 +10,9 @@ public class AdminhomeFrame extends AdminLoginFrame {
 
 	private JPanel contentPane;
 
+	//관리자 홈 화면의 UI와 기능
 	public AdminhomeFrame() {
-		setTitle("\uAD00\uB9AC\uC790 \uD648\uD654\uBA74");
+		setTitle("관리자 홈 화면");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 339, 144);
 		contentPane = new JPanel();
@@ -26,6 +27,7 @@ public class AdminhomeFrame extends AdminLoginFrame {
 		label.setBounds(89, 20, 145, 24);
 		contentPane.add(label);
 		
+		//추가 버튼 클릭시 역사 추가 프레임을 킴
 		JButton MhIn = new JButton("추가");
 		MhIn.setBounds(12, 65, 80, 23);
 		contentPane.add(MhIn);
@@ -43,7 +45,7 @@ public class AdminhomeFrame extends AdminLoginFrame {
 		          	      });
 		            }
 		         });
-		
+		//수정 버튼 클릭시 역사 수정 프레임을 킴
 		JButton MhCh = new JButton("수정");
 		MhCh.setBounds(122, 65, 80, 23);
 		contentPane.add(MhCh);
@@ -61,7 +63,7 @@ public class AdminhomeFrame extends AdminLoginFrame {
 		          	      });
 		            }
 		         });
-		
+		//삭제 버튼 클릭시 역사 삭제 프레임을 킴
 		JButton MhDe = new JButton("삭제");
 		MhDe.setBounds(232, 65, 80, 23);
 		contentPane.add(MhDe);

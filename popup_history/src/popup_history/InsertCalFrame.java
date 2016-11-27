@@ -12,6 +12,7 @@ public class InsertCalFrame extends JFrame {
 	private JTextArea IuT;
 	static int set=0;
 
+	//일정 추가의 UI와 기능
 	public InsertCalFrame() {
 		setTitle("일정 추가");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InsertCalFrame.class.getResource("/images/tray.jpg")));
@@ -80,7 +81,7 @@ public class InsertCalFrame extends JFrame {
 			}
 		});
 		
-		
+		//입력된 날짜와 내용을 일정 테이블에 추가
 		JButton btnNewButton_1 = new JButton("추가");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override

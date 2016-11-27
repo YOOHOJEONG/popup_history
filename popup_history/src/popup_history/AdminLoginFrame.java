@@ -23,6 +23,7 @@ public class AdminLoginFrame extends JFrame {
 	private JPasswordField pwd;
 	String MID="swM", Mpwd ="swM1";
 
+	//관리자 로그인 UI와 기능
 	public AdminLoginFrame() {
 		setTitle("관리자 Log-In");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AdminLoginFrame.class.getResource("/images/tray.jpg")));
@@ -56,7 +57,7 @@ public class AdminLoginFrame extends JFrame {
 		pwd.setBounds(159, 125, 130, 30);
 		contentPane.add(pwd);
 		
-		//버튼에 몰아놓음
+		//로그인 버튼 클릭시 관리자 아이디와 비밀번호를 비교해서 동일할 시에 관리자 홈화면을 키고 다를시 다시 입력하도록 한다.
 		JButton btnNewButton = new JButton("LOGIN");
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setBounds(159, 175, 130, 30);

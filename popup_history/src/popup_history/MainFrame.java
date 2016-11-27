@@ -36,6 +36,7 @@ import java.awt.Toolkit;
     protected static final String JList = null;
 	private JTextField textField;
 
+	//메인 프레임의 UI와 기능
 	public MainFrame(){
 		setTitle("PopUp_History");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/tray.jpg")));
@@ -44,8 +45,6 @@ import java.awt.Toolkit;
     	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	setBounds(100, 100, 650, 469);
     	getContentPane().setLayout(null);
-    	
-    	String item[]={"기념일 추가", "기념일 수정", "기념일 삭제"};
 			
         JLabel label = new JLabel("검색");
         label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,6 +86,7 @@ import java.awt.Toolkit;
         getContentPane().add(textField);
         textField.setColumns(10);
         
+        //검색 버튼 클릭시 입력한 text로 역사 검색
         JButton btnSearch = new JButton("검색");
         btnSearch.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -95,7 +95,7 @@ import java.awt.Toolkit;
     				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
     			else{
     				HomeSearch hs = new HomeSearch();
-    				hs.HomeSearch(searchVal, list, textArea);	
+    				hs.HomeSearch(searchVal, list, textArea);	//입력한 text로 역사 검색해서 리스트에 출력
     		        textArea.setText(null);
     			}       		
         	}
@@ -104,6 +104,7 @@ import java.awt.Toolkit;
         btnSearch.setBounds(424, 211, 85, 23);
         getContentPane().add(btnSearch);
         
+        //다시 오늘의 역사를 리스트에 출력
         JButton btnResoration = new JButton("복구");
         btnResoration.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -115,6 +116,7 @@ import java.awt.Toolkit;
         btnResoration.setBounds(521, 211, 101, 23);
         getContentPane().add(btnResoration);
         
+        //선택한 역사를 즐겨찾기 테이블에 복사한다.
         JButton btnNewButton = new JButton("즐겨찾기 추가");
         btnNewButton.addMouseListener(new MouseAdapter() {
         	@Override
@@ -140,6 +142,7 @@ import java.awt.Toolkit;
          JMenu mnHome = new JMenu("HOME");
          mb.add(mnHome);
          
+         //HOME 메뉴에서 '새 창' 클릭시 홈 프레임이 켜짐
          JMenuItem mntmn = new JMenuItem("새 창 (N)");
          mnHome.add(mntmn);
          mntmn.addActionListener(new ActionListener() {
@@ -158,6 +161,7 @@ import java.awt.Toolkit;
              }
           });
          
+         //HOME 메뉴에서 '끝내기' 클릭시 홈 프레임 꺼짐
          JMenuItem mntmq = new JMenuItem("끝내기 (Q)");
          mnHome.add(mntmq);
          mntmq.addActionListener(new ActionListener() {
@@ -174,6 +178,7 @@ import java.awt.Toolkit;
              }
           });
          
+         //HOME 메뉴에서 '관리자' 클릭시 관리자 로그인 프레임이 켜짐
          JMenuItem mntmM = new JMenuItem("관리자");
          mnHome.add(mntmM);
          mntmM.addActionListener(new ActionListener() {
@@ -196,6 +201,7 @@ import java.awt.Toolkit;
          JMenu menu = new JMenu("기념일 관리");
          mb.add(menu);
          
+         //기념일 관리 메뉴에 '기념일 추가' 클릭시 기념일 추가 프레임이 켜짐
          JMenuItem menuItem = new JMenuItem("기념일 추가");
          menu.add(menuItem);
          menuItem.addActionListener(new ActionListener() {
@@ -213,6 +219,7 @@ import java.awt.Toolkit;
              }
           });
          
+         //기념일 관리 메뉴에 '기념일 수정' 클릭시 기념일 수정 프레임이 켜짐
          JMenuItem menuItem1 = new JMenuItem("기념일 수정");
          menu.add(menuItem1);
          menuItem1.addActionListener(new ActionListener() {
@@ -230,6 +237,7 @@ import java.awt.Toolkit;
              }
           });
          
+         //기념일 관리 메뉴에 '기념일 삭제' 클릭시 기념일 삭제 프레임이 켜짐
          JMenuItem menuItem2 = new JMenuItem("기념일 삭제");
          menu.add(menuItem2);
          menuItem2.addActionListener(new ActionListener() {
@@ -247,6 +255,7 @@ import java.awt.Toolkit;
              }
           });
          
+         //즐겨찾기 메뉴 안에 '즐겨찾기 삭제' 추가와 클릭시에 즐겨찾기 삭제 프레임이 켜짐
          JMenu Fav = new JMenu("즐겨찾기 관리");
          mb.add(Fav);
          JMenuItem FavM = new JMenuItem("즐겨찾기 삭제");

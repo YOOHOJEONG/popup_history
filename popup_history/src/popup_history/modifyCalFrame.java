@@ -23,7 +23,7 @@ public class modifyCalFrame extends JFrame {
 	private JTextField textField;
 	static int set=0;
 
-
+	//일정 수정의 UI와 기능
 	public modifyCalFrame() {
 		setTitle("일정 수정");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(modifyCalFrame.class.getResource("/images/tray.jpg")));
@@ -97,7 +97,6 @@ public class modifyCalFrame extends JFrame {
 					String text = (String)area_plan.get(0);
 					CuT.setText(text);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -112,6 +111,7 @@ public class modifyCalFrame extends JFrame {
 				flagAll=0;
 
 				String searchVal = textField.getText();
+				//입력한 날짜로 일정을 검색하여 리스트에 출력
  				if(((comboBox.getSelectedIndex()>0)&&(comboBox_1.getSelectedIndex()>0)&&(comboBox_2.getSelectedIndex()>0))
  						&&(!"".equals(searchVal))){
  					try{
@@ -134,10 +134,10 @@ public class modifyCalFrame extends JFrame {
 	 					CuL.setListData(date_plan);
 
  					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
  				}
+ 				//입력한 text로 일정을 검색하여 리스트에 출력
  				else if(!"".equals(searchVal)){
  					try {
  						ModifyQuery mq = new ModifyQuery();
@@ -145,7 +145,6 @@ public class modifyCalFrame extends JFrame {
 						date_plan = mq.modifyQuery("select date, plan from calender where plan like ? order by date, plan", searchVal, null, null);
 	 					CuL.setListData(date_plan);
  					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
  				}
@@ -181,10 +180,10 @@ public class modifyCalFrame extends JFrame {
 				else{
 					ModifyCal dc = new ModifyCal();
 					set=1;
-					dc.modifyCal(CuL, CuT);
+					dc.modifyCal(CuL, CuT);	//입력한 text로 일정 테이블의 내용을 수정
 					
-					if(flagAll==1){
-						
+					//버튼 클릭시 출력되는 리스트를 새로고침
+					if(flagAll==1){						
 						try {
 							textField.setText(null);
  							CuT.setText(null);
@@ -194,14 +193,12 @@ public class modifyCalFrame extends JFrame {
 							set=0;
 							CuL.setListData(date_plan);
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 							set=0;
 						}
 						
 					}
-					else{
-						
+					else{						
 						try {
 							ModifyQuery mq = new ModifyQuery();
 							Vector<String> date_plan;
@@ -209,7 +206,6 @@ public class modifyCalFrame extends JFrame {
 							set=0;
 							CuL.setListData(date_plan);
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 							set=0;
 						}
@@ -226,27 +222,27 @@ public class modifyCalFrame extends JFrame {
 		JButton button_2 = new JButton("취소");
 		button_2.setBounds(335, 268, 97, 23);
 		contentPane.add(button_2);
-				
-				JButton button_3 = new JButton("all");
-				button_3.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						try {
-							textField.setText(null);
- 							CuT.setText(null);
-							ModifyQuery mq = new ModifyQuery();
-						    Vector<String> date_title;
-							date_title = mq.modifyQuery("select date, plan from calender where plan like ? order by date", "", null, null);
-							CuL.setListData(date_title);
-							flagAll=1;
-						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				});
-				button_3.setBounds(44, 72, 63, 24);
-				contentPane.add(button_3);
+		
+		//일정 테이블에 있는 모든 목록을 불러와서 리스트에 출력
+		JButton button_3 = new JButton("all");
+		button_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					textField.setText(null);
+						CuT.setText(null);
+					ModifyQuery mq = new ModifyQuery();
+				    Vector<String> date_title;
+					date_title = mq.modifyQuery("select date, plan from calender where plan like ? order by date", "", null, null);
+					CuL.setListData(date_title);
+					flagAll=1;
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		button_3.setBounds(44, 72, 63, 24);
+		contentPane.add(button_3);
 						
 						
 		button_2.addActionListener(new ActionListener() {

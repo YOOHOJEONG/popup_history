@@ -23,6 +23,7 @@ public class DeleteCalFrame extends JFrame {
 
 	static int set=0;
 	
+	//일정 삭제 UI와 기능
 	public DeleteCalFrame() {
 		setTitle("일정 삭제");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DeleteCalFrame.class.getResource("/images/tray.jpg")));
@@ -82,6 +83,7 @@ public class DeleteCalFrame extends JFrame {
 				flagAll=0;
 
 				String searchVal = textField.getText();
+				//입력된 날짜로 검색해서 리스트에 출력
  				if(((comboBox.getSelectedIndex()>0)&&(comboBox_1.getSelectedIndex()>0)&&(comboBox_2.getSelectedIndex()>0))
  						&&(!"".equals(searchVal))){
  					try{
@@ -108,6 +110,7 @@ public class DeleteCalFrame extends JFrame {
 						e1.printStackTrace();
 					}
  				}
+ 				//입력한 텍스트로 검색해서 리스트에 출력
  				else if(!"".equals(searchVal)){
  					try {
  						ModifyQuery mq = new ModifyQuery();
@@ -135,7 +138,7 @@ public class DeleteCalFrame extends JFrame {
 		label_1.setBounds(12, 92, 53, 25);
 		contentPane.add(label_1);
 	
-		
+		//버튼을 클릭시 선택된 일정을 삭제
 		JButton button = new JButton("삭제");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
@@ -150,8 +153,9 @@ public class DeleteCalFrame extends JFrame {
 				else{
 					DeleteCal dc  = new DeleteCal();
 					set=1;
-					dc.DeleteCal(DuL);
+					dc.DeleteCal(DuL);	//선택한 일정 삭제
 					
+					//일정 리스트 새로고침
 					if(flagAll==1){
 						try {
 	   						ModifyQuery mq = new ModifyQuery();
@@ -185,6 +189,7 @@ public class DeleteCalFrame extends JFrame {
 		button_1.setBounds(325, 252, 97, 23);
 		contentPane.add(button_1);
 		
+		//일정 테이블의 목록을 모두 불러와서 리스트로 출력
 		JButton button_2 = new JButton("all");
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
@@ -197,7 +202,6 @@ public class DeleteCalFrame extends JFrame {
 					DuL.setListData(date_title);
 					flagAll=1;
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
