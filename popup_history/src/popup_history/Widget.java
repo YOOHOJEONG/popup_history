@@ -25,6 +25,8 @@ public class Widget extends JFrame{
 
     //위젯의 UI및 기능 셋팅
     void initComponents() {
+    	setTitle("PopUp_History");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/tray.jpg")));
         home = new JLabel();
         exit = new JLabel();
         jLabe = new JLabel();
@@ -38,8 +40,8 @@ public class Widget extends JFrame{
         Work work = new Work();
         
         //아이콘 모양 세팅
-        ImageIcon HomeIcon1 = new ImageIcon("src/images/home.jpg");
-        ImageIcon ExitIcon1 = new ImageIcon("src/images/exit.jpg");
+        ImageIcon HomeIcon1 = new ImageIcon(MainFrame.class.getResource("/images/home.jpg"));
+        ImageIcon ExitIcon1 = new ImageIcon(MainFrame.class.getResource("/images/exit.jpg"));
         Image HomeIcon2 = HomeIcon1.getImage();
         Image ExitIcon2 = ExitIcon1.getImage();
         Image HomeIcon3 = HomeIcon2.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);

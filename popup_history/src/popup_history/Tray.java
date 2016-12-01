@@ -79,7 +79,7 @@ class Trayicon implements ActionListener {
       void initTray(String m_strTrayTitle)
       {
        // 트레이 아이콘의 아이콘 역할을 할 이미지 입니다. 
-       Image image = Toolkit.getDefaultToolkit().getImage("src/images/tray.jpg");
+       Image image = Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/tray.jpg"));
        
        // TrayIcon을 생성합니다.
        m_ti = new TrayIcon(image, m_strTrayTitle, createPopupMenu());
@@ -160,9 +160,7 @@ class Trayicon implements ActionListener {
         	   else{
         		   eM.showMessage("오류","0~59 사이의 정수를 제대로 입력하십시오.");
         	   }
-    	   }
-    	   System.out.println(timer);
-    	   
+    	   }    	   
        }
        else if(e.getActionCommand() == "종료")
        {         
