@@ -27,6 +27,7 @@ class Trayicon implements ActionListener {
       //아이콘 입니다. 
       TrayIcon m_ti;
       String message;
+      int timer=0;
       MainFrame m_frame = new MainFrame();
       
       
@@ -59,7 +60,7 @@ class Trayicon implements ActionListener {
                message=Hm.Message(message);
                ShowMessageListener SML = new ShowMessageListener(m_ti,today.get(Calendar.YEAR)+"/"+(today.get(Calendar.MONTH)+1)+"/"+today.get(Calendar.DATE)+".",
                        message,TrayIcon.MessageType.NONE);   //지속적으로 내용을 받음
-               if(today.get(Calendar.MINUTE)==00){   //분 단위
+               if(today.get(Calendar.MINUTE)==timer){   //분 단위
                   SML.playMessage();
                   try{
                       Thread.sleep(10000);//10초에 한번씩 1분 뜸
@@ -108,14 +109,17 @@ class Trayicon implements ActionListener {
           PopupMenu popupMenu = new PopupMenu();
           
           MenuItem miShow = new MenuItem("위젯");
+          MenuItem timerM = new MenuItem("역사 출력 시간 설정");
           MenuItem miQuit = new MenuItem("종료");
 
           //각각에 항목에 대해 리스너 장착. 
           miShow.addActionListener(this);
+          timerM.addActionListener(this);
           miQuit.addActionListener(this);
           
           //팝업 메뉴에 등록 
           popupMenu.add(miShow);
+          popupMenu.add(timerM);
           // 줄 생성
           popupMenu.addSeparator();
           popupMenu.add(miQuit);
@@ -127,6 +131,7 @@ class Trayicon implements ActionListener {
       //오른쪽 마우스 입력시 뜨는 팝업 메뉴의 각 기능
       public void actionPerformed(ActionEvent e)
       {
+    	  ExitMessage eM = new ExitMessage();
        if(e.getActionCommand() == "위젯")
        {
            java.awt.EventQueue.invokeLater(new Runnable() {
@@ -142,9 +147,25 @@ class Trayicon implements ActionListener {
                }
            });
        }
+       else if(e.getActionCommand() == "역사 출력 시간 설정"){
+    	   while(true){
+    		   timer = -1;
+        	   try {
+        		   timer=Integer.parseInt(JOptionPane.showInputDialog(null, "0~59 중 원하는 시간을 입력해주십시오.(숫자)"));
+        	   }
+        	   catch(Exception ex) {}
+        	   if(0<=timer&&timer<=59){
+        		   break;
+        	   }
+        	   else{
+        		   eM.showMessage("오류","0~59 사이의 정수를 제대로 입력하십시오.");
+        	   }
+    	   }
+    	   System.out.println(timer);
+    	   
+       }
        else if(e.getActionCommand() == "종료")
-       {
-          ExitMessage eM = new ExitMessage();
+       {         
           eM.showMessage("종료","종료합니다");
           System.exit(0);
        }
