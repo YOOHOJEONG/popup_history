@@ -119,15 +119,17 @@ import java.awt.Toolkit;
         //선택한 역사를 즐겨찾기 테이블에 복사한다.
         JButton btnNewButton = new JButton("즐겨찾기 추가");
         btnNewButton.addMouseListener(new MouseAdapter() {
-        	@Override
+        	InsertBookmark_btn ibn = new InsertBookmark_btn();
         	public void mouseClicked(MouseEvent arg0) {
         		if(list.getSelectedValue()==null){
     				JOptionPane.showMessageDialog(null, "즐겨찾기 할 목록을 선택하세요.","", JOptionPane.ERROR_MESSAGE );
         		}
+        		else if(ibn.SearchBookmark(list)==0){
+        			JOptionPane.showMessageDialog(null, "즐겨찾기 중복 되었습니다","", JOptionPane.WARNING_MESSAGE);
+        		}
         		else{
-     		InsertBookmark_btn ibn = new InsertBookmark_btn();
-     		ibn.InsertBookmark_btn(list);
- 			JOptionPane.showMessageDialog(null, "즐겨찾기 등록 완료","", JOptionPane.INFORMATION_MESSAGE);
+        			ibn.InsertBookmark_btn(list);
+        			JOptionPane.showMessageDialog(null, "즐겨찾기 등록 완료","", JOptionPane.INFORMATION_MESSAGE);
         		}
         	}
         });

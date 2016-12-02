@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class InsertHistoryFrame extends JFrame {
 
@@ -30,11 +31,15 @@ public class InsertHistoryFrame extends JFrame {
       setContentPane(contentPane);
       contentPane.setLayout(null);
       
-      String arr[] = new String[101];
+      String arr[] = new String[9000];
       arr[0]="¿¬µµ";
+      Calendar today = Calendar.getInstance();
+      int year=today.get(Calendar.YEAR)-1;
       for(int i=1; i<101; i++)
       {
-         arr[i]= String.valueOf(2023-i);
+         arr[i]= String.valueOf(year-i);
+         if(arr[i]=="0")
+        	 break;
       }
       JComboBox comboBox = new JComboBox(arr);
       comboBox.setSelectedIndex(0);

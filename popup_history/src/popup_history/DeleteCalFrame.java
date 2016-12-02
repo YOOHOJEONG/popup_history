@@ -10,6 +10,7 @@ import java.awt.TextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Vector;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -43,9 +44,12 @@ public class DeleteCalFrame extends JFrame {
 		
 		String arr[] = new String[101];
 		arr[0]="³âµµ";
+		int year;
+		Calendar today = Calendar.getInstance();
+		year=today.get(Calendar.YEAR)-1;
 		for(int i=1; i<101; i++)
 		{
-			arr[i] = String.valueOf(2023-i);
+			arr[i] = String.valueOf(year+i);
 		}		
 		JComboBox comboBox = new JComboBox(arr);
 		comboBox.setBounds(58, 10, 86, 24);
