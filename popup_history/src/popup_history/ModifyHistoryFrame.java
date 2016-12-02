@@ -171,9 +171,6 @@ public class ModifyHistoryFrame extends JFrame {
  				String searchVal = textField.getText();
  
  				if(CmL.getSelectedValue()==null){
- 					if("".equals(searchVal))
- 		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
- 					else
  						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.ERROR_MESSAGE );
  				}
  				else{
