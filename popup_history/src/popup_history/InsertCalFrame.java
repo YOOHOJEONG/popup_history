@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.*;
 import java.text.ParseException;
+import java.util.Calendar;
 
 public class InsertCalFrame extends JFrame {
 
@@ -28,9 +29,12 @@ public class InsertCalFrame extends JFrame {
 		
 		String arr[] = new String[101];
 		arr[0]="³âµµ";
+		int year;
+		Calendar today = Calendar.getInstance();
+		year=today.get(Calendar.YEAR)-1;
 		for(int i=1; i<101; i++)
 		{
-			arr[i] = String.valueOf(2023-i);
+			arr[i] = String.valueOf(year+i);
 		}
 		
 		JComboBox comboBox = new JComboBox(arr);
