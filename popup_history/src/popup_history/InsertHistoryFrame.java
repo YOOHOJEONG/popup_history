@@ -30,11 +30,11 @@ public class InsertHistoryFrame extends JFrame {
       setContentPane(contentPane);
       contentPane.setLayout(null);
       
-      String arr[] = new String[101];
+      String arr[] = new String[2017];
       arr[0]="¿¬µµ";
-      for(int i=1; i<101; i++)
+      for(int i=1; i<2017; i++)
       {
-         arr[i]= String.valueOf(2023-i);
+         arr[i]= String.valueOf(2017-i);
       }
       JComboBox comboBox = new JComboBox(arr);
       comboBox.setSelectedIndex(0);
