@@ -148,7 +148,7 @@ public class DeleteCalFrame extends JFrame {
 					if("".equals(searchVal))
 		   				JOptionPane.showMessageDialog(null, "검색어를 입력하세요.","", JOptionPane.ERROR_MESSAGE );
 					else
-						JOptionPane.showMessageDialog(null, "수정 할 데이터를 선택하세요.","", JOptionPane.ERROR_MESSAGE );
+						JOptionPane.showMessageDialog(null, "삭제 할 데이터를 선택하세요.","", JOptionPane.ERROR_MESSAGE );
 				}
 				else{
 					DeleteCal dc  = new DeleteCal();
