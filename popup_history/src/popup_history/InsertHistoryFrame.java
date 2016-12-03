@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class InsertHistoryFrame extends JFrame {
+public class InsertHistoryFrame extends AdminhomeFrame {
 
    private JPanel contentPane;
    private JTextField ImT_1;

@@ -5,8 +5,9 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import javax.swing.*;
 
-public class AdminSearch {//관리자가 역사를 수정, 삭제할 때 검색하는 기능의 클래스
-
+public class AdminSearch extends AdminLoginFrame{//관리자가 역사를 수정, 삭제할 때 검색하는 기능의 클래스
+	AdminLoginFrame x = new AdminhomeFrame();
+	
 	public void deleteHistory(JList DmL){//역사 정보 삭제 기능
 		String str = (String)DmL.getSelectedValue();//삭제하기 위해 선택한 인덱스 값
 		if(str==null){

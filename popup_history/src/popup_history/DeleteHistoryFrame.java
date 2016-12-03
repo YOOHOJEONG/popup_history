@@ -15,7 +15,7 @@ import java.util.Vector;
 import java.awt.Toolkit;
 import java.awt.Color;
 
-public class DeleteHistoryFrame extends JFrame {
+public class DeleteHistoryFrame extends AdminhomeFrame {
 	int flagAll=0;
 
 	private JPanel contentPane;
