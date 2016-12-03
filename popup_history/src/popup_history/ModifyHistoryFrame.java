@@ -19,6 +19,7 @@ import java.awt.Toolkit;
 
 //역사 수정의 UI 및 기능
 public class ModifyHistoryFrame extends AdminhomeFrame {
+
 	int flagAll=0;
 	private JPanel contentPane;
 	private JTextField textField;

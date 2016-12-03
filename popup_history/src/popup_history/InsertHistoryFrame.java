@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class InsertHistoryFrame extends AdminhomeFrame {
-
+	
    private JPanel contentPane;
    private JTextField ImT_1;
    private JTextArea ImT_2;
