@@ -31,19 +31,10 @@ public class InsertHistoryFrame extends AdminhomeFrame {
       setContentPane(contentPane);
       contentPane.setLayout(null);
       
+      Years year = null;
       JComboBox comboBox = new JComboBox();
-      ArrayList<String> arr = new ArrayList<String>();
-      arr.add("연도");
-      comboBox.addItem(arr.get(0));
-      Calendar today = Calendar.getInstance();
-      int year=today.get(Calendar.YEAR)+1;
-      for(int i=1; i<year; i++)
-      {
-         arr.add(String.valueOf(year-i));
-         comboBox.addItem(arr.get(i));
-         if(arr.get(i)=="1")
-        	 break;
-      }
+      year=new PastYear();
+      year.Year(comboBox);
       comboBox.setSelectedIndex(0);
       comboBox.setFont(new Font("양재본목각체M", Font.BOLD, 12));
       comboBox.setBounds(82, 30, 87, 30);

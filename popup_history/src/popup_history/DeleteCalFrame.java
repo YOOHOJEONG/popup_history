@@ -42,16 +42,10 @@ public class DeleteCalFrame extends JFrame {
 		contentPane.add(label);
 		
 		
-		String arr[] = new String[101];
-		arr[0]="³âµµ";
-		int year;
-		Calendar today = Calendar.getInstance();
-		year=today.get(Calendar.YEAR)-1;
-		for(int i=1; i<101; i++)
-		{
-			arr[i] = String.valueOf(year+i);
-		}		
-		JComboBox comboBox = new JComboBox(arr);
+		Years year = null;	
+		JComboBox comboBox = new JComboBox();
+		year = new NextYear();
+		year.Year(comboBox);
 		comboBox.setBounds(58, 10, 86, 24);
 		comboBox.setSelectedIndex(0);
 		contentPane.add(comboBox);

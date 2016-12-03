@@ -7,9 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AdminhomeFrame extends AdminLoginFrame {
-	AdminhomeFrame insert = new InsertHistoryFrame();
-	AdminhomeFrame modify = new ModifyHistoryFrame();
-	AdminhomeFrame delete = new DeleteHistoryFrame();
 
 	private JPanel contentPane;
 

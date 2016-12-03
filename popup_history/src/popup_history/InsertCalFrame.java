@@ -27,17 +27,10 @@ public class InsertCalFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		String arr[] = new String[101];
-		arr[0]="년도";
-		int year;
-		Calendar today = Calendar.getInstance();
-		year=today.get(Calendar.YEAR)-1;
-		for(int i=1; i<101; i++)
-		{
-			arr[i] = String.valueOf(year+i);
-		}
-		
-		JComboBox comboBox = new JComboBox(arr);
+		Years year = null;
+		JComboBox comboBox = new JComboBox();
+		year=new NextYear();
+		year.Year(comboBox);
 		comboBox.setFont(new Font("양재본목각체M", Font.BOLD, 12));
 		comboBox.setBounds(78, 27, 87, 30);
 		contentPane.add(comboBox);
