@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.*;
 
 public class InsertHistoryFrame extends JFrame {
 
@@ -31,13 +31,19 @@ public class InsertHistoryFrame extends JFrame {
       setContentPane(contentPane);
       contentPane.setLayout(null);
       
-      String arr[] = new String[2017];
-      arr[0]="연도";
-      for(int i=1; i<2017; i++)
+      JComboBox comboBox = new JComboBox();
+      ArrayList<String> arr = new ArrayList<String>();
+      arr.add("연도");
+      comboBox.addItem(arr.get(0));
+      Calendar today = Calendar.getInstance();
+      int year=today.get(Calendar.YEAR)+1;
+      for(int i=1; i<year; i++)
       {
-         arr[i]= String.valueOf(2017-i);
+         arr.add(String.valueOf(year-i));
+         comboBox.addItem(arr.get(i));
+         if(arr.get(i)=="1")
+        	 break;
       }
-      JComboBox comboBox = new JComboBox(arr);
       comboBox.setSelectedIndex(0);
       comboBox.setFont(new Font("양재본목각체M", Font.BOLD, 12));
       comboBox.setBounds(82, 30, 87, 30);

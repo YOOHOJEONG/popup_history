@@ -9,9 +9,7 @@ public class Main {//프로그램 실행을 위한 클래스
          
          Tray test= new Tray("Popup History");
          Thread wP = new Thread(new widgetPlay());
-         MainFrame frame = new MainFrame();
-           frame.setVisible(true);
-           wP.start();
+         wP.start();
       }
 }
 
